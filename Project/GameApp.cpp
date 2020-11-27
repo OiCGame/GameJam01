@@ -28,7 +28,7 @@
 						それ以外	失敗、エラーコードが戻り値となる
 *//**************************************************************************/
 MofBool CGameApp::Initialize(void) {
-
+	CUtilities::SetCurrentDirectory("Resource");
 	// シーンマネージャーに各シーンの登録
 	m_SceneManager
 		.Add<CTitle>(SceneName::Title)
