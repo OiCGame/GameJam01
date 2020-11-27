@@ -13,18 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{fcbe1840-2f3e-4ccb-b9d5-6b9fab471299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Application">
+      <UniqueIdentifier>{76be79ae-364c-415c-880d-03aef8b9a655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene">
+      <UniqueIdentifier>{ac83bcb3-e1c4-49ea-a360-36b44a71005c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Define">
+      <UniqueIdentifier>{0b303594-6a7b-48c1-9f5a-25bc8149b0a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Application">
+      <UniqueIdentifier>{0565fd90-cbea-4b9f-8d40-ef6395d27a30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinMain.cpp">
+    <ClCompile Include="StopWatch.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClear.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameApp.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>ソース ファイル\Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameApp.h">
+    <ClInclude Include="SceneManager.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetBase.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="StopWatch.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClear.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetDefine.h">
+      <Filter>ヘッダー ファイル\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDefine.h">
+      <Filter>ヘッダー ファイル\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApp.h">
+      <Filter>ヘッダー ファイル\Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
