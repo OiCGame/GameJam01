@@ -9,6 +9,13 @@
 
 //INCLUDE
 #include	"GameApp.h"
+#include    "AssetDefine.h"
+
+//SCENE
+#include    "Game.h"
+#include    "Title.h"
+#include    "GameClear.h"
+#include    "GameOver.h"
 
 /*************************************************************************//*!
 		@brief			アプリケーションの初期化
@@ -18,6 +25,20 @@
 						それ以外	失敗、エラーコードが戻り値となる
 *//**************************************************************************/
 MofBool CGameApp::Initialize(void) {
+
+	// シーンマネージャーに各シーンの登録
+	m_SceneManager
+		.Add<CTitle>(SceneName::Title)
+		.Add<CGame>(SceneName::Game)
+		.Add<CGameClear>(SceneName::GameClear)
+		.Add<CGameOver>(SceneName::GameOver)
+		.SetFadeColor(MOF_COLOR_WHITE);
+
+	// タイトルシーンから開始
+	//m_SceneManager.Initialize(SceneName::Title);
+	// デバッグ用、ゲームシーンから開始
+	m_SceneManager.Initialize(SceneName::Game);
+
 	return TRUE;
 }
 /*************************************************************************//*!
@@ -30,6 +51,13 @@ MofBool CGameApp::Initialize(void) {
 MofBool CGameApp::Update(void) {
 	//キーの更新
 	g_pInput->RefreshKey();
+
+	// アクティブのシーン更新
+	if (!m_SceneManager.Update())
+	{
+		return FALSE;
+	}
+
 	return TRUE;
 }
 /*************************************************************************//*!
@@ -45,6 +73,12 @@ MofBool CGameApp::Render(void) {
 	//画面のクリア
 	g_pGraphics->ClearTarget(0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0);
 
+	// アクティブのシーン描画
+	if (!m_SceneManager.Render())
+	{
+		return FALSE;
+	}
+
 	//描画の終了
 	g_pGraphics->RenderEnd();
 	return TRUE;
@@ -57,5 +91,9 @@ MofBool CGameApp::Render(void) {
 						それ以外	失敗、エラーコードが戻り値となる
 *//**************************************************************************/
 MofBool CGameApp::Release(void) {
+
+	// テクスチャの解放
+	CTextureAsset::Release();
+
 	return TRUE;
 }
