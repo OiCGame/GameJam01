@@ -11,6 +11,8 @@
 #include	"GameApp.h"
 #include    "AssetDefine.h"
 
+#include    "EffectManager.h"
+
 //SCENE
 #include    "Game.h"
 #include    "Title.h"
@@ -26,6 +28,8 @@
 *//**************************************************************************/
 MofBool CGameApp::Initialize(void) {
 
+	CUtilities::SetCurrentDirectory("Resource");
+
 	// シーンマネージャーに各シーンの登録
 	m_SceneManager
 		.Add<CTitle>(SceneName::Title)
@@ -33,6 +37,11 @@ MofBool CGameApp::Initialize(void) {
 		.Add<CGameClear>(SceneName::GameClear)
 		.Add<CGameOver>(SceneName::GameOver)
 		.SetFadeColor(MOF_COLOR_WHITE);
+
+	CAnimationAsset::Load(AnimationKey::Effect_Barrier, "Effect/barrier.anim");
+	CTextureAsset::Load(TextureKey::Effect_Barrier, AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str());
+	
+	g_EffectManager.Initialize();
 
 	// タイトルシーンから開始
 	//m_SceneManager.Initialize(SceneName::Title);
@@ -57,7 +66,16 @@ MofBool CGameApp::Update(void) {
 		std::exit(0);
 	} // if
 
+	if (g_pInput->IsKeyPush(MOFKEY_9))
+	{
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+	}
 
+	g_EffectManager.Update();
 
 	// アクティブのシーン更新
 	if (!m_SceneManager.Update())
@@ -86,6 +104,8 @@ MofBool CGameApp::Render(void) {
 		return FALSE;
 	}
 
+	g_EffectManager.Render();
+
 	//描画の終了
 	g_pGraphics->RenderEnd();
 	return TRUE;
@@ -101,6 +121,9 @@ MofBool CGameApp::Release(void) {
 
 	// テクスチャの解放
 	CTextureAsset::Release();
+	CAnimationAsset::Release();
 
+
+	g_EffectManager.Release();
 	return TRUE;
 }
