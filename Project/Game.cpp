@@ -1,21 +1,37 @@
 #include "Game.h"
 
 #include "GamePad.h"
-
-
+#include "Character.h"
 #include "BulletManager.h"
 
+CBullet gBullet;
+CCharacter gCharacter;
 
 CGame::CGame(const CGame::InitData & data)
 	: super(data)
 {
-	// BulletÇÃèâä˙âª
+	if (!CTextureAsset::Load(TextureKey::Bullet_01, "FOOD.png"))
+	{
+		MOF_PRINTLOG("failed to load texture");
+	} // if
+	gBullet.SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
+	puts("");
+
+	if (!CTextureAsset::Load(TextureKey::Character, "Rockets.png"))
+	{
+		MOF_PRINTLOG("failed to load texture");
+	}
+	CharacterInitParam CIparm;
+	CIparm.position = CVector2(500, 600);
+	CIparm.texture = TextureAsset(TextureKey::Character);
+	gCharacter.Initialize(CIparm);
+	// Bullet„ÅÆÂàùÊúüÂåñ
 	CBulletManager::Singleton().Initialize();
 }
 
 CGame::~CGame(void)
 {
-	// BulletÇÃèâä˙âª
+	// Bullet„ÅÆÂàùÊúüÂåñ
 	CBulletManager::Singleton().Release();
 }
 
@@ -25,6 +41,7 @@ void CGame::Update(void)
 	{
 		ChangeScene(SceneName::Title);
 	}
+	gCharacter.Update();
 	if (::g_pPad->IsKeyPush(XInputButton::XINPUT_A))
 	{
 		CBulletManager::Singleton().Fire(
@@ -33,7 +50,7 @@ void CGame::Update(void)
 			BulletTeamType::Player);
 	} // if
 
-	// BulletÇÃçXêV
+	// Bullet„ÅÆÊõ¥Êñ∞
 	CBulletManager::Singleton().Update();
 }
 
@@ -48,4 +65,5 @@ void CGame::Render(void)
 		//auto rect = CRectangle(0.0f, 0.0f, 200.0f, 200.0f);
 		//CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_BLACK);
 	} // if
+	gCharacter.Render(CVector2(0,0));
 }

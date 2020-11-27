@@ -5,7 +5,8 @@ using namespace sip;
 
 enum class TextureKey
 {
-	Bullet_01
+	Bullet_01,
+	Character,
 };
 
 using CTextureAsset = CAssetBase<TextureKey, CTexture>;
