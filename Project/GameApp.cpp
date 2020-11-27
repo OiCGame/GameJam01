@@ -51,6 +51,13 @@ MofBool CGameApp::Initialize(void) {
 MofBool CGameApp::Update(void) {
 	//キーの更新
 	g_pInput->RefreshKey();
+	// エスケープで終了（デバッグ用）
+	if (g_pInput->IsKeyPush(MOFKEY_ESCAPE))
+	{
+		std::exit(0);
+	} // if
+
+
 
 	// アクティブのシーン更新
 	if (!m_SceneManager.Update())
