@@ -1,9 +1,8 @@
 #include "Game.h"
 
-#include "AssetDefine.h"
-#include "Bullet.h"
 #include "GamePad.h"
 #include "Character.h"
+#include "BulletManager.h"
 
 CBullet gBullet;
 CCharacter gCharacter;
@@ -26,10 +25,14 @@ CGame::CGame(const CGame::InitData & data)
 	CIparm.position = CVector2(500, 600);
 	CIparm.texture = TextureAsset(TextureKey::Character);
 	gCharacter.Initialize(CIparm);
+	// Bulletの初期化
+	CBulletManager::Singleton().Initialize();
 }
 
 CGame::~CGame(void)
 {
+	// Bulletの初期化
+	CBulletManager::Singleton().Release();
 }
 
 void CGame::Update(void)
@@ -39,14 +42,28 @@ void CGame::Update(void)
 		ChangeScene(SceneName::Title);
 	}
 	gCharacter.Update();
+	if (::g_pPad->IsKeyPush(XInputButton::XINPUT_A))
+	{
+		CBulletManager::Singleton().Fire(
+			Mof::CVector2(200.0f, 200.0f),
+			Mof::CVector2(5.0f, 0.0f),
+			BulletTeamType::Player);
+	} // if
+
+	// Bulletの更新
+	CBulletManager::Singleton().Update();
 }
 
 void CGame::Render(void)
 {
-	if (::g_pPad->IsKeyHold(Mof::XInputButton::XINPUT_A))
+	CBulletManager::Singleton().Render(Mof::CVector2());
+
+
+
+	if (::g_pPad->IsKeyHold(XInputButton::XINPUT_A))
 	{
-		auto rect = Mof::CRectangle(0.0f, 0.0f, 200.0f, 200.0f);
-		::CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_BLACK);
+		//auto rect = CRectangle(0.0f, 0.0f, 200.0f, 200.0f);
+		//CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_BLACK);
 	} // if
 	gCharacter.Render(CVector2(0,0));
 }
