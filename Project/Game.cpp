@@ -19,4 +19,6 @@ void CGame::Update(void)
 
 void CGame::Render(void)
 {
+	auto rect = Mof::CRectangle(0.0f, 0.0f, 200.0f, 200.0f);
+	::CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_BLACK);
 }
