@@ -19,22 +19,36 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 
 void CCharacter::Update(void)
 {
-	if (g_pPad->GetStickVertical() > 0.35f)
+	bool StickTop = g_pPad->GetStickVertical() > 0.35f;
+	bool StickBottom = g_pPad->GetStickVertical() < -0.35f;
+	bool StickRight = g_pPad->GetStickHorizontal() > 0.35f;
+	bool StickLeft = g_pPad->GetStickHorizontal() < -0.35f;
+
+	float rate = 1.0f;
+	if (StickTop || StickBottom)
 	{
-		m_Position.y -= CHARACTER_SPEED;
-	}
-	else if (g_pPad->GetStickVertical() < -0.35f)
-	{
-		m_Position.y += CHARACTER_SPEED;
+		if (StickRight || StickLeft)
+		{
+			rate = 0.71f;
+		}
 	}
 
-	if (g_pPad->GetStickHorizontal() > 0.35f)
+	if (StickTop)//ã
 	{
-		m_Position.x += CHARACTER_SPEED;
+		m_Position.y -= CHARACTER_SPEED * rate;
 	}
-	else if (g_pPad->GetStickHorizontal() < -0.35f)
+	else if (StickBottom)//‰º
 	{
-		m_Position.x -= CHARACTER_SPEED;
+		m_Position.y += CHARACTER_SPEED * rate;
+	}
+
+	if (StickRight)//‰E
+	{
+		m_Position.x += CHARACTER_SPEED * rate;
+	}
+	else if (StickLeft)//¶
+	{
+		m_Position.x -= CHARACTER_SPEED * rate;
 	}
 }
 
