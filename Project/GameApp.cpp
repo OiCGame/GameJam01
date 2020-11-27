@@ -17,6 +17,9 @@
 #include    "GameClear.h"
 #include    "GameOver.h"
 
+#include    "GamePad.h"
+
+
 /*************************************************************************//*!
 		@brief			アプリケーションの初期化
 		@param			None
@@ -38,7 +41,6 @@ MofBool CGameApp::Initialize(void) {
 	//m_SceneManager.Initialize(SceneName::Title);
 	// デバッグ用、ゲームシーンから開始
 	m_SceneManager.Initialize(SceneName::Game);
-
 	return TRUE;
 }
 /*************************************************************************//*!
@@ -51,6 +53,8 @@ MofBool CGameApp::Initialize(void) {
 MofBool CGameApp::Update(void) {
 	//キーの更新
 	g_pInput->RefreshKey();
+	bf::GamePad::GetInstance().RefreshKey();
+
 	// エスケープで終了（デバッグ用）
 	if (g_pInput->IsKeyPush(MOFKEY_ESCAPE))
 	{
