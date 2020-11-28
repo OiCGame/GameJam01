@@ -82,6 +82,17 @@ void CBullet::Update(void)
     if (::g_pFramework->GetWindow()->GetWidth() < m_Position.x) {
         this->m_bShow = false;
     } // if
+    else if (m_Position.x < 0.0f - this->GetRectangle().GetWidth()) {
+        this->m_bShow = false;
+    } // else if
+    else if (::g_pFramework->GetWindow()->GetHeight() < m_Position.y) {
+        this->m_bShow = false;
+    } // else if
+    else if (m_Position.y  < 0.0f - this->GetRectangle().GetHeight()) {
+        this->m_bShow = false;
+    } // else if
+
+
 }
 
 /// <summary>

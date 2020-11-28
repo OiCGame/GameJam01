@@ -6,11 +6,13 @@
 #include "HP.h"
 
 
-class CPlayer : public CCharacter
+class CPlayer : public CCharacter 
 {
+    using super = CCharacter;
 private:
 public:
-	CPlayer();
-	~CPlayer();
-	virtual void Update(void) override;
+    CPlayer();
+    ~CPlayer();
+    virtual void Update(void) override;
+    virtual void Render(CVector2 scroll) override;
 };
