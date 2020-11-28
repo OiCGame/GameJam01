@@ -82,6 +82,9 @@
     <ClCompile Include="GamePad.cpp">
       <Filter>ソース\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>ソース\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EaseMotion.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>ヘッダー\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>ヘッダー\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

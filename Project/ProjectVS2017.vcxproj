@@ -96,6 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationData.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoomerangBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="AnimationData.h" />
     <ClInclude Include="AssetBase.h" />
     <ClInclude Include="AssetDefine.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoomerangBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
