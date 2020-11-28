@@ -20,11 +20,6 @@ CRectangle CPlayer::GetRectangle(void) const {
 const char* CPlayer::GetTeam(void) const {
     return "Player";
 }
-/*
-bool CPlayer::IsInvincible(void) const {
-    return 0.0f < m_Invincible;
-}
-*/
 
 void CPlayer::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);

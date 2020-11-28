@@ -27,6 +27,7 @@ std::shared_ptr<CCharacter> CCharacterManager::GetPlayer(void) const {
 }
 
 std::shared_ptr<CCharacter> CCharacterManager::GetNearestEnemy(CVector2 position) const {
+    // positionに元も近い位置にいるEnemyを返す
     auto it = std::min_element(m_pCharacters.begin(), m_pCharacters.end(), [&](
         std::shared_ptr<CCharacter> a,
         std::shared_ptr<CCharacter> b) {
@@ -45,33 +46,20 @@ std::shared_ptr<CCharacter> CCharacterManager::GetNearestEnemy(CVector2 position
     return std::shared_ptr<CCharacter>();
 }
 
-/*
-bool CCharacterManager::Initialize(void) {
-    return true;
-}
-*/
 void CCharacterManager::Update(void) {
-    // 死亡エネミーを削除
-
+    // 死亡キャラを削除
     m_pCharacters.erase(
         std::remove_if(
             m_pCharacters.begin(),
             m_pCharacters.end(),
             [](shared_ptr<CCharacter> chara) {
-//        return enemy->GetTeam() == "Enemy" && enemy->IsShow();}),
         return !chara->IsShow();}),
         m_pCharacters.end());
 
-
-
-
-
-
+    // 更新
     for (auto chara : m_pCharacters) {
         chara->Update();
     } // for
-
-
     MOF_PRINTLOG("CharacterManager m_pCharacters size = %d \n", m_pCharacters.size());
 }
 

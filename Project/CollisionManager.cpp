@@ -57,7 +57,6 @@ void CCollisionManager::Update(void)
 	if (!m_pPlayer) {
 		m_pPlayer.reset();
 	} // if
-
 	MOF_PRINTLOG("CollisionManager m_pEnemyArray size = %d \n", m_pEnemyArray.size());
 	MOF_PRINTLOG("CollisionManager m_pPlayerBulletArray size = %d \n", m_pPlayerBulletArray.size());
 	MOF_PRINTLOG("CollisionManager m_pEnemyBulletArray size = %d \n", m_pEnemyBulletArray.size());
@@ -65,10 +64,6 @@ void CCollisionManager::Update(void)
 
 	for (auto& enemy : m_pEnemyArray)
 	{
-//		if (m_pPlayer->IsInvincible()) {
-	//		continue;
-		//} // if
-
 		// “G‚ÆŽ©•ªŽ©g
 		if (m_pPlayer && m_pPlayer->GetRectangle().CollisionRect(enemy->GetRectangle()))
 		{
@@ -85,9 +80,6 @@ void CCollisionManager::Update(void)
 			}
 		}
 	}
-
-
-//	if (m_pPlayer->IsDead()) { return;	}
 
 	for (auto& enemyBullet : m_pEnemyBulletArray)
 	{
@@ -146,15 +138,6 @@ void CCollisionManager::Register(const shared_ptr<CCharacter>& pCharacter, const
 		break;
 	}
 }
-/*
-void CCollisionManager::DeleteEnemy(shared_ptr<CCharacter> enemy) {
-	m_pEnemyArray.erase(std::remove(
-		m_pEnemyArray.begin(),
-		m_pEnemyArray.end(),
-		enemy), 
-		m_pEnemyArray.end());
-}
-*/
 
 // ********************************************************************************
 /// <summary>

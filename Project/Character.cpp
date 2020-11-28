@@ -10,9 +10,7 @@ CCharacter::CCharacter() :
 	m_Position(),
 	m_pTexture(),
 	m_pHP(std::make_shared<CHP>()),
-//	m_pWeapon(std::make_unique<CThreeWayGun>()),
 	m_pWeapon(std::make_unique<CMachineGun>()),
-//	m_pWeapon(std::make_unique<CWeapon>()),
 	m_RenderRect(),
 	m_bShow(false){
 }
@@ -71,7 +69,6 @@ CRectangle CCharacter::GetRectangle(void) const
 	auto rect = m_RenderRect;
 	rect.Translation(m_Position);
 	return rect;
-//	return CRectangle(m_Position, m_Position + Vector2(m_pTexture.lock()->GetWidth(), m_pTexture.lock()->GetHeight()));
 }
 
 void CCharacter::CollisionBullet(void)

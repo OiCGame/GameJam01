@@ -86,7 +86,6 @@ public:
 	/// エネミーの削除
 	/// </summary>
 	/// <param name="pCharacter"></param>
-	//void DeleteEnemy(shared_ptr<CCharacter> enemy);
 
 
 	// ********************************************************************************

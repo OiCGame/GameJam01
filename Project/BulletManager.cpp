@@ -38,18 +38,8 @@ CBulletManager&CBulletManager::Singleton(void)
 /// <returns>¬Œ÷‚µ‚½‚çtue‚ğ•Ô‚·</returns>
 bool CBulletManager::Initialize(void)
 {
-
 	// ŒÅ’è—Ê‚¾‚¯Bullet‚ğ—pˆÓ‚·‚é
 	m_Bullets.reserve(m_BulletSize);
-	/*
-	for (int i = 0; i < m_BulletSize; i++) {
-		//auto temp = std::make_shared<CBullet>();
-//		auto temp = std::make_shared<CHomingBullet>();
-		auto temp = std::make_shared<CBoomerangBullet>();
-		temp->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
-		m_Bullets.push_back(temp);
-	} // for
-	*/
 	return true;
 }
 
@@ -72,9 +62,7 @@ void CBulletManager::Update(void)
 	{
 		bullet->Update();
 	} // for
-
 	MOF_PRINTLOG("BulletManager m_Bullets size = %d \n", m_Bullets.size());
-
 }
 
 /// <summary>
@@ -111,14 +99,11 @@ void CBulletManager::Release(void)
 /// <param name="type">Bullet‚ÌŠ‘®ƒ`[ƒ€</param>
 void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type)
 {
-//	auto bullet= std::make_shared<CBoomerangBullet>();
 	auto bullet= std::make_shared<CBullet>();
 	bullet->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
 	m_Bullets.push_back(bullet);
 
 	bullet->Fire(position, move, type);
-
-
 	if (type == BulletTeamType::Player) {
 		CCollisionManager::Singleton().Register(
 			bullet,
@@ -142,8 +127,3 @@ void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type)
 	} // for
 	*/
 }
-/*
-void CBulletManager::AddBullet(std::shared_ptr<CBullet> ptr) {
-	m_Bullets.push_back(ptr);
-}
-*/
