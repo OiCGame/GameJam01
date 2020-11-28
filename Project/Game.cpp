@@ -16,95 +16,44 @@ CStage g_Stage;
 
 
 bool CGame::LoadAsset(void) {
-        //ステージテクスチャ読み込み
-    if (!CTextureAsset::Load(TextureKey::Stage, "Stage1.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    // キャラクター作成
-    if (!CTextureAsset::Load(TextureKey::Character, "Rocket.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Enemy01, "spaceShips_001.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Enemy02, "spaceShips_002.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Enemy03, "spaceShips_003.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Muscle, "Muscle.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    // Bulletのテクスチャを用意する
-    if (!CTextureAsset::Load(TextureKey::Bullet_01, "Tomato.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::Bullet_02, "Onion.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::Bullet_03, "Meet.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    return true;
-}
 
-bool CGame::InitCharas(void) {
-    CharacterInitParam CIparm;
-    CIparm.position = CVector2(500, 600);
-    CIparm.texture = TextureAsset(TextureKey::Character);
-    auto player = std::make_shared<CPlayer>();
-    player->Initialize(CIparm);
-    CCollisionManager::Singleton().Register(player, CollisionLayer::Player);
+	const char* animFimeName[] = 
+	{
+		"Effect/barrier.anim",
+		"explosion.anim",
+	};
 
+	const char* texFileName[] = 
+	{
+		"Rocket.png",
+		"spaceShips_001.png",
+		"spaceShips_002.png",
+		"spaceShips_003.png",
+		"Muscle.png",
+		"Tomato.png",
+		"Onion.png",
+		"Meet.png",
+		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str(),
+		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName().c_str(),
+		"Stage1.png",
+	};
 
-    /*
-    constexpr uint32_t enemy_count = 10;
-    //g_pCharacters.reserve(enemy_count);
-    for (int i = 0; i < enemy_count; i++) {
-        auto enemy = std::make_shared<CEnemy>();
-        CIparm.position = Mof::CVector2(g_Stg1EnemyStart.PosX[i],
-                                        -g_Stg1EnemyStart.Scroll[i]);
-        CIparm.texture = TextureAsset(TextureKey::Enemy01);
-        enemy->Initialize(CIparm);
-        enemy->SetTarget(player);
-        CCharacterManager::Singleton().AddCharacter(enemy);
-        CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
-        } // for
-    */
-    {
-        rapidjson::Document document;
-        LoadJsonDocument("stage1.json", document);
-        const auto& info = document["stage"];
-        _ASSERT_EXPR(info.IsArray(),
-                     L"stage type is not array");
-        for (int i = 0; i < info.Size(); i++) {
-            if (!info[i].HasMember("posX") || !info[i]["posX"].IsFloat() ||
-                !info[i].HasMember("scroll") || !info[i]["scroll"].IsFloat() ||
-                !info[i].HasMember("type") || !info[i]["type"].IsInt()) {
-                break;
-            } // if
-            // 値の設定
-            float posX = info[i]["posX"].GetFloat();
-            float scroll= info[i]["scroll"].GetFloat();
-            int type= info[i]["type"].GetInt();
+	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
+	{
+		if (!CAnimationAsset::Load(static_cast<AnimationKey>(i), animFimeName[i]))
+		{
+			MOF_PRINTLOG("failed to load animation");
+		}
+	}
 
-            auto enemy = std::make_shared<CEnemy>();
-            CIparm.position = Mof::CVector2(posX,
-                                            -scroll);
-            CIparm.texture = TextureAsset(TextureKey::Enemy01);
-            enemy->Initialize(CIparm);
-            enemy->SetTarget(player);
-            CCharacterManager::Singleton().AddCharacter(enemy);
-            CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
-        } // if
-    }
+	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)
+	{
+		if (!CTextureAsset::Load(static_cast<TextureKey>(i), texFileName[i]))
+		{
+			MOF_PRINTLOG("failed to load texture");
+		}
+	}
 
-
-    CCharacterManager::Singleton().AddCharacter(player);
     return true;
 }
 
@@ -113,10 +62,29 @@ CGame::CGame(const CGame::InitData& data)
 {
     bool loaded = this->LoadAsset();
 
-    this->InitCharas();
-    
+    CharacterInitParam CIparm;
+    CIparm.position = CVector2(500, 600);
+    CIparm.texture = TextureAsset(TextureKey::Character);
+    auto player = std::make_shared<CPlayer>();
+    player->Initialize(CIparm);
+    CCollisionManager::Singleton().Register(player,CollisionLayer::Player);
+
+    constexpr uint32_t enemy_count = 10;
+    //g_pCharacters.reserve(enemy_count);
+    for (int i = 0; i < enemy_count; i++) {
+        auto enemy = std::make_shared<CEnemy>();
+		CIparm.position = Mof::CVector2(g_Stg1EnemyStart.PosX[i],
+										-g_Stg1EnemyStart.Scroll[i]);
+        CIparm.texture = TextureAsset(TextureKey::Enemy01);
+        enemy->Initialize(CIparm);
+        enemy->SetTarget(player);
+        CCharacterManager::Singleton().AddCharacter(enemy);
+        CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+    } // for
+
     // Stageの初期化
     g_Stage.Initialize();
+    CCharacterManager::Singleton().AddCharacter(player);
     // Bulletの初期化
     CBulletManager::Singleton().Initialize();
     // Effectの初期化

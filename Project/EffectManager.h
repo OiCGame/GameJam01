@@ -11,6 +11,7 @@ constexpr MofU32 EffectMaxCount = 64;
 enum class EffectType
 {
 	Barrier,
+	Explosion,
 	Count,
 };
 
