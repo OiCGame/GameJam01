@@ -19,10 +19,10 @@ public:
 	static CAudioManager& Singleton(void);
 
 	/// <summary>
-	/// 音声再生
+	/// 
 	/// </summary>
-	/// <param name=""></param>
-	void Play(void);
+	/// <param name="key">キー</param>
+	void Play(SoundBufferKey key);
 	/// <summary>
 	/// 更新
 	/// </summary>
