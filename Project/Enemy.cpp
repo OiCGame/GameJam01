@@ -137,7 +137,7 @@ CVector2 CEnemy::WaveMove(void) {
     // ˆÚ“®—Ê‚ğì¬
     Mof::CVector2 ret;
     ret.x = std::cosf(m_WaveAngle * period) * amplitude;
-    ret.y = -2.0f;
+    ret.y = 2.0f;
 //    m_Move.y += std::sinf(_wave_angle);
     Rotate(ret,
            MOF_ToRadian(0.0f),
@@ -195,12 +195,10 @@ void CEnemy::Initialize(const CharacterInitParam& param) {
 /// <summary>
 /// XV
 /// </summary>
-void CEnemy::Update(void) {
+void CEnemy::Update(CVector2 scroll) {
     m_Time += ::CUtilities::GetFrameSecond();
 
     this->UpdateMove();
-
-
 
     float delta = ::CUtilities::GetFrameSecond();
     m_AttackTime += delta;

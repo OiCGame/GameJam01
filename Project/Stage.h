@@ -10,6 +10,13 @@ using namespace std;
 
 #define		SCROLL_SPEED		1
 
+//“G‚ÌoŒ»î•ñ\‘¢‘Ì
+typedef struct tag_ENEMYSTART {
+	int			Count;
+	float*		PosX;
+	float*		Scroll;
+}ENEMYSTART;
+
 class CStage
 {
 private:
@@ -18,6 +25,7 @@ private:
 public:
 	CStage();
 	~CStage();
+	float GetScroll(void);
 	void Initialize(void);
 	void Update(void);
 	void Render(void);

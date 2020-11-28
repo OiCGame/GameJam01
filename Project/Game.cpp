@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Stage.h"
 #include "UICanvas.h"
+#include "Stage1.h"
 
 
 CStage g_Stage;
@@ -30,13 +31,15 @@ CGame::CGame(const CGame::InitData& data)
     auto player = std::make_shared<CPlayer>();
     player->Initialize(CIparm);
 
-    constexpr uint32_t enemy_count = 1;
+    constexpr uint32_t enemy_count = 10;
     g_pCharacters.reserve(enemy_count);
     for (int i = 0; i < enemy_count; i++)
     {
         auto temp = std::make_shared<CEnemy>();
-        CIparm.position.x = ::CUtilities::Random(200, 700);
-        CIparm.position.y = ::CUtilities::Random(200, 700);
+        //CIparm.position.x = ::CUtilities::Random(200, 700);
+        //CIparm.position.y = ::CUtilities::Random(200, 700);
+		CIparm.position.x = g_Stg1EnemyStart.PosX[i];
+		CIparm.position.y = -g_Stg1EnemyStart.Scroll[i];
         temp->Initialize(CIparm);
         temp->SetTarget(player);
         g_pCharacters.push_back(temp);
@@ -63,7 +66,7 @@ void CGame::Update(void) {
     }
     for (auto enemy : g_pCharacters) 
     {
-        enemy->Update();
+        enemy->Update(CVector2(0, g_Stage.GetScroll()));
     } // for
 
 	g_Stage.Update();
@@ -78,7 +81,7 @@ void CGame::Render(void) {
  
     for (auto chara : g_pCharacters) 
     {
-        chara->Render(CVector2(0, 0));
+        chara->Render(CVector2(0, g_Stage.GetScroll() )) ;
     } // for
 
 

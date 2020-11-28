@@ -9,7 +9,7 @@ CPlayer::~CPlayer()
 {
 }
 
-void CPlayer::Update(void)
+void CPlayer::Update(CVector2 scroll)
 {
 
 	float threshold = 0.35f;
@@ -46,23 +46,23 @@ void CPlayer::Update(void)
 	}
 
 	//‰æ–Ê‚©‚ço‚È‚¢‚æ‚¤‚É‚·‚éˆ—
-	if (m_Position.x < 0)
+	if (m_Position.x + scroll.x < 0)
 	{
-		m_Position.x = 0;
+		m_Position.x = -scroll.x;
 	}
-	if (m_Position.y < 0)
+	if (m_Position.y + scroll.y < 0)
 	{
-		m_Position.y = 0;
+		m_Position.y  = -scroll.y;
 	}
 	if (auto r = m_pTexture.lock())
 	{
-		if (m_Position.x > g_pGraphics->GetTargetWidth() - r->GetWidth())
+		if (m_Position.x + scroll.x> g_pGraphics->GetTargetWidth() - r->GetWidth())
 		{
-			m_Position.x = g_pGraphics->GetTargetWidth() - r->GetWidth();
+			m_Position.x = g_pGraphics->GetTargetWidth() - r->GetWidth() - scroll.x;
 		}
-		if (m_Position.y > g_pGraphics->GetTargetHeight() - r->GetHeight())
+		if (m_Position.y + scroll.y> g_pGraphics->GetTargetHeight() - r->GetHeight())
 		{
-			m_Position.y = g_pGraphics->GetTargetHeight() - r->GetHeight();
+			m_Position.y = g_pGraphics->GetTargetHeight() - r->GetHeight() - scroll.y;
 		}
 	}
 

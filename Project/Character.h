@@ -52,7 +52,7 @@ public:
 	virtual Mof::CVector2 GetPosition(void) const;
 
 	virtual void Initialize(const CharacterInitParam& param);
-	virtual void Update(void);
+	virtual void Update(CVector2 scroll);
 	virtual void Render(CVector2 scroll);
 	virtual void Release(void);
 };

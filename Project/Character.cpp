@@ -22,7 +22,7 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 	m_pTexture = param.texture;
 }
 
-void CCharacter::Update(void)
+void CCharacter::Update(CVector2 scroll)
 {
 }
 

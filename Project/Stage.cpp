@@ -9,6 +9,11 @@ CStage::~CStage()
 	m_pTexture.reset();
 }
 
+float CStage::GetScroll(void)
+{
+	return m_Scroll;
+}
+
 void CStage::Initialize(void)
 {
 	m_Scroll = 0;

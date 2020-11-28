@@ -12,5 +12,5 @@ private:
 public:
 	CPlayer();
 	~CPlayer();
-	virtual void Update(void) override;
+	virtual void Update(CVector2 scroll) override;
 };
