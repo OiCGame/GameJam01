@@ -3,14 +3,35 @@
 #include "Player.h"
 #include "BulletManager.h"
 
+// ********************************************************************************
+/// <summary>
+/// コンストラクタ
+/// </summary>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 CCollisionManager::CCollisionManager(void)
 {
 }
 
+// ********************************************************************************
+/// <summary>
+/// デストラクタ
+/// </summary>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 CCollisionManager::~CCollisionManager(void)
 {
 }
 
+// ********************************************************************************
+/// <summary>
+/// 更新
+/// </summary>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 void CCollisionManager::Update(void)
 {
 	for (auto& enemy : m_pEnemyArray)
@@ -41,6 +62,15 @@ void CCollisionManager::Update(void)
 	}
 }
 
+// ********************************************************************************
+/// <summary>
+/// 登録
+/// </summary>
+/// <param name="pBullet">弾</param>
+/// <param name="layer">レイヤ</param>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 void CCollisionManager::Register(const shared_ptr<CBullet>& pBullet, const CollisionLayer& layer)
 {
 	switch (layer)
@@ -54,6 +84,15 @@ void CCollisionManager::Register(const shared_ptr<CBullet>& pBullet, const Colli
 	}
 }
 
+// ********************************************************************************
+/// <summary>
+/// 登録
+/// </summary>
+/// <param name="pCharacter">キャラクタ</param>
+/// <param name="layer">レイヤ</param>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 void CCollisionManager::Register(const shared_ptr<CCharacter>& pCharacter, const CollisionLayer& layer)
 {
 	switch (layer)
@@ -67,6 +106,13 @@ void CCollisionManager::Register(const shared_ptr<CCharacter>& pCharacter, const
 	}
 }
 
+// ********************************************************************************
+/// <summary>
+/// 解放
+/// </summary>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 void CCollisionManager::Release(void)
 {
 	m_pEnemyArray.clear();
@@ -74,6 +120,14 @@ void CCollisionManager::Release(void)
 	m_pPlayerBulletArray.clear();
 }
 
+// ********************************************************************************
+/// <summary>
+/// シングルトンの取得
+/// </summary>
+/// <returns>シングルトン</returns>
+/// <created>いのうえ,2020/11/28</created>
+/// <changed>いのうえ,2020/11/28</changed>
+// ********************************************************************************
 CCollisionManager & CCollisionManager::Singleton(void)
 {
 	static CCollisionManager singleton;
