@@ -15,17 +15,23 @@ enum class TextureKey
 	Bullet_02,
 	Bullet_03,
 	Effect_Barrier,
+	Effect_Explosion,
 	Stage,
 	PotGimmick,
 	HP,
 	HPFrame,
+  
+	Count,
 };
 
 enum class AnimationKey 
 {
 	Effect_Barrier,
+	Effect_Explosion,
 	Bullet_01,
 	Character,
+
+	Count,
 };
 
 enum class SoundBufferKey {

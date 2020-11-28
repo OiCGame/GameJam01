@@ -15,57 +15,45 @@
 
 
 bool CGame::LoadAsset(void) {
-        //ステージテクスチャ読み込み
-    if (!CTextureAsset::Load(TextureKey::Stage, "Stage1.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    // キャラクター作成
-    if (!CTextureAsset::Load(TextureKey::Character, "Rocket.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Enemy01, "spaceShips_001.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Enemy02, "spaceShips_002.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Enemy03, "spaceShips_003.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    if (!CTextureAsset::Load(TextureKey::Muscle, "Muscle.png")) {
-        MOF_PRINTLOG("failed to load texture");
-    }
-    // Bulletのテクスチャを用意する
-    if (!CTextureAsset::Load(TextureKey::Bullet_01, "Tomato.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::Bullet_02, "Onion.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::Bullet_03, "Meet.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
+	const char* animFimeName[] = 
+	{
+		"Effect/barrier.anim",
+		"explosion.anim",
+	};
 
-    if (!CTextureAsset::Load(TextureKey::Bullet_03, "Meet.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::PotGimmick, "pot.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::HP, "HP.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
-    if (!CTextureAsset::Load(TextureKey::HPFrame, "HPFrame.png")) {
-        MOF_PRINTLOG("failed to load texture");
-        return false;
-    } // if
+	const char* texFileName[] = 
+	{
+		"Rocket.png",
+		"spaceShips_001.png",
+		"spaceShips_002.png",
+		"spaceShips_003.png",
+		"Muscle.png",
+		"Tomato.png",
+		"Onion.png",
+		"Meet.png",
+		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str(),
+		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName().c_str(),
+		"Stage1.png",
+    "pot.png",
+    "HP.png",
+    "HPFrame.png",
+	};
 
+	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
+	{
+		if (!CAnimationAsset::Load(static_cast<AnimationKey>(i), animFimeName[i]))
+		{
+			MOF_PRINTLOG("failed to load animation");
+		}
+	}
+
+	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)
+	{
+		if (!CTextureAsset::Load(static_cast<TextureKey>(i), texFileName[i]))
+		{
+			MOF_PRINTLOG("failed to load texture");
+		}
+	}
     return true;
 }
 

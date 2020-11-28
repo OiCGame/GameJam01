@@ -40,9 +40,6 @@ MofBool CGameApp::Initialize(void) {
 		.Add<CGameClear>(SceneName::GameClear)
 		.Add<CGameOver>(SceneName::GameOver)
 		.SetFadeColor(MOF_COLOR_WHITE);
-
-	CAnimationAsset::Load(AnimationKey::Effect_Barrier, "Effect/barrier.anim");
-	CTextureAsset::Load(TextureKey::Effect_Barrier, AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str());
 	
 	g_EffectManager.Initialize();
 
