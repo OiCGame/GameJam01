@@ -34,9 +34,9 @@ bool CGame::LoadAsset(void) {
 		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str(),
 		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName().c_str(),
 		"Stage1.png",
-    "pot.png",
-    "HP.png",
-    "HPFrame.png",
+		"pot.png",
+		"HP.png",
+		"HPFrame.png",
 	};
 
 	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)

@@ -28,8 +28,6 @@ enum class AnimationKey
 {
 	Effect_Barrier,
 	Effect_Explosion,
-	Bullet_01,
-	Character,
 
 	Count,
 };
