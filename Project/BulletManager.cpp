@@ -3,6 +3,8 @@
 #include "AssetDefine.h"
 #include "HomingBullet.h"
 #include "BoomerangBullet.h"
+#include "CollisionManager.h"
+
 
 /// <summary>
 /// コンストラクタ
@@ -39,6 +41,7 @@ bool CBulletManager::Initialize(void)
 
 	// 固定量だけBulletを用意する
 	m_Bullets.reserve(m_BulletSize);
+	/*
 	for (int i = 0; i < m_BulletSize; i++) {
 		//auto temp = std::make_shared<CBullet>();
 //		auto temp = std::make_shared<CHomingBullet>();
@@ -46,6 +49,7 @@ bool CBulletManager::Initialize(void)
 		temp->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
 		m_Bullets.push_back(temp);
 	} // for
+	*/
 	return true;
 }
 
@@ -54,13 +58,23 @@ bool CBulletManager::Initialize(void)
 /// </summary>
 void CBulletManager::Update(void)
 {
-	// 非表示のBulletを非表示にする？
+	// 非表示のものは削除
+	auto it = std::remove_if(
+		m_Bullets.begin(),
+		m_Bullets.end(),
+		[](shared_ptr<CBullet> bullet) {
+		return bullet->IsShow() == false; 
+	});
+	m_Bullets.erase(it, m_Bullets.end());
 
 	// Bulletの更新
 	for (auto bullet : m_Bullets)
 	{
 		bullet->Update();
 	} // for
+
+	MOF_PRINTLOG("BulletManager m_Bullets size = %d \n", m_Bullets.size());
+
 }
 
 /// <summary>
@@ -97,6 +111,26 @@ void CBulletManager::Release(void)
 /// <param name="type">Bulletの所属チーム</param>
 void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type)
 {
+//	auto bullet= std::make_shared<CBoomerangBullet>();
+	auto bullet= std::make_shared<CBullet>();
+	bullet->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
+	m_Bullets.push_back(bullet);
+
+	bullet->Fire(position, move, type);
+
+
+	if (type == BulletTeamType::Player) {
+		CCollisionManager::Singleton().Register(
+			bullet,
+			CollisionLayer::Player);
+	} // if
+	else {
+		CCollisionManager::Singleton().Register(
+			bullet,
+			CollisionLayer::Enemy);
+	} // else
+
+	/*
 	// 表示中でないなら撃てるものとする
 	for (auto bullet : m_Bullets)
 	{
@@ -106,4 +140,10 @@ void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type)
 			return;
 		} // if
 	} // for
+	*/
 }
+/*
+void CBulletManager::AddBullet(std::shared_ptr<CBullet> ptr) {
+	m_Bullets.push_back(ptr);
+}
+*/

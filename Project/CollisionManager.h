@@ -26,7 +26,6 @@ enum class CollisionLayer
 class CCollisionManager
 {
 private:
-
 	shared_ptr<CPlayer>            m_pPlayer;             //! 主人公
 	vector<shared_ptr<CCharacter>> m_pEnemyArray;         //! 敵キャラの配列
 
@@ -83,6 +82,12 @@ public:
 	/// <changed>いのうえ,2020/11/28</changed>
 	// ********************************************************************************
 	void Register(const shared_ptr<CCharacter>& pCharacter, const CollisionLayer& layer);
+	/// <summary>
+	/// エネミーの削除
+	/// </summary>
+	/// <param name="pCharacter"></param>
+	//void DeleteEnemy(shared_ptr<CCharacter> enemy);
+
 
 	// ********************************************************************************
 	/// <summary>

@@ -11,12 +11,10 @@
 #include "BulletManager.h"
 #include "CharacterManager.h"
 #include "Stage1.h"
-
-CStage g_Stage;
+#include "AudioManager.h"
 
 
 bool CGame::LoadAsset(void) {
-
 	const char* animFimeName[] = 
 	{
 		"Effect/barrier.anim",
@@ -36,6 +34,9 @@ bool CGame::LoadAsset(void) {
 		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str(),
 		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName().c_str(),
 		"Stage1.png",
+    "pot.png",
+    "HP.png",
+    "HPFrame.png",
 	};
 
 	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
@@ -53,38 +54,59 @@ bool CGame::LoadAsset(void) {
 			MOF_PRINTLOG("failed to load texture");
 		}
 	}
-
     return true;
 }
 
-CGame::CGame(const CGame::InitData& data)
-    : super(data) 
-{
-    bool loaded = this->LoadAsset();
-
+bool CGame::InitCharas(void) {
     CharacterInitParam CIparm;
     CIparm.position = CVector2(500, 600);
     CIparm.texture = TextureAsset(TextureKey::Character);
     auto player = std::make_shared<CPlayer>();
     player->Initialize(CIparm);
-    CCollisionManager::Singleton().Register(player,CollisionLayer::Player);
+    CCollisionManager::Singleton().Register(player, CollisionLayer::Player);
 
-    constexpr uint32_t enemy_count = 10;
-    //g_pCharacters.reserve(enemy_count);
-    for (int i = 0; i < enemy_count; i++) {
+    rapidjson::Document document;
+    LoadJsonDocument("stage1.json", document);
+    const auto& info = document["stage"];
+    _ASSERT_EXPR(info.IsArray(),
+                 L"stage type is not array");
+    for (int i = 0; i < info.Size(); i++) {
+        if (!info[i].HasMember("posX") || !info[i]["posX"].IsFloat() ||
+            !info[i].HasMember("scroll") || !info[i]["scroll"].IsFloat() ||
+            !info[i].HasMember("type") || !info[i]["type"].IsInt()) {
+            break;
+        } // if
+        // 値の設定
+        float posX = info[i]["posX"].GetFloat();
+        float scroll = info[i]["scroll"].GetFloat();
+        int type = info[i]["type"].GetInt();
+
         auto enemy = std::make_shared<CEnemy>();
-		CIparm.position = Mof::CVector2(g_Stg1EnemyStart.PosX[i],
-										-g_Stg1EnemyStart.Scroll[i]);
+        enemy->AddObserver(m_pPotGimmick);
+        CIparm.position = Mof::CVector2(posX,
+                                        -scroll);
         CIparm.texture = TextureAsset(TextureKey::Enemy01);
         enemy->Initialize(CIparm);
         enemy->SetTarget(player);
         CCharacterManager::Singleton().AddCharacter(enemy);
         CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
-    } // for
+    } // if
 
-    // Stageの初期化
-    g_Stage.Initialize();
+
     CCharacterManager::Singleton().AddCharacter(player);
+    return true;
+}
+
+CGame::CGame(const CGame::InitData& data)
+    : super(data),
+    m_Stage(),
+    m_pPotGimmick(std::make_shared<CPotGimmick>()) {
+    bool loaded = this->LoadAsset();
+    CAudioManager::Singleton().Load();
+    this->InitCharas();
+    // Stageの初期化
+    m_Stage.Initialize();
+    m_pPotGimmick->Initialize();
     // Bulletの初期化
     CBulletManager::Singleton().Initialize();
     // Effectの初期化
@@ -93,6 +115,7 @@ CGame::CGame(const CGame::InitData& data)
 
 CGame::~CGame(void) {
     // 解放処理
+    CAudioManager::Singleton().Release();
     CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
@@ -103,8 +126,15 @@ void CGame::Update(void) {
     if (g_pInput->IsKeyPush(MOFKEY_1)) {
         ChangeScene(SceneName::Title);
     }
+
+    if (g_pInput->IsKeyPush(MOFKEY_SPACE)) {
+        CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
+//        CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
+    } // if
+
     // Stageの更新
-    g_Stage.Update();
+    m_Stage.Update();
+    m_pPotGimmick->Update();
     // Characterの更新
     CCharacterManager::Singleton().Update();
     // Bulletの更新
@@ -113,14 +143,17 @@ void CGame::Update(void) {
     CEffectManager::Singleton().Update();
     // 衝突判定
     CCollisionManager::Singleton().Update();
+    // ストリーム更新
+    CAudioManager::Singleton().Update();
 }
 
 void CGame::Render(void) {
-    g_Stage.Render();
+    m_Stage.Render();
+    m_pPotGimmick->Render();
     CBulletManager::Singleton().Render(Mof::CVector2());
     CCharacterManager::Singleton().Render(Mof::CVector2());
     CEffectManager::Singleton().Render();
     CUICanvas::Singleton().Render();
 
-    ::CGraphicsUtilities::RenderString(20, 20,"FPS = %d", ::CUtilities::GetFPS());
+    ::CGraphicsUtilities::RenderString(20, 20, "FPS = %d", ::CUtilities::GetFPS());
 }

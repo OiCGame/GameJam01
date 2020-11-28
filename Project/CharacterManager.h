@@ -7,7 +7,7 @@
 class CCharacterManager {
 private:
 	// 管理対象
-	std::vector<std::shared_ptr<CCharacter>>m_pCharacter;
+	std::vector<std::shared_ptr<CCharacter>>m_pCharacters;
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>

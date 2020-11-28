@@ -17,11 +17,14 @@ enum class TextureKey
 	Effect_Barrier,
 	Effect_Explosion,
 	Stage,
-
+	PotGimmick,
+	HP,
+	HPFrame,
+  
 	Count,
 };
 
-enum class AnimationKey
+enum class AnimationKey 
 {
 	Effect_Barrier,
 	Effect_Explosion,
@@ -31,8 +34,19 @@ enum class AnimationKey
 	Count,
 };
 
+enum class SoundBufferKey {
+	Sound0,
+};
+enum class SoundStreamBufferKey {
+	Bgm0,
+};
+
 using CTextureAsset   = CAssetBase<TextureKey  , CTexture      >;
 using CAnimationAsset = CAssetBase<AnimationKey, CAnimationData>;
+using CSoundBufferAsset = CAssetBase<SoundBufferKey, CSoundBuffer>;
+using CSoundStreamBufferAsset = CAssetBase<SoundStreamBufferKey, CSoundBuffer>;
 
 #define TextureAsset(key)   CTextureAsset  ::GetAsset(key)
 #define AnimationAsset(key) CAnimationAsset::GetAsset(key)
+#define SoundBufferAsset(key) CSoundBufferAsset::GetAsset(key)
+#define SoundStreamBufferAsset(key) CSoundStreamBufferAsset::GetAsset(key)

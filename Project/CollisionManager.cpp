@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "BulletManager.h"
 
+
 // ********************************************************************************
 /// <summary>
 /// コンストラクタ
@@ -34,10 +35,42 @@ CCollisionManager::~CCollisionManager(void)
 // ********************************************************************************
 void CCollisionManager::Update(void)
 {
+	// 死亡エネミーを削除
+	m_pEnemyArray.erase(std::remove_if(
+		m_pEnemyArray.begin(),
+		m_pEnemyArray.end(),
+		[](shared_ptr<CCharacter> enemy) {
+		return !enemy->IsShow();
+	}), m_pEnemyArray.end());
+	m_pPlayerBulletArray.erase(std::remove_if(
+		m_pPlayerBulletArray.begin(),
+		m_pPlayerBulletArray.end(),
+		[](shared_ptr<CBullet> bullet) {
+		return !bullet->IsShow();
+	}), m_pPlayerBulletArray.end());
+	m_pEnemyBulletArray.erase(std::remove_if(
+		m_pEnemyBulletArray.begin(),
+		m_pEnemyBulletArray.end(),
+		[](shared_ptr<CBullet> bullet) {
+		return !bullet->IsShow();
+	}), m_pEnemyBulletArray.end());
+	if (!m_pPlayer) {
+		m_pPlayer.reset();
+	} // if
+
+	MOF_PRINTLOG("CollisionManager m_pEnemyArray size = %d \n", m_pEnemyArray.size());
+	MOF_PRINTLOG("CollisionManager m_pPlayerBulletArray size = %d \n", m_pPlayerBulletArray.size());
+	MOF_PRINTLOG("CollisionManager m_pEnemyBulletArray size = %d \n", m_pEnemyBulletArray.size());
+	
+
 	for (auto& enemy : m_pEnemyArray)
 	{
+//		if (m_pPlayer->IsInvincible()) {
+	//		continue;
+		//} // if
+
 		// 敵と自分自身
-		if (m_pPlayer->GetRectangle().CollisionRect(enemy->GetRectangle()))
+		if (m_pPlayer && m_pPlayer->GetRectangle().CollisionRect(enemy->GetRectangle()))
 		{
 			m_pPlayer->CollisionEnemy();
 		}
@@ -48,16 +81,24 @@ void CCollisionManager::Update(void)
 			if (enemy->GetRectangle().CollisionRect(playerBullet->GetRectangle()))
 			{
 				enemy->CollisionBullet();
+				playerBullet->Hide();
 			}
 		}
 	}
 
+
+//	if (m_pPlayer->IsDead()) { return;	}
+
 	for (auto& enemyBullet : m_pEnemyBulletArray)
 	{
+		if (!m_pPlayer) {
+			continue;
+		} // if
 		// 自分と敵の弾
 		if (m_pPlayer->GetRectangle().CollisionRect(enemyBullet->GetRectangle()))
 		{
 			m_pPlayer->CollisionBullet();
+			enemyBullet->Hide();
 		}
 	}
 }
@@ -105,6 +146,15 @@ void CCollisionManager::Register(const shared_ptr<CCharacter>& pCharacter, const
 		break;
 	}
 }
+/*
+void CCollisionManager::DeleteEnemy(shared_ptr<CCharacter> enemy) {
+	m_pEnemyArray.erase(std::remove(
+		m_pEnemyArray.begin(),
+		m_pEnemyArray.end(),
+		enemy), 
+		m_pEnemyArray.end());
+}
+*/
 
 // ********************************************************************************
 /// <summary>

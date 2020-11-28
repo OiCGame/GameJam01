@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "BulletManager.h"
+#include "EffectManager.h"
 
 
 /// <summary>
@@ -9,7 +10,7 @@
 /// </summary>
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
-                         Mof::CVector2(0.0f, 2.0f),
+                         Mof::CVector2(0.0f, 5.0f),
                          BulletTeamType::Enemy);
 }
 
@@ -98,8 +99,29 @@ void CEnemy::Update(void) {
     
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
+
 }
 
 void CEnemy::Render(CVector2 scroll) {
     super::Render(scroll);
+}
+
+void CEnemy::CollisionBullet(void) {
+	m_pHP->Damage(40);
+	if (m_pHP->GetValue() <= 0) {
+		CEffectManager::Singleton().Start(EffectType::Barrier,
+										  this->GetPosition());
+		super::Notify(this, "EnemyDead");
+		m_bShow = false;
+	} // if
+}
+
+void CEnemy::CollisionEnemy(void) {
+	m_pHP->Damage(100);
+	if (m_pHP->GetValue() <= 0) {
+		CEffectManager::Singleton().Start(EffectType::Barrier,
+										  this->GetPosition());
+		super::Notify(this, "EnemyDead");
+		m_bShow = false;
+	} // if
 }

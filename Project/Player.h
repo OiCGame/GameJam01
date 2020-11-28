@@ -10,7 +10,7 @@ class CPlayer : public CCharacter
 {
     using super = CCharacter;
 private:
-    uint32_t m_Invincible;
+//    int m_Invincible;
 public:
     CPlayer();
     ~CPlayer();
@@ -25,6 +25,13 @@ public:
     /// </summary>
     /// <returns>É`Å[ÉÄ</returns>
     virtual const char* GetTeam(void) const override;
+
+    /// <summary>
+    /// ñ≥ìGíÜ
+    /// </summary>
+    /// <param name=""></param>
+    /// <returns></returns>
+//    bool IsInvincible(void) const;
 
     virtual void Initialize(const CharacterInitParam& param) override;
     virtual void Update(void) override;

@@ -1,9 +1,17 @@
 #pragma once
 #include "SceneDefine.h"
 
+#include "Stage.h"
+#include "PotGimmick.h"
+
+
 class CGame : public MyApp::CScene
 {
 private:
+	//! ステージ
+	CStage m_Stage;
+	//! ギミック
+	std::shared_ptr<CPotGimmick> m_pPotGimmick;
 
 	using super = MyApp::CScene;
 
