@@ -38,6 +38,8 @@ protected:
 	std::shared_ptr<CHP> m_pHP;
 	//! •Ší
 	CWeapon m_Weapon;
+	//! •\¦‹éŒ`
+	CRectangle m_RenderRect;
 public:
 	// ********************************************************************************
 	/// <summary>

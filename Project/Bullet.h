@@ -23,7 +23,7 @@ enum class BulletTeamType
 /// 弾丸クラス
 /// </summary>
 // ********************************************************************************
-class CBullet
+class CBullet : public enable_shared_from_this<CBullet>
 {
 protected:
 	//! 位置
@@ -34,7 +34,7 @@ protected:
 	weak_ptr<CTexture> m_pTexture;
 	//! 表示フラグ
 	bool m_bShow;
-	//! 表示矩形と衝突矩形
+	//! 表示矩形
 	CRectangle m_RenderRect;
 	//! 敵が撃ったかどうか
 	BulletTeamType m_TeamType;
@@ -66,7 +66,7 @@ public:
 	/// <summary>
 	/// ゲッター
 	/// </summary>
-	/// <returns>表示矩形（衝突矩形）</returns>
+	/// <returns>衝突矩形</returns>
 	CRectangle GetRectangle(void) const;
 	/// <summary>
 	/// 表示フラグ取得

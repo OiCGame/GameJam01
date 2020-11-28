@@ -1,7 +1,8 @@
 #include "Player.h"
 
-CPlayer::CPlayer() {
-    CCharacter();
+CPlayer::CPlayer():
+    super(),
+    m_Invincible(0){
 }
 
 CPlayer::~CPlayer() {
@@ -15,8 +16,12 @@ CRectangle CPlayer::GetRectangle(void) const {
     return rect;
 }
 
-void CPlayer::Update(void) {
+void CPlayer::Initialize(const CharacterInitParam& param) {
+    super::Initialize(param);
+    super::m_pHP->RegisterToRenderer();
+}
 
+void CPlayer::Update(void) {
     float threshold = 0.35f;
     bool StickTop = g_pPad->GetStickVertical() > threshold;
     bool StickBottom = g_pPad->GetStickVertical() < -threshold;
@@ -82,4 +87,13 @@ void CPlayer::Render(CVector2 scroll) {
         tex->Render(pos.x + tex->GetWidth() * 0.5f, pos.y + y, rect);
     }
     super::Render(scroll);
+}
+
+void CPlayer::CollisionBullet(void) {
+
+    m_pHP->Damage(1);
+
+}
+
+void CPlayer::CollisionEnemy(void) {
 }

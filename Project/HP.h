@@ -31,11 +31,16 @@ public:
     /// <returns></returns>
     uint32_t GetValue(void) const;
     /// <summary>
+    /// ゲッター
+    /// </summary>
+    /// <param name="">HPの最大値</param>
+    /// <returns></returns>
+    uint32_t GetValueMax(void) const;
+    /// <summary>
     /// レンダラーに登録
     /// </summary>
     /// <param name=""></param>
     void RegisterToRenderer(void);
-
     /// <summary>
     /// ダメージ
     /// </summary>
@@ -60,10 +65,19 @@ public:
     /// 描画
     /// </summary>
     void Render(void) {
-        uint32_t value = m_pHP->GetValue();
+
+        uint32_t length = 1.0f;
+        {
+            uint32_t value = m_pHP->GetValueMax();
+            auto rect = Mof::CRectangle(0.0f, 100.0f, value * length, 200.0f);
+            ::CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_RED);
+        }
+        {
+            uint32_t value = m_pHP->GetValue();
+            auto rect = Mof::CRectangle(0.0f, 100.0f, value * length, 200.0f);
+            ::CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_GREEN);
+        }
         
-        auto rect = Mof::CRectangle(0.0f, 100.0f, value, 200.0f);
-        ::CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_BLACK);
     }
 
 };

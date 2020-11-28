@@ -24,6 +24,13 @@ uint32_t CHP::GetValue(void) const {
     return this->m_Value;
 }
 /// <summary>
+/// ゲッター
+/// </summary>
+/// <returns>HPの最大値</returns>
+uint32_t CHP::GetValueMax(void) const {
+    return this->m_ValueMax;
+}
+/// <summary>
 /// レンダラーに登録
 /// </summary>
 void CHP::RegisterToRenderer(void) {

@@ -1,5 +1,8 @@
 #include "Bullet.h"
 
+#include "CollisionManager.h"
+
+
 // ********************************************************************************
 /// <summary>
 /// コンストラクタ
@@ -120,6 +123,17 @@ void CBullet::Render(CVector2 scroll) {
 /// <param name="move">更新移動量</param>
 /// <param name="type">所属チーム</param>
 void CBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) {
+    if (type == BulletTeamType::Player) {
+        CCollisionManager::Singleton().Register(
+            shared_from_this(),
+            CollisionLayer::Player);
+    } // if
+    else {
+        CCollisionManager::Singleton().Register(
+            shared_from_this(),
+            CollisionLayer::Enemy);
+    } // else
+
     this->m_Position = position;
     this->m_Move = move;
     this->m_bShow = true;

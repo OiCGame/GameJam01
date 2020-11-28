@@ -1,11 +1,14 @@
 #include "Character.h"
 #include "GamePad.h"
 #include "BulletManager.h"
+#include "EffectManager.h"
+
 
 CCharacter::CCharacter() :
 	m_Position(),
 	m_pTexture(),
-	m_pHP(std::make_shared<CHP>()){
+	m_pHP(std::make_shared<CHP>()),
+	m_RenderRect(){
 }
 
 CCharacter::~CCharacter()
@@ -20,6 +23,13 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 {
 	m_Position = param.position;
 	m_pTexture = param.texture;
+	// •\Ž¦‹éŒ`Ý’è
+	if (auto r = m_pTexture.lock()) 
+	{
+		m_RenderRect = CRectangle(
+			0.0f, 0.0f, 
+			r->GetWidth(), r->GetHeight());
+	} // if
 }
 
 void CCharacter::Update(void)
@@ -44,15 +54,22 @@ void CCharacter::Release(void)
 
 CRectangle CCharacter::GetRectangle(void) const
 {
-	return CRectangle(m_Position, m_Position + Vector2(m_pTexture.lock()->GetWidth(), m_pTexture.lock()->GetHeight()));
+	auto rect = m_RenderRect;
+	rect.Translation(m_Position);
+	return rect;
+//	return CRectangle(m_Position, m_Position + Vector2(m_pTexture.lock()->GetWidth(), m_pTexture.lock()->GetHeight()));
 }
 
 void CCharacter::CollisionBullet(void)
 {
 	m_pHP->Damage(1);
+	CEffectManager::Singleton().Start(EffectType::Barrier,
+									  this->GetPosition());
 }
 
 void CCharacter::CollisionEnemy(void)
 {
 	m_pHP->Damage(1);
+	CEffectManager::Singleton().Start(EffectType::Barrier,
+									  this->GetPosition());
 }

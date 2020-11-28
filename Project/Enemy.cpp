@@ -189,7 +189,6 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
 
 void CEnemy::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
-    super::m_pHP->RegisterToRenderer();
 }
 
 /// <summary>
@@ -207,8 +206,6 @@ void CEnemy::Update(void) {
     if (m_AttackTimeMax < m_AttackTime) {
         m_AttackTime = 0;
         this->UpdateAttack();
-
-        m_pHP->Damage(1);
     } // if
     
     m_Position += m_Move;
