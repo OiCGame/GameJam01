@@ -63,8 +63,8 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
 
 void CEnemy::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
-	//InitMoveMotionWave();
-	InitMoveMotionCustom();
+	InitMoveMotionWave();
+	//InitMoveMotionCustom();
 	m_MoveMotion.Start();
 }
 
@@ -79,8 +79,8 @@ void CEnemy::Update(void) {
 	{
 		m_MoveMotion.Reset();
 	}
-	m_MoveMotion.Update();
 	m_Move = m_MoveMotion.GetValue();
+	m_MoveMotion.Update();
 
 	
     float delta = ::CUtilities::GetFrameSecond();
