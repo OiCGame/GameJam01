@@ -15,7 +15,7 @@ CBullet::CBullet() :
     m_Move(),
     m_pTexture(),
     m_bShow(false),
-    m_RenderRect(200.0f, 200.0f, 250.0f, 250.0f),
+    m_RenderRect(0.0f, 0.0f, 60.0f, 60.0f),
     m_TeamType() {
 }
 
@@ -120,8 +120,8 @@ void CBullet::Render(CVector2 scroll) {
 /// <param name="position">発射位置</param>
 /// <param name="move">更新移動量</param>
 /// <param name="type">所属チーム</param>
-void CBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) {
-    
+void CBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) 
+{
     if (type == BulletTeamType::Player) {
         CCollisionManager::Singleton().Register(
             shared_from_this(),

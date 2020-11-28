@@ -95,7 +95,7 @@ void CPlayer::Render(CVector2 scroll) {
 }
 
 void CPlayer::CollisionBullet(void) {
-    super::CollisionBullet();
+//    super::CollisionBullet();
 }
 
 void CPlayer::CollisionEnemy(void) {

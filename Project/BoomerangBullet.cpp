@@ -48,6 +48,7 @@ void CBoomerangBullet::Update(void) {
             if (home->GetRectangle().CollisionRect(rect))
             {
                 super::m_bShow = false;
+                m_pHome.reset();
             } // if
         } // if
     } // else
@@ -62,6 +63,9 @@ void CBoomerangBullet::Update(void) {
 /// <param name="type">èäëÆÉ`Å[ÉÄ</param>
 void CBoomerangBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) {
     super::Fire(position, move, type);
+    m_MovedDistance=0.0f;
+    m_bReturn=false;
+
     if (type == BulletTeamType::Player) {
         m_pHome = CCharacterManager::Singleton().GetPlayer();
     } // if

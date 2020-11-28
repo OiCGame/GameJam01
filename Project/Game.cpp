@@ -15,10 +15,8 @@
 CStage g_Stage;
 
 
-CGame::CGame(const CGame::InitData& data)
-    : super(data) 
-{
-    //ステージテクスチャ読み込み
+bool CGame::LoadAsset(void) {
+        //ステージテクスチャ読み込み
     if (!CTextureAsset::Load(TextureKey::Stage, "Stage1.png")) {
         MOF_PRINTLOG("failed to load texture");
     }
@@ -29,9 +27,36 @@ CGame::CGame(const CGame::InitData& data)
     if (!CTextureAsset::Load(TextureKey::Enemy01, "spaceShips_001.png")) {
         MOF_PRINTLOG("failed to load texture");
     }
+    if (!CTextureAsset::Load(TextureKey::Enemy02, "spaceShips_002.png")) {
+        MOF_PRINTLOG("failed to load texture");
+    }
+    if (!CTextureAsset::Load(TextureKey::Enemy03, "spaceShips_003.png")) {
+        MOF_PRINTLOG("failed to load texture");
+    }
     if (!CTextureAsset::Load(TextureKey::Muscle, "Muscle.png")) {
         MOF_PRINTLOG("failed to load texture");
     }
+    // Bulletのテクスチャを用意する
+    if (!CTextureAsset::Load(TextureKey::Bullet_01, "Tomato.png")) {
+        MOF_PRINTLOG("failed to load texture");
+        return false;
+    } // if
+    if (!CTextureAsset::Load(TextureKey::Bullet_02, "Onion.png")) {
+        MOF_PRINTLOG("failed to load texture");
+        return false;
+    } // if
+    if (!CTextureAsset::Load(TextureKey::Bullet_03, "Meet.png")) {
+        MOF_PRINTLOG("failed to load texture");
+        return false;
+    } // if
+    return true;
+}
+
+CGame::CGame(const CGame::InitData& data)
+    : super(data) 
+{
+    bool loaded = this->LoadAsset();
+
     CharacterInitParam CIparm;
     CIparm.position = CVector2(500, 600);
     CIparm.texture = TextureAsset(TextureKey::Character);

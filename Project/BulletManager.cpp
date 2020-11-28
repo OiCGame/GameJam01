@@ -36,12 +36,6 @@ CBulletManager&CBulletManager::Singleton(void)
 /// <returns>成功したらtueを返す</returns>
 bool CBulletManager::Initialize(void)
 {
-	// Bulletのテクスチャを用意する
-	if (!CTextureAsset::Load(TextureKey::Bullet_01, "FOOD.png"))
-	{
-		MOF_PRINTLOG("failed to load texture");
-		return false;
-	} // if
 
 	// 固定量だけBulletを用意する
 	m_Bullets.reserve(m_BulletSize);

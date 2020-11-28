@@ -7,6 +7,7 @@ private:
 
 	using super = MyApp::CScene;
 
+	bool LoadAsset(void);
 public:
 
 	explicit CGame(const CGame::InitData& data);

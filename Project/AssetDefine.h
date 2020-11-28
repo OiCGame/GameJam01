@@ -8,8 +8,12 @@ enum class TextureKey
 {
 	Character,
 	Enemy01,
+	Enemy02,
+	Enemy03,
 	Muscle,
 	Bullet_01,
+	Bullet_02,
+	Bullet_03,
 	Effect_Barrier,
 	Stage,
 };
