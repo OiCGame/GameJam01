@@ -57,15 +57,6 @@ bool CGame::LoadAsset(void) {
         return false;
     } // if
 
-
-    if (!CSoundBufferAsset::Load(SoundBufferKey::Sound0, "shot1.mp3")) {
-        MOF_PRINTLOG("failed to load sound");
-        return false;
-    } // if
-    if (!CSoundBufferAsset::Load(SoundBufferKey::Sound0, "shot1.mp3")) {
-        MOF_PRINTLOG("failed to load sound");
-        return false;
-    } // if
     return true;
 }
 
@@ -111,6 +102,7 @@ bool CGame::InitCharas(void) {
 CGame::CGame(const CGame::InitData& data)
     : super(data) {
     bool loaded = this->LoadAsset();
+    CAudioManager::Singleton().Load();
 
     this->InitCharas();
 
@@ -124,6 +116,7 @@ CGame::CGame(const CGame::InitData& data)
 
 CGame::~CGame(void) {
     // 解放処理
+    CAudioManager::Singleton().Release();
     CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
