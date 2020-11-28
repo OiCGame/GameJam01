@@ -5,12 +5,18 @@
 #include "BulletManager.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Stage.h"
 
+CStage g_Stage;
 
 std::vector<std::shared_ptr<CCharacter>> _characters;
 
 CGame::CGame(const CGame::InitData& data)
     : super(data) {
+	//ステージテクスチャ読み込み
+	if (!CTextureAsset::Load(TextureKey::Stage, "Stage1.png")) {
+		MOF_PRINTLOG("failed to load texture");
+	}
     // キャラクター作成
     if (!CTextureAsset::Load(TextureKey::Character, "Rockets.png")) {
         MOF_PRINTLOG("failed to load texture");
@@ -31,6 +37,8 @@ CGame::CGame(const CGame::InitData& data)
     player->Initialize(CIparm);
     _characters.push_back(player);
 
+	// Stageの初期化
+	g_Stage.Initialize();
 
     // Bulletの初期化
     CBulletManager::Singleton().Initialize();
@@ -49,14 +57,18 @@ void CGame::Update(void) {
         enemy->Update();
     } // for
 
+	g_Stage.Update();
+
     // Bulletの更新
     CBulletManager::Singleton().Update();
 }
 
 void CGame::Render(void) {
+	g_Stage.Render();
     CBulletManager::Singleton().Render(Mof::CVector2());
  
     for (auto chara : _characters) {
         chara->Render(CVector2(0, 0));
     } // for
+
 }
