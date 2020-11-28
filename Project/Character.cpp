@@ -28,6 +28,11 @@ bool CCharacter::IsShow(void) const {
 	return this->m_bShow;
 }
 
+bool CCharacter::IsDamage(void) const
+{
+	return m_DamageWait > 0;
+}
+
 void CCharacter::Initialize(const CharacterInitParam& param)
 {
 	m_Position = param.position;
@@ -40,15 +45,24 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 			r->GetWidth(), r->GetHeight());
 	} // if
 	m_bShow = true;
+	m_DamageWait = 0;
 }
 
 void CCharacter::Update(void)
 {
 	m_pWeapon->Update();
+	if (m_DamageWait > 0)
+	{
+		m_DamageWait--;
+	}
 }
 
 void CCharacter::Render(CVector2 scroll)
 {
+	if (m_DamageWait % 4 >= 2)
+	{
+		return;
+	}
 	::CGraphicsUtilities::RenderFillRect(this->GetRectangle(),
 										 MOF_COLOR_GREEN);
 	if (auto r = m_pTexture.lock())
@@ -79,6 +93,7 @@ void CCharacter::CollisionBullet(void)
 										  this->GetPosition());
 		m_bShow = false;
 	} // if
+	m_DamageWait = 60;
 }
 
 void CCharacter::CollisionEnemy(void)

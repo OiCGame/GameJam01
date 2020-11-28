@@ -89,8 +89,11 @@ void CCollisionManager::Update(void)
 		// ©•ª‚Æ“G‚Ì’e
 		if (m_pPlayer->GetRectangle().CollisionRect(enemyBullet->GetRectangle()))
 		{
-			m_pPlayer->CollisionBullet();
-			enemyBullet->Hide();
+			if (!m_pPlayer->IsDamage())
+			{
+				m_pPlayer->CollisionBullet();
+				enemyBullet->Hide();
+			}
 		}
 	}
 }

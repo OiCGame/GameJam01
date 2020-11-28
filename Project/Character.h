@@ -96,6 +96,8 @@ protected:
     CRectangle m_RenderRect;
     //! •\Ž¦ƒtƒ‰ƒO
     bool m_bShow;
+
+	int m_DamageWait;
 public:
     // ********************************************************************************
     /// <summary>
@@ -110,6 +112,7 @@ public:
     virtual Mof::CVector2 GetPosition(void) const;
     virtual const char* GetTeam(void) const = 0;
     bool IsShow(void) const;
+	bool IsDamage(void) const;
 
 
     virtual void Initialize(const CharacterInitParam& param);
