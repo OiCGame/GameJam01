@@ -19,6 +19,31 @@ void CEnemy::UpdateAttack(void) {
 /// </summary>
 void CEnemy::UpdateMove(void) {
 
+	if (m_bTargetMove)
+	{
+		float chaseTime = 0.5f;
+		float movey = 2;
+		shared_ptr<CPlayer> pPlayer = m_pTarget.lock();
+		Vector2 move = (pPlayer->GetPosition() - m_Position) / (60.0f * chaseTime);
+		move.y = movey;
+		m_Move = move;
+	}
+	else
+	{
+		if (m_MoveMotion.IsEnd())
+		{
+			m_MoveMotion.Reset();
+		}
+
+		m_Move = m_MoveMotion.GetValue();
+		m_MoveMotion.Update();
+	}
+}
+
+void CEnemy::InitMoveMotionDefault(void)
+{
+	float moveY = 2;
+	m_MoveMotion << CEaseMotion<Vector2>(Vector2(0, moveY), Vector2(0, moveY), Ease::InOut, EaseType::Linear);
 }
 
 void CEnemy::InitMoveMotionWave(void)
@@ -33,12 +58,14 @@ void CEnemy::InitMoveMotionWave(void)
 
 void CEnemy::InitMoveMotionChase(void)
 {
+	m_bTargetMove = true;
 }
 
 void CEnemy::InitMoveMotionCustom(void)
 {
-	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 500.0f / 60.0f, 5), Vector2( 500.0f / 60.0f, 5), Ease::Out, EaseType::Back, 1.0f);
-	m_MoveMotion << CEaseMotion<Vector2>(Vector2(-500.0f / 60.0f, 5), Vector2(-500.0f / 60.0f, 5), Ease::In , EaseType::Back, 1.0f);
+	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 0.0f,  2), Vector2( 0.0f,  3), Ease::Out, EaseType::Back, 0.5f);
+	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 0.0f,  1), Vector2( 5.0f,  1), Ease::InOut, EaseType::Back, 1.0f);
+	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 5.0f, -1), Vector2( 0.0f, -1), Ease::InOut, EaseType::Back, 1.0f);
 }
 
 /// <summary>
@@ -69,8 +96,22 @@ const char* CEnemy::GetTeam(void) const {
 
 void CEnemy::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
-	InitMoveMotionWave();
-	//InitMoveMotionCustom();
+	m_bTargetMove = false;
+	switch (param.type)
+	{
+	case 1: //直進
+		InitMoveMotionDefault();
+		break;
+	case 2: //ウェーブ
+		InitMoveMotionWave();
+		break;
+	case 3: //追跡
+		InitMoveMotionChase();
+		break;
+	case 4: //こったやつ
+		InitMoveMotionCustom();
+		break;
+	}
 	m_MoveMotion.Start();
 }
 
@@ -81,14 +122,6 @@ void CEnemy::Update(void) {
     super::Update();
 
     this->UpdateMove();
-
-	if (m_MoveMotion.IsEnd())
-	{
-		m_MoveMotion.Reset();
-	}
-	m_Move = m_MoveMotion.GetValue();
-	m_MoveMotion.Update();
-
 	
     float delta = ::CUtilities::GetFrameSecond();
     m_AttackTime += delta;
@@ -109,7 +142,7 @@ void CEnemy::Render(CVector2 scroll) {
 void CEnemy::CollisionBullet(void) {
 	m_pHP->Damage(40);
 	if (m_pHP->GetValue() <= 0) {
-		CEffectManager::Singleton().Start(EffectType::Barrier,
+		CEffectManager::Singleton().Start(EffectType::Explosion,
 										  this->GetPosition());
 		super::Notify(this, "EnemyDead");
 		m_bShow = false;

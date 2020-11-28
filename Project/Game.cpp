@@ -86,6 +86,7 @@ bool CGame::InitCharas(void) {
         CIparm.position = Mof::CVector2(posX,
                                         -scroll);
         CIparm.texture = TextureAsset(TextureKey::Enemy01);
+		CIparm.type = type;
         enemy->Initialize(CIparm);
         enemy->SetTarget(player);
         CCharacterManager::Singleton().AddCharacter(enemy);

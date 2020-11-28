@@ -25,6 +25,7 @@ private:
     const float m_AttackTimeMax = 0.4f;
 
 	CEaseMotionController<Vector2> m_MoveMotion;
+	bool                           m_bTargetMove;
 
     /// <summary>
     /// çUåÇçXêV
@@ -35,6 +36,7 @@ private:
     /// </summary>
     void UpdateMove(void);
 
+	void InitMoveMotionDefault(void);
 	void InitMoveMotionWave(void);
 	void InitMoveMotionChase(void);
 	void InitMoveMotionCustom(void);

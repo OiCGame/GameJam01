@@ -74,6 +74,7 @@ public:
 struct CharacterInitParam {
     Vector2 position;
     shared_ptr<CTexture> texture;
+	int type;
 };
 // ********************************************************************************
 /// <summary>
