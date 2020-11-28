@@ -5,6 +5,8 @@
 
 #include <memory>
 
+#include "EaseMotionController.h"
+
 using namespace std;
 
 /// <summary>
@@ -18,25 +20,11 @@ private:
     weak_ptr<class CPlayer> m_pTarget;
     //! 移動量
     CVector2 m_Move;
-    //! ベジエ曲線によるアニメーションの時間
-    float m_Time = 0.0f;
-    //! 波々移動をするときの角度
-    float m_WaveAngle = 0.0f;
     //! 攻撃入力頻度
     float m_AttackTime = 0.0f;
     const float m_AttackTimeMax = 0.4f;
 
-    /// <summary>
-    /// ターゲットを追跡する移動量の取得
-    /// </summary>
-    /// <returns>移動量</returns>
-    CVector2 MoveChase(void);
-    /// <summary>
-    /// 波々移動
-    /// </summary>
-    /// <returns>移動量</returns>
-    CVector2  WaveMove(void);
-
+	CEaseMotionController<Vector2> m_MoveMotion;
 
     /// <summary>
     /// 攻撃更新
@@ -46,6 +34,11 @@ private:
     /// 移動
     /// </summary>
     void UpdateMove(void);
+
+	void InitMoveMotionWave(void);
+	void InitMoveMotionChase(void);
+	void InitMoveMotionCustom(void);
+
 public:
     /// <summary>
     /// コンストラクタ
