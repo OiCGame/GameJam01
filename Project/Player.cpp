@@ -45,6 +45,27 @@ void CPlayer::Update(void)
 		m_Position.x -= CHARACTER_SPEED * rate;
 	}
 
+	//‰æ–Ê‚©‚ço‚È‚¢‚æ‚¤‚É‚·‚éˆ—
+	if (m_Position.x < 0)
+	{
+		m_Position.x = 0;
+	}
+	if (m_Position.y < 0)
+	{
+		m_Position.y = 0;
+	}
+	if (auto r = m_pTexture.lock())
+	{
+		if (m_Position.x > g_pGraphics->GetTargetWidth() - r->GetWidth())
+		{
+			m_Position.x = g_pGraphics->GetTargetWidth() - r->GetWidth();
+		}
+		if (m_Position.y > g_pGraphics->GetTargetHeight() - r->GetHeight())
+		{
+			m_Position.y = g_pGraphics->GetTargetHeight() - r->GetHeight();
+		}
+	}
+
 	if (g_pPad->IsKeyPush(XInputButton::XINPUT_A))
 	{
 		m_Weapon.Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
