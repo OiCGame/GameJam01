@@ -37,6 +37,12 @@ void Rotate(float& pos_x, float& pos_y, const float radian,
 };
 void CThreeWayGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
 //    super::AddWait(shot_interval_max_);
+    if (0 < super::m_ShotWait) {
+        return;
+    } // if
+    super::m_ShotWait = CUtilities::GetFrameSecond() * 60.0f;
+
+
 
     int shot_count = 3;
 

@@ -22,6 +22,7 @@ void CPlayer::Initialize(const CharacterInitParam& param) {
 }
 
 void CPlayer::Update(void) {
+    super::Update();
     float threshold = 0.35f;
     bool StickTop = g_pPad->GetStickVertical() > threshold;
     bool StickBottom = g_pPad->GetStickVertical() < -threshold;
@@ -69,7 +70,7 @@ void CPlayer::Update(void) {
         }
     }
 
-    if (g_pPad->IsKeyPush(XInputButton::XINPUT_A)) {
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_A)) {
         m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
     }
 }

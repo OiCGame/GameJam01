@@ -197,6 +197,8 @@ void CEnemy::Initialize(const CharacterInitParam& param) {
 /// XV
 /// </summary>
 void CEnemy::Update(void) {
+    super::Update();
+
     m_Time += ::CUtilities::GetFrameSecond();
 
     this->UpdateMove();
