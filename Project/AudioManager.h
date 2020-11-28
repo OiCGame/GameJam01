@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "AssetDefine.h"
+
+
 class CAudioManager {
 private:
 	/// <summary>
