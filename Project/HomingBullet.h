@@ -3,28 +3,26 @@
 
 #include "Bullet.h"
 
+#include "Character.h"
+
 
 /// <summary>
 /// ブーメランの弾　射出後一定距離進むと撃った人に戻っていく
 /// </summary>
-class BoomerangBullet : public CBullet {
+class CHomingBullet : public CBullet {
 	using super = CBullet;
 private:
-    //! 発射されてから移動した距離
-    float m_MovedDistance;
-    //! 戻り（折り返し）始める距離
-    const float m_ReturnLength;
-	//! 折り返す
-	bool m_bReturn;
+	//! 戻り先
+	std::weak_ptr<CCharacter>m_pTarget;
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	BoomerangBullet();
+	CHomingBullet();
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~BoomerangBullet();
+	~CHomingBullet();
 	/// <summary>
 	/// 更新
 	/// </summary>
@@ -36,5 +34,4 @@ public:
 	/// <param name="move">更新移動量</param>
 	/// <param name="type">所属チーム</param>
 	virtual void Fire(CVector2 position, CVector2 move, BulletTeamType type);
-
 };

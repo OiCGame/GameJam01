@@ -189,6 +189,10 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
     this->m_pTarget = ptr;
 }
 
+const char* CEnemy::GetTeam(void) const {
+    return "Enemy";
+}
+
 void CEnemy::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
 }

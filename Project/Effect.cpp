@@ -130,9 +130,6 @@ void CEffect::Render(void)
 	{
 		return;
 	}
-	CGraphicsUtilities::RenderFillRect(
-		this->GetRectangle(),
-		MOF_COLOR_BLUE);
 	m_pTexture->Render(m_Position.x, m_Position.y, m_Motion.GetSrcRect());
 }
 

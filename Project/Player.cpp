@@ -16,6 +16,10 @@ CRectangle CPlayer::GetRectangle(void) const {
     return rect;
 }
 
+const char* CPlayer::GetTeam(void) const {
+    return "Player";
+}
+
 void CPlayer::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
     super::m_pHP->RegisterToRenderer();

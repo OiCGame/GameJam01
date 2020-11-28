@@ -61,8 +61,11 @@ public:
     /// </summary>
     /// <param name="ptr">ポインタ</param>
     void SetTarget(std::shared_ptr<class CPlayer> ptr);
-
-
+    /// <summary>
+    /// チーム取得
+    /// </summary>
+    /// <returns>チーム</returns>
+    virtual const char* GetTeam(void) const override;
     /// <summary>
     /// 初期化
     /// </summary>

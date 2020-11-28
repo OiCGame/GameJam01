@@ -26,6 +26,7 @@
     <ClCompile Include="ThreeWayGun.cpp" />
     <ClCompile Include="MachineGun.cpp" />
     <ClCompile Include="BoomerangBullet.cpp" />
+    <ClCompile Include="HomingBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />
@@ -57,6 +58,7 @@
     <ClInclude Include="UICanvas.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="BoomerangBullet.h" />
+    <ClInclude Include="HomingBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Version.rc" />

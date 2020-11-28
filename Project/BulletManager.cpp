@@ -1,7 +1,7 @@
 #include "BulletManager.h"
 
 #include "AssetDefine.h"
-
+#include "HomingBullet.h"
 
 /// <summary>
 /// コンストラクタ
@@ -45,7 +45,8 @@ bool CBulletManager::Initialize(void)
 	// 固定量だけBulletを用意する
 	m_Bullets.reserve(m_BulletSize);
 	for (int i = 0; i < m_BulletSize; i++) {
-		auto temp = std::make_shared<CBullet>();
+		//auto temp = std::make_shared<CBullet>();
+		auto temp = std::make_shared<CHomingBullet>();
 		temp->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
 		m_Bullets.push_back(temp);
 	} // for

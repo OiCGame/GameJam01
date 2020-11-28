@@ -53,6 +53,7 @@ public:
 	virtual ~CCharacter();
 	
 	virtual Mof::CVector2 GetPosition(void) const;
+	virtual const char* GetTeam(void) const = 0;
 
 	virtual void Initialize(const CharacterInitParam& param);
 	virtual void Update(void);

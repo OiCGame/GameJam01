@@ -103,6 +103,7 @@
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="GamePad.cpp" />
+    <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="HP.cpp" />
     <ClCompile Include="MachineGun.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GamePad.h" />
+    <ClInclude Include="HomingBullet.h" />
     <ClInclude Include="HP.h" />
     <ClInclude Include="MachineGun.h" />
     <ClInclude Include="Player.h" />
