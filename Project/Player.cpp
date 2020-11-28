@@ -80,6 +80,7 @@ void CPlayer::Render(CVector2 scroll) {
     CVector2 offset;
     // ï`âÊ
 
+
     /*
     // ç∂
     rect = Mof::CRectangle(
