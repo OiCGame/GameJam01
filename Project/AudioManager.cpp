@@ -1,7 +1,5 @@
 #include "AudioManager.h"
 
-#include "AssetDefine.h"
-
 
 CAudioManager::CAudioManager() {
 }
@@ -21,4 +19,17 @@ void CAudioManager::Play(SoundBufferKey key) {
     {
 
     } // if
+}
+
+void CAudioManager::Play(SoundStreamBufferKey key) {
+    m_pBgm = SoundStreamBufferAsset(key);
+    m_pBgm->Play();
+}
+
+void CAudioManager::Update(void) {
+  
+    if (m_pBgm) {
+
+    m_pBgm->Update();
+    }
 }

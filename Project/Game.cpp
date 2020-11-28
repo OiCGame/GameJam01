@@ -62,6 +62,10 @@ bool CGame::LoadAsset(void) {
         MOF_PRINTLOG("failed to load sound");
         return false;
     } // if
+    if (!CSoundBufferAsset::Load(SoundBufferKey::Sound0, "shot1.mp3")) {
+        MOF_PRINTLOG("failed to load sound");
+        return false;
+    } // if
     return true;
 }
 
@@ -132,7 +136,8 @@ void CGame::Update(void) {
     }
 
     if (g_pInput->IsKeyPush(MOFKEY_SPACE)) {
-        CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
+        CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
+//        CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
     } // if
 
     // Stageの更新
@@ -145,6 +150,8 @@ void CGame::Update(void) {
     CEffectManager::Singleton().Update();
     // 衝突判定
     CCollisionManager::Singleton().Update();
+    // ストリーム更新
+    CAudioManager::Singleton().Update();
 }
 
 void CGame::Render(void) {

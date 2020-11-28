@@ -25,15 +25,19 @@ enum class AnimationKey
 	Character,
 };
 
-enum class SoundBufferKey 
-{
+enum class SoundBufferKey {
 	Sound0,
+};
+enum class SoundStreamBufferKey {
+	Bgm0,
 };
 
 using CTextureAsset   = CAssetBase<TextureKey  , CTexture      >;
 using CAnimationAsset = CAssetBase<AnimationKey, CAnimationData>;
 using CSoundBufferAsset = CAssetBase<SoundBufferKey, CSoundBuffer>;
+using CSoundStreamBufferAsset = CAssetBase<SoundStreamBufferKey, CSoundBuffer>;
 
 #define TextureAsset(key)   CTextureAsset  ::GetAsset(key)
 #define AnimationAsset(key) CAnimationAsset::GetAsset(key)
 #define SoundBufferAsset(key) CSoundBufferAsset::GetAsset(key)
+#define SoundStreamBufferAsset(key) CSoundStreamBufferAsset::GetAsset(key)
