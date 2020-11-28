@@ -18,7 +18,7 @@ private:
     //! テクスチャ
     weak_ptr<CTexture> m_pTexture;
     //! 鍋の具
-    std::vector<PotFood> m_Foods;
+    std::vector<CPotFood> m_Foods;
 public:
     /// <summary>
     /// コンストラクタ
@@ -33,6 +33,10 @@ public:
     /// </summary>
     /// <param name="event"></param>
     void OnNotify(void* chara,const char* event) override; 
+    /// <summary>
+    /// 入力処理
+    /// </summary>
+    void Input(void);
     /// <summary>
     /// 初期化
     /// </summary>

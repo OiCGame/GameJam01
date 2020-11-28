@@ -3,7 +3,7 @@
 #include "AssetDefine.h"
 
 
-PotFood::PotFood(CVector2 pos, CVector2 move) {
+CPotFood::CPotFood(CVector2 pos, CVector2 move) {
 	m_Position = pos;
 	m_Move = move;
 	m_pTexture = TextureAsset(TextureKey::Enemy01);
@@ -15,23 +15,23 @@ PotFood::PotFood(CVector2 pos, CVector2 move) {
 	} // if
 }
 
-PotFood::~PotFood() {
+CPotFood::~CPotFood() {
 }
 
-CVector2 PotFood::GetPosition(void) const {
+CVector2 CPotFood::GetPosition(void) const {
 	return this->m_Position;
 }
 
-void PotFood::Update(void) {
+void CPotFood::Update(void) {
 	m_Position += m_Move;
 }
 
-void PotFood::Render(void) {
+void CPotFood::Render(void) {
 	if (auto tex = m_pTexture.lock()) {
 		tex->Render(m_Position.x, m_Position.y);
 	} // if
 }
 
-void PotFood::Stop(void) {
+void CPotFood::Stop(void) {
 	m_Move = CVector2();
 }

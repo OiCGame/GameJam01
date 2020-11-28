@@ -12,7 +12,7 @@ using namespace std;
 /// <summary>
 /// 食べ物
 /// </summary>
-class PotFood {
+class CPotFood {
 private:
     //! 位置
     CVector2 m_Position;
@@ -27,11 +27,11 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="pos">位置</param>
-    PotFood(CVector2 pos, CVector2 move);
+    CPotFood(CVector2 pos, CVector2 move);
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~PotFood();
+    ~CPotFood();
     /// <summary>
     /// ゲッター
     /// </summary>
