@@ -38,6 +38,8 @@ public:
 	CCharacter();
 	virtual ~CCharacter();
 	
+	virtual Mof::CVector2 GetPosition(void) const;
+
 	virtual void Initialize(const CharacterInitParam& param);
 	virtual void Update(void);
 	virtual void Render(CVector2 scroll);
