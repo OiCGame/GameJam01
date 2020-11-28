@@ -115,7 +115,7 @@ void Rotate(float& pos_x, float& pos_y, const float radian,
     float translate_y = (axis_x)*std::sinf(radian) + (axis_y)*std::cosf(radian);
 
     pos_x = center_x + translate_x;
-    pos_y = center_y + translate_y; 
+    pos_y = center_y + translate_y;
 };
 
 void Rotate(CVector2& pos, const float radian, const CVector2 center) {
@@ -124,19 +124,21 @@ void Rotate(CVector2& pos, const float radian, const CVector2 center) {
            center.x, center.y);
 };
 
-void CEnemy::WaveMove(void) {
+CVector2 CEnemy::WaveMove(void) {
     _wave_angle++;
     // üŠú
     float period = 0.05f;
     // U•
     float amplitude = 5.0f;
-
-    m_Move.x = std::cosf(_wave_angle * period) * amplitude;
-    m_Move.y = 2.0f;
+    // ˆÚ“®—Ê‚ğì¬
+    Mof::CVector2 ret;
+    ret.x = std::cosf(_wave_angle * period) * amplitude;
+    ret.y = 2.0f;
 //    m_Move.y += std::sinf(_wave_angle);
-        Rotate(m_Move, 
-               MOF_ToRadian(0.0f),
-               Mof::CVector2());
+    Rotate(ret,
+           MOF_ToRadian(0.0f),
+           Mof::CVector2());
+    return ret;
 }
 
 /// <summary>
@@ -149,6 +151,8 @@ void CEnemy::UpdateAttack(void) {
 /// ˆÚ“®XV
 /// </summary>
 void CEnemy::UpdateMove(void) {
+    WaveMove();
+
 //    m_Move = this->MoveChase();
 }
 
@@ -180,11 +184,10 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
 void CEnemy::Update(void) {
     _time += ::CUtilities::GetFrameSecond();
 
-  //  this->UpdateMove();
+    this->UpdateMove();
 
-  //  this->UpdateAttack();
+    this->UpdateAttack();
 
-    WaveMove();
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
 }

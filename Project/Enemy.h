@@ -30,12 +30,11 @@ private:
     /// </summary>
     /// <returns>ˆÚ“®—Ê</returns>
     CVector2 MoveChase(void);
-
-
     /// <summary>
     /// ”gXˆÚ“®
     /// </summary>
-    void WaveMove(void);
+    /// <returns>ˆÚ“®—Ê</returns>
+    CVector2  WaveMove(void);
 
 
     /// <summary>
