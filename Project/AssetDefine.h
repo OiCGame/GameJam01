@@ -18,15 +18,21 @@ enum class TextureKey
 	Stage,
 };
 
-enum class AnimationKey
+enum class AnimationKey 
 {
 	Effect_Barrier,
 	Bullet_01,
 	Character,
 };
 
+enum class AnimationKey 
+{
+	Sound0,
+};
+
 using CTextureAsset   = CAssetBase<TextureKey  , CTexture      >;
 using CAnimationAsset = CAssetBase<AnimationKey, CAnimationData>;
+using CSoundBufferAsset = CAssetBase<AnimationKey, CAnimationData>;
 
 #define TextureAsset(key)   CTextureAsset  ::GetAsset(key)
 #define AnimationAsset(key) CAnimationAsset::GetAsset(key)
