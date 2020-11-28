@@ -3,6 +3,7 @@
 #include "GamePad.h"
 #include "Character.h"
 #include "BulletManager.h"
+#include "CharacterManager.h"
 #include "Enemy.h"
 #include "Player.h"
 #include "Stage.h"
@@ -11,7 +12,6 @@
 
 CStage g_Stage;
 
-std::vector<std::shared_ptr<CCharacter>> g_pCharacters;
 
 CGame::CGame(const CGame::InitData& data)
     : super(data) {
@@ -36,7 +36,7 @@ CGame::CGame(const CGame::InitData& data)
     player->Initialize(CIparm);
 
     constexpr uint32_t enemy_count = 1;
-    g_pCharacters.reserve(enemy_count);
+    //g_pCharacters.reserve(enemy_count);
     for (int i = 0; i < enemy_count; i++) {
         auto temp = std::make_shared<CEnemy>();
         CIparm.position = Mof::CVector2(::CUtilities::Random(200, 700),
@@ -44,12 +44,14 @@ CGame::CGame(const CGame::InitData& data)
         CIparm.texture = TextureAsset(TextureKey::Enemy01);
         temp->Initialize(CIparm);
         temp->SetTarget(player);
-        g_pCharacters.push_back(temp);
+//        g_pCharacters.push_back(temp);
+        CCharacterManager::Singleton().AddCharacter(temp);
     } // for
 
     // Stageの初期化
     g_Stage.Initialize();
-    g_pCharacters.push_back(player);
+    CCharacterManager::Singleton().AddCharacter(player);
+//    g_pCharacters.push_back();
 
     // Bulletの初期化
     CBulletManager::Singleton().Initialize();
@@ -57,6 +59,7 @@ CGame::CGame(const CGame::InitData& data)
 
 CGame::~CGame(void) {
     // 解放処理
+    CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
 }
@@ -65,11 +68,11 @@ void CGame::Update(void) {
     if (g_pInput->IsKeyPush(MOFKEY_1)) {
         ChangeScene(SceneName::Title);
     }
-    for (auto enemy : g_pCharacters) {
-        enemy->Update();
-    } // for
 
     g_Stage.Update();
+
+    CCharacterManager::Singleton().Update();
+    
 
     // Bulletの更新
     CBulletManager::Singleton().Update();
@@ -78,11 +81,7 @@ void CGame::Update(void) {
 void CGame::Render(void) {
     g_Stage.Render();
     CBulletManager::Singleton().Render(Mof::CVector2());
-
-    for (auto chara : g_pCharacters) {
-        chara->Render(CVector2(0, 0));
-    } // for
-
+    CCharacterManager::Singleton().Render(Mof::CVector2());
 
     CUICanvas::Singleton().Render();
 }
