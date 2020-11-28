@@ -3,67 +3,60 @@
 #include "GamePad.h"
 #include "Character.h"
 #include "BulletManager.h"
+#include "Enemy.h"
+#include "Player.h"
 
-CBullet gBullet;
-CCharacter gCharacter;
 
-CGame::CGame(const CGame::InitData & data)
-	: super(data)
-{
-	if (!CTextureAsset::Load(TextureKey::Bullet_01, "FOOD.png"))
-	{
-		MOF_PRINTLOG("failed to load texture");
-	} // if
-	gBullet.SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
-	puts("");
+std::vector<std::shared_ptr<CCharacter>> _characters;
 
-	if (!CTextureAsset::Load(TextureKey::Character, "Rockets.png"))
-	{
-		MOF_PRINTLOG("failed to load texture");
-	}
-	CharacterInitParam CIparm;
-	CIparm.position = CVector2(500, 600);
-	CIparm.texture = TextureAsset(TextureKey::Character);
-	gCharacter.Initialize(CIparm);
-	// Bulletの初期化
-	CBulletManager::Singleton().Initialize();
+CGame::CGame(const CGame::InitData& data)
+    : super(data) {
+    // キャラクター作成
+    if (!CTextureAsset::Load(TextureKey::Character, "Rockets.png")) {
+        MOF_PRINTLOG("failed to load texture");
+    }
+    CharacterInitParam CIparm;
+    CIparm.position = CVector2(500, 600);
+    CIparm.texture = TextureAsset(TextureKey::Character);
+    constexpr uint32_t enemy_count = 6;
+    _characters.reserve(6);
+    for (int i = 0; i < 6; i++) {
+        auto temp = std::make_shared<CEnemy>();
+        CIparm.position.x = ::CUtilities::Random(200, 700);
+        CIparm.position.y = ::CUtilities::Random(200, 700);
+        temp->Initialize(CIparm);
+        _characters.push_back(temp);
+    } // for
+    auto player = std::make_shared<CPlayer>();
+    player->Initialize(CIparm);
+    _characters.push_back(player);
+
+
+    // Bulletの初期化
+    CBulletManager::Singleton().Initialize();
 }
 
-CGame::~CGame(void)
-{
-	// Bulletの初期化
-	CBulletManager::Singleton().Release();
+CGame::~CGame(void) {
+    // Bulletの初期化
+    CBulletManager::Singleton().Release();
 }
 
-void CGame::Update(void)
-{
-	if (g_pInput->IsKeyPush(MOFKEY_1))
-	{
-		ChangeScene(SceneName::Title);
-	}
-	gCharacter.Update();
-	if (::g_pPad->IsKeyPush(XInputButton::XINPUT_A))
-	{
-		CBulletManager::Singleton().Fire(
-			Mof::CVector2(200.0f, 200.0f),
-			Mof::CVector2(5.0f, 0.0f),
-			BulletTeamType::Player);
-	} // if
+void CGame::Update(void) {
+    if (g_pInput->IsKeyPush(MOFKEY_1)) {
+        ChangeScene(SceneName::Title);
+    }
+    for (auto enemy : _characters) {
+        enemy->Update();
+    } // for
 
-	// Bulletの更新
-	CBulletManager::Singleton().Update();
+    // Bulletの更新
+    CBulletManager::Singleton().Update();
 }
 
-void CGame::Render(void)
-{
-	CBulletManager::Singleton().Render(Mof::CVector2());
-
-
-
-	if (::g_pPad->IsKeyHold(XInputButton::XINPUT_A))
-	{
-		//auto rect = CRectangle(0.0f, 0.0f, 200.0f, 200.0f);
-		//CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_BLACK);
-	} // if
-	gCharacter.Render(CVector2(0,0));
+void CGame::Render(void) {
+    CBulletManager::Singleton().Render(Mof::CVector2());
+ 
+    for (auto chara : _characters) {
+        chara->Render(CVector2(0, 0));
+    } // for
 }

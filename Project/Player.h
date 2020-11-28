@@ -1,5 +1,10 @@
 #pragma once
-class CPlayer
+
+
+#include "Character.h"
+
+
+class CPlayer : public CCharacter
 {
 };
 
