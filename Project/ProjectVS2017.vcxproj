@@ -99,6 +99,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Easing.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="GamePad.cpp" />
@@ -127,6 +128,9 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="EaseMotion.h" />
+    <ClInclude Include="EaseMotionController.h" />
+    <ClInclude Include="Easing.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
@@ -137,7 +141,6 @@
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Stage.h" />
-    <ClInclude Include="Stage1.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="SceneDefine.h" />
