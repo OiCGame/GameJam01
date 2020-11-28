@@ -1,6 +1,7 @@
 #include "Enemy.h"
 
 #include "Player.h"
+#include "BulletManager.h"
 
 enum class EaseType {
     Linear,
@@ -123,16 +124,19 @@ void Rotate(CVector2& pos, const float radian, const CVector2 center) {
            radian,
            center.x, center.y);
 };
-
+/// <summary>
+/// 波々移動
+/// </summary>
+/// <returns>移動量</returns>
 CVector2 CEnemy::WaveMove(void) {
-    _wave_angle++;
+    m_WaveAngle++;
     // 周期
     float period = 0.05f;
     // 振幅
     float amplitude = 5.0f;
     // 移動量を作成
     Mof::CVector2 ret;
-    ret.x = std::cosf(_wave_angle * period) * amplitude;
+    ret.x = std::cosf(m_WaveAngle * period) * amplitude;
     ret.y = 2.0f;
 //    m_Move.y += std::sinf(_wave_angle);
     Rotate(ret,
@@ -145,14 +149,16 @@ CVector2 CEnemy::WaveMove(void) {
 /// 
 /// </summary>
 void CEnemy::UpdateAttack(void) {
+    CBulletManager::Singleton().Fire(m_Position,
+                                     Mof::CVector2(0.0f, 2.0f),
+                                     BulletTeamType::Enemy);
 }
 
 /// <summary>
 /// 移動更新
 /// </summary>
 void CEnemy::UpdateMove(void) {
-    WaveMove();
-
+    m_Move = WaveMove();
 //    m_Move = this->MoveChase();
 }
 
@@ -173,7 +179,10 @@ CEnemy::CEnemy() :
 /// </summary>
 CEnemy::~CEnemy() {
 }
-
+/// <summary>
+/// セッター
+/// </summary>
+/// <param name="ptr">ポインタ</param>
 void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
     this->m_pTarget = ptr;
 }
@@ -182,11 +191,17 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
 /// 更新
 /// </summary>
 void CEnemy::Update(void) {
-    _time += ::CUtilities::GetFrameSecond();
+    m_Time += ::CUtilities::GetFrameSecond();
 
     this->UpdateMove();
 
-    this->UpdateAttack();
+
+    float delta = ::CUtilities::GetFrameSecond();
+    m_AttackTime += delta;
+    if (m_AttackTimeMax < m_AttackTime) {
+        m_AttackTime = 0;
+        this->UpdateAttack();
+    } // if
 
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
