@@ -40,13 +40,13 @@ MofBool CGameApp::Initialize(void) {
 		.Add<CGameClear>(SceneName::GameClear)
 		.Add<CGameOver>(SceneName::GameOver)
 		.SetFadeColor(MOF_COLOR_WHITE);
-	
-	g_EffectManager.Initialize();
 
 	// タイトルシーンから開始
 	//m_SceneManager.Initialize(SceneName::Title);
 	// デバッグ用、ゲームシーンから開始
 	m_SceneManager.Initialize(SceneName::Game);
+
+	g_EffectManager.Initialize();
 	return TRUE;
 }
 /*************************************************************************//*!
