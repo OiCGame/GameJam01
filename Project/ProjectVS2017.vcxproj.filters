@@ -1,165 +1,240 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="StopWatch.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameClear.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameApp.cpp">
-      <Filter>ソース ファイル\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>ソース ファイル\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Easing.cpp">
+      <Filter>ソース</Filter>
     </ClCompile>
     <ClCompile Include="Effect.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationData.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GamePad.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース</Filter>
     </ClCompile>
     <ClCompile Include="HP.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
+    <ClCompile Include="StopWatch.cpp">
+      <Filter>ソース</Filter>
     </ClCompile>
     <ClCompile Include="UICanvas.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>ソース</Filter>
     </ClCompile>
     <ClCompile Include="BulletManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>ソース\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Easing.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>ソース\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>ソース\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>ソース\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="GameApp.cpp">
+      <Filter>ソース\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>ソース\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClear.cpp">
+      <Filter>ソース\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>ソース\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineGun.cpp">
+      <Filter>ソース\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="BoomerangBullet.cpp">
+      <Filter>ソース\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>ソース\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="HomingBullet.cpp">
+      <Filter>ソース\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreeWayGun.cpp">
+      <Filter>ソース\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>ソース\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>ソース\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationData.cpp">
+      <Filter>ソース\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>ソース\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SceneManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StopWatch.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameClear.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetDefine.h">
-      <Filter>ヘッダー ファイル\Define</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDefine.h">
-      <Filter>ヘッダー ファイル\Define</Filter>
-    </ClInclude>
-    <ClInclude Include="GameApp.h">
-      <Filter>ヘッダー ファイル\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GamePad.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="HP.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="UICanvas.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletManager.h">
-      <Filter>ヘッダー ファイル\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterManager.h">
-      <Filter>ヘッダー ファイル\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>ヘッダー ファイル\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectManager.h">
-      <Filter>ヘッダー ファイル\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="EaseMotion.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="EaseMotionController.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Easing.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="HP.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDefine.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="StopWatch.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="UICanvas.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="BoomerangBullet.h">
+      <Filter>ヘッダー\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>ヘッダー\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>ヘッダー\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ヘッダー\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>ヘッダー\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>ヘッダー\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ヘッダー\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>ヘッダー\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApp.h">
+      <Filter>ヘッダー\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClear.h">
+      <Filter>ヘッダー\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>ヘッダー\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>ヘッダー\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>ヘッダー\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="HomingBullet.h">
+      <Filter>ヘッダー\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreeWayGun.h">
+      <Filter>ヘッダー\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineGun.h">
+      <Filter>ヘッダー\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationData.h">
+      <Filter>ヘッダー\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>ヘッダー\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetBase.h">
+      <Filter>ヘッダー\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetDefine.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ヘッダー\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Version.rc">
-      <Filter>リソース ファイル</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="Version.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ヘッダー">
+      <UniqueIdentifier>{e9d74029-6e19-4536-aa09-393119a0dda1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース">
+      <UniqueIdentifier>{630acdbf-04ad-428c-8c72-3988e48d5f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Application">
+      <UniqueIdentifier>{c41d0bc4-ba3b-452d-8c22-d60ff1001c0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Manager">
+      <UniqueIdentifier>{2a38e846-5e11-42d5-a095-4cce078e473f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Weapon">
+      <UniqueIdentifier>{e915e115-b7d7-42ff-a64f-8813b787dd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Bullet">
+      <UniqueIdentifier>{5ea02d80-94cc-4575-a25c-63231a57adcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Scene">
+      <UniqueIdentifier>{0f76e396-ae25-4dd8-a280-48e444c9d4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Character">
+      <UniqueIdentifier>{be54748b-ec1c-4561-93df-9c8525271435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Scene">
+      <UniqueIdentifier>{5a6e912b-cf1e-471c-984a-08521dcbdba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Weapon">
+      <UniqueIdentifier>{7953f4a4-03ef-4677-a0cd-0b2317b0d7e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Application">
+      <UniqueIdentifier>{34f1ccfa-7e2c-4ab5-b8b9-303b178068d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Manager">
+      <UniqueIdentifier>{cdfdff65-5c04-4906-92a4-095f89406622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Bullet">
+      <UniqueIdentifier>{264dac0e-9a06-4cd4-b4e5-0ab91476ae92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Character">
+      <UniqueIdentifier>{23eb88ed-d85d-4394-a2d3-4dadd18ebbea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー\Tool">
+      <UniqueIdentifier>{216a606e-097c-4d5a-9091-09841297b54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース\Tool">
+      <UniqueIdentifier>{b15afdd1-4d65-40c2-99b8-47d99cbfaa33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
