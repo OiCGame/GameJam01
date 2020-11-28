@@ -11,6 +11,8 @@
 #include	"GameApp.h"
 #include    "AssetDefine.h"
 
+//#include    "EffectManager.h"
+
 //SCENE
 #include    "Game.h"
 #include    "Title.h"
@@ -28,6 +30,10 @@
 						それ以外	失敗、エラーコードが戻り値となる
 *//**************************************************************************/
 MofBool CGameApp::Initialize(void) {
+  
+	CUtilities::SetCurrentDirectory("Resource");
+
+	// �V�[���}�l�[�W���[�Ɋe�V�[���̓o�^
 	SetCurrentDirectory("Resource");
 	// シーンマネージャーに各シーンの登録
 	m_SceneManager
@@ -37,6 +43,12 @@ MofBool CGameApp::Initialize(void) {
 		.Add<CGameOver>(SceneName::GameOver)
 		.SetFadeColor(MOF_COLOR_WHITE);
 
+	//CAnimationAsset::Load(AnimationKey::Effect_Barrier, "Effect/barrier.anim");
+	//CTextureAsset::Load(TextureKey::Effect_Barrier, AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str());
+	
+	//g_EffectManager.Initialize();
+
+	// �^�C�g���V�[������J�n
 	// タイトルシーンから開始
 	//m_SceneManager.Initialize(SceneName::Title);
 	// デバッグ用、ゲームシーンから開始
@@ -61,7 +73,16 @@ MofBool CGameApp::Update(void) {
 		std::exit(0);
 	} // if
 
+	if (g_pInput->IsKeyPush(MOFKEY_9))
+	{
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
+	}
 
+	g_EffectManager.Update();
 
 	// アクティブのシーン更新
 	if (!m_SceneManager.Update())
@@ -90,6 +111,9 @@ MofBool CGameApp::Render(void) {
 		return FALSE;
 	}
 
+	//g_EffectManager.Render();
+
+	//�`��̏I��
 	//描画の終了
 	g_pGraphics->RenderEnd();
 	return TRUE;
@@ -105,6 +129,8 @@ MofBool CGameApp::Release(void) {
 
 	// テクスチャの解放
 	CTextureAsset::Release();
+	CAnimationAsset::Release();
 
+	//g_EffectManager.Release();
 	return TRUE;
 }
