@@ -7,6 +7,7 @@
 
 #include "AssetDefine.h"
 
+#define			CHARACTER_SPEED			5
 
 using namespace std;
 

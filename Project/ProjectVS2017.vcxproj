@@ -98,6 +98,8 @@
     <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="GamePad.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -116,10 +118,12 @@
     <ClInclude Include="AssetBase.h" />
     <ClInclude Include="AssetDefine.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GamePad.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameClear.h" />

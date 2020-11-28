@@ -12,6 +12,8 @@ enum class TextureKey
 enum class AnimationKey
 {
 	Effect_Barrier,
+	Bullet_01,
+	Character,
 };
 
 using CTextureAsset   = CAssetBase<TextureKey  , CTexture      >;

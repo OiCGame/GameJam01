@@ -1,9 +1,9 @@
 /*************************************************************************//*!
 
 					@file	GameApp.cpp
-					@brief	Šî–{ƒQ[ƒ€ƒAƒvƒŠB
+					@brief	åŸºæœ¬ã‚²ãƒ¼ãƒ ã‚¢ãƒ—ãƒªã€‚
 
-															@author	à_“c@‹
+															@author	æ¿±ç”°ã€€äº«
 															@date	2014.05.14
 *//**************************************************************************/
 
@@ -11,7 +11,7 @@
 #include	"GameApp.h"
 #include    "AssetDefine.h"
 
-#include    "EffectManager.h"
+//#include    "EffectManager.h"
 
 //SCENE
 #include    "Game.h"
@@ -19,18 +19,23 @@
 #include    "GameClear.h"
 #include    "GameOver.h"
 
+#include    "GamePad.h"
+
+
 /*************************************************************************//*!
-		@brief			ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì‰Šú‰»
+		@brief			ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 		@param			None
 
-		@return			TRUE		¬Œ÷<br>
-						‚»‚êˆÈŠO	¸”sAƒGƒ‰[ƒR[ƒh‚ª–ß‚è’l‚Æ‚È‚é
+		@return			TRUE		æˆåŠŸ<br>
+						ãã‚Œä»¥å¤–	å¤±æ•—ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒæˆ»ã‚Šå€¤ã¨ãªã‚‹
 *//**************************************************************************/
 MofBool CGameApp::Initialize(void) {
-
+  
 	CUtilities::SetCurrentDirectory("Resource");
 
-	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚ÉŠeƒV[ƒ“‚Ì“o˜^
+	// ï¿½Vï¿½[ï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ÉŠeï¿½Vï¿½[ï¿½ï¿½ï¿½Ì“oï¿½^
+	SetCurrentDirectory("Resource");
+	// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«å„ã‚·ãƒ¼ãƒ³ã®ç™»éŒ²
 	m_SceneManager
 		.Add<CTitle>(SceneName::Title)
 		.Add<CGame>(SceneName::Game)
@@ -38,29 +43,31 @@ MofBool CGameApp::Initialize(void) {
 		.Add<CGameOver>(SceneName::GameOver)
 		.SetFadeColor(MOF_COLOR_WHITE);
 
-	CAnimationAsset::Load(AnimationKey::Effect_Barrier, "Effect/barrier.anim");
-	CTextureAsset::Load(TextureKey::Effect_Barrier, AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str());
+	//CAnimationAsset::Load(AnimationKey::Effect_Barrier, "Effect/barrier.anim");
+	//CTextureAsset::Load(TextureKey::Effect_Barrier, AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str());
 	
-	g_EffectManager.Initialize();
+	//g_EffectManager.Initialize();
 
-	// ƒ^ƒCƒgƒ‹ƒV[ƒ“‚©‚çŠJn
+	// ï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½n
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã‹ã‚‰é–‹å§‹
 	//m_SceneManager.Initialize(SceneName::Title);
-	// ƒfƒoƒbƒO—pAƒQ[ƒ€ƒV[ƒ“‚©‚çŠJn
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ã€ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‹ã‚‰é–‹å§‹
 	m_SceneManager.Initialize(SceneName::Game);
-
 	return TRUE;
 }
 /*************************************************************************//*!
-		@brief			ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌXV
+		@brief			ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 		@param			None
 
-		@return			TRUE		¬Œ÷<br>
-						‚»‚êˆÈŠO	¸”sAƒGƒ‰[ƒR[ƒh‚ª–ß‚è’l‚Æ‚È‚é
+		@return			TRUE		æˆåŠŸ<br>
+						ãã‚Œä»¥å¤–	å¤±æ•—ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒæˆ»ã‚Šå€¤ã¨ãªã‚‹
 *//**************************************************************************/
 MofBool CGameApp::Update(void) {
-	//ƒL[‚ÌXV
+	//ã‚­ãƒ¼ã®æ›´æ–°
 	g_pInput->RefreshKey();
-	// ƒGƒXƒP[ƒv‚ÅI—¹iƒfƒoƒbƒO—pj
+	bf::GamePad::GetInstance().RefreshKey();
+
+	// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã§çµ‚äº†ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
 	if (g_pInput->IsKeyPush(MOFKEY_ESCAPE))
 	{
 		std::exit(0);
@@ -77,7 +84,7 @@ MofBool CGameApp::Update(void) {
 
 	g_EffectManager.Update();
 
-	// ƒAƒNƒeƒBƒu‚ÌƒV[ƒ“XV
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®ã‚·ãƒ¼ãƒ³æ›´æ–°
 	if (!m_SceneManager.Update())
 	{
 		return FALSE;
@@ -86,44 +93,44 @@ MofBool CGameApp::Update(void) {
 	return TRUE;
 }
 /*************************************************************************//*!
-		@brief			ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì•`‰æ
+		@brief			ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®æç”»
 		@param			None
 
-		@return			TRUE		¬Œ÷<br>
-						‚»‚êˆÈŠO	¸”sAƒGƒ‰[ƒR[ƒh‚ª–ß‚è’l‚Æ‚È‚é
+		@return			TRUE		æˆåŠŸ<br>
+						ãã‚Œä»¥å¤–	å¤±æ•—ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒæˆ»ã‚Šå€¤ã¨ãªã‚‹
 *//**************************************************************************/
 MofBool CGameApp::Render(void) {
-	//•`‰æŠJn
+	//æç”»é–‹å§‹
 	g_pGraphics->RenderStart();
-	//‰æ–Ê‚ÌƒNƒŠƒA
+	//ç”»é¢ã®ã‚¯ãƒªã‚¢
 	g_pGraphics->ClearTarget(0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0);
 
-	// ƒAƒNƒeƒBƒu‚ÌƒV[ƒ“•`‰æ
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®ã‚·ãƒ¼ãƒ³æç”»
 	if (!m_SceneManager.Render())
 	{
 		return FALSE;
 	}
 
-	g_EffectManager.Render();
+	//g_EffectManager.Render();
 
-	//•`‰æ‚ÌI—¹
+	//ï¿½`ï¿½ï¿½ÌIï¿½ï¿½
+	//æç”»ã®çµ‚äº†
 	g_pGraphics->RenderEnd();
 	return TRUE;
 }
 /*************************************************************************//*!
-		@brief			ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì‰ğ•ú
+		@brief			ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		@param			None
 
-		@return			TRUE		¬Œ÷<br>
-						‚»‚êˆÈŠO	¸”sAƒGƒ‰[ƒR[ƒh‚ª–ß‚è’l‚Æ‚È‚é
+		@return			TRUE		æˆåŠŸ<br>
+						ãã‚Œä»¥å¤–	å¤±æ•—ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒæˆ»ã‚Šå€¤ã¨ãªã‚‹
 *//**************************************************************************/
 MofBool CGameApp::Release(void) {
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ì‰ğ•ú
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è§£æ”¾
 	CTextureAsset::Release();
 	CAnimationAsset::Release();
 
-
-	g_EffectManager.Release();
+	//g_EffectManager.Release();
 	return TRUE;
 }
