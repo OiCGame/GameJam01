@@ -6,6 +6,8 @@ using namespace sip;
 
 enum class TextureKey
 {
+	Character,
+	Bullet_01,
 	Effect_Barrier,
 };
 

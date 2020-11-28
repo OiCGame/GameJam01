@@ -72,7 +72,7 @@ MofBool CGameApp::Update(void) {
 	{
 		std::exit(0);
 	} // if
-
+	/*
 	if (g_pInput->IsKeyPush(MOFKEY_9))
 	{
 		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
@@ -81,8 +81,8 @@ MofBool CGameApp::Update(void) {
 		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
 		g_EffectManager.Start(EffectType::Barrier, Vector2(CUtilities::Random(500), CUtilities::Random(500)));
 	}
-
 	g_EffectManager.Update();
+	*/
 
 	// アクティブのシーン更新
 	if (!m_SceneManager.Update())
@@ -111,7 +111,7 @@ MofBool CGameApp::Render(void) {
 		return FALSE;
 	}
 
-	//g_EffectManager.Render();
+//	g_EffectManager.Render();
 
 	//�`��̏I��
 	//描画の終了

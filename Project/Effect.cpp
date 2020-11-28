@@ -61,7 +61,7 @@ void CEffect::SetAnimationKey(const AnimationKey & key)
 /// <created>‚¢‚Ì‚¤‚¦,2020/11/28</created>
 /// <changed>‚¢‚Ì‚¤‚¦,2020/11/28</changed>
 // ********************************************************************************
-CRectangle CEffect::GetRectangle(void) const
+CRectangle CEffect::GetRectangle(void)
 {
 	CRectangle rect = m_Motion.GetSrcRect();
 	rect.Translation(m_Position);
