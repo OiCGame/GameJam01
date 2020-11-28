@@ -1,0 +1,54 @@
+{
+  "stage": [
+    {
+      "posX": 100.0,
+      "scroll": 100.0,
+      "type": 1
+    },
+    {
+      "posX": 100.0,
+      "scroll": 150.0,
+      "type": 1
+    },
+    {
+      "posX": 150.0,
+      "scroll": 200.0,
+      "type": 1
+    },
+    {
+      "posX": 100.0,
+      "scroll": 250.0,
+      "type": 1
+    },
+    {
+      "posX": 100.0,
+      "scroll": 300.0,
+      "type": 1
+    },
+    {
+      "posX": 920.0,
+      "scroll": 600.0,
+      "type": 1
+    },
+    {
+      "posX": 920.0,
+      "scroll": 650.0,
+      "type": 1
+    },
+    {
+      "posX": 920.0,
+      "scroll": 700.0,
+      "type": 1
+    },
+    {
+      "posX": 920.0,
+      "scroll": 750.0,
+      "type": 1
+    },
+    {
+      "posX": 920.0,
+      "scroll": 800.0,
+      "type": 1
+    }
+  ]
+}

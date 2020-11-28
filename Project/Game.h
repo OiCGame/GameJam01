@@ -8,6 +8,7 @@ private:
 	using super = MyApp::CScene;
 
 	bool LoadAsset(void);
+	bool InitCharas(void);
 public:
 
 	explicit CGame(const CGame::InitData& data);

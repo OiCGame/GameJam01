@@ -23,7 +23,6 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	void Play(void);
-
 	/// <summary>
 	/// XV
 	/// </summary>
