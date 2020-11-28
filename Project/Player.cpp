@@ -1,8 +1,9 @@
 #include "Player.h"
 
 CPlayer::CPlayer():
-    super(),
-    m_Invincible(0){
+    super()
+//    m_Invincible(0)
+{
 }
 
 CPlayer::~CPlayer() {
@@ -19,6 +20,11 @@ CRectangle CPlayer::GetRectangle(void) const {
 const char* CPlayer::GetTeam(void) const {
     return "Player";
 }
+/*
+bool CPlayer::IsInvincible(void) const {
+    return 0.0f < m_Invincible;
+}
+*/
 
 void CPlayer::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
@@ -95,7 +101,7 @@ void CPlayer::Render(CVector2 scroll) {
 }
 
 void CPlayer::CollisionBullet(void) {
-//    super::CollisionBullet();
+    super::CollisionBullet();
 }
 
 void CPlayer::CollisionEnemy(void) {

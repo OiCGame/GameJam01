@@ -53,5 +53,11 @@ public:
 	/// <param name="move">移動量</param>
 	/// <param name="type">Bulletの所属チーム</param>
 	void Fire(CVector2 position, CVector2 move, BulletTeamType type);
+
+	/// <summary>
+	/// Bulletの追加　Weaponから呼ばれることを想定
+	/// </summary>
+	/// <param name="type">ポインタ</param>
+	void AddBullet(std::shared_ptr<CBullet> ptr);
 };
 

@@ -9,7 +9,7 @@
 /// </summary>
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
-                         Mof::CVector2(0.0f, 2.0f),
+                         Mof::CVector2(0.0f, 5.0f),
                          BulletTeamType::Enemy);
 }
 
@@ -98,8 +98,19 @@ void CEnemy::Update(void) {
     
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
+
 }
 
 void CEnemy::Render(CVector2 scroll) {
     super::Render(scroll);
+}
+
+void CEnemy::CollisionBullet(void) {
+	super::CollisionBullet();
+	super::Notify(this, "EnemyDead");
+}
+
+void CEnemy::CollisionEnemy(void) {
+	super::CollisionEnemy();
+	super::Notify(this, "EnemyDead");
 }

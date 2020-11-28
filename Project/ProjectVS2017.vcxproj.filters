@@ -82,6 +82,11 @@
     <ClCompile Include="StopWatch.cpp">
       <Filter>ソース\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>ソース\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PotGimmick.cpp" />
+    <ClCompile Include="PotFood.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Effect.h">
@@ -183,6 +188,11 @@
     <ClInclude Include="StopWatch.h">
       <Filter>ヘッダー\Tool</Filter>
     </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>ヘッダー\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PotGimmick.h" />
+    <ClInclude Include="PotFood.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Version.rc" />

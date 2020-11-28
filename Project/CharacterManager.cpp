@@ -1,8 +1,9 @@
 #include "CharacterManager.h"
+#include "CollisionManager.h"
 
 
 CCharacterManager::CCharacterManager() :
-    m_pCharacter() {
+    m_pCharacters() {
 }
 
 CCharacterManager::~CCharacterManager() {
@@ -15,28 +16,28 @@ CCharacterManager& CCharacterManager::Singleton(void) {
 }
 
 std::shared_ptr<CCharacter> CCharacterManager::GetPlayer(void) const {
-    auto it = std::find_if(m_pCharacter.begin(), m_pCharacter.end(),
+    auto it = std::find_if(m_pCharacters.begin(), m_pCharacters.end(),
                            [](std::shared_ptr<CCharacter> chara) {
         return (chara)->GetTeam() == "Player";
     });
-    if(it == m_pCharacter.end()){
+    if (it == m_pCharacters.end()) {
         return nullptr;
     } // if
     return *it;
 }
 
 std::shared_ptr<CCharacter> CCharacterManager::GetNearestEnemy(CVector2 position) const {
-        auto it = std::min_element(m_pCharacter.begin(), m_pCharacter.end(), [&](
+    auto it = std::min_element(m_pCharacters.begin(), m_pCharacters.end(), [&](
         std::shared_ptr<CCharacter> a,
         std::shared_ptr<CCharacter> b) {
-            if (a->GetTeam() == "Player") {
-                return false;
-            } // if
-        return 
+        if (a->GetTeam() == "Player") {
+            return false;
+        } // if
+        return
             Mof::CVector2Utilities::Distance(a->GetPosition(), position) <
             Mof::CVector2Utilities::Distance(b->GetPosition(), position);
     });
-    if (it == m_pCharacter.end()) {
+    if (it == m_pCharacters.end()) {
         return nullptr;
     } // if
     return *it;
@@ -50,25 +51,44 @@ bool CCharacterManager::Initialize(void) {
 }
 */
 void CCharacterManager::Update(void) {
-    for (auto chara : m_pCharacter) {
+    // 死亡エネミーを削除
+
+    m_pCharacters.erase(
+        std::remove_if(
+            m_pCharacters.begin(),
+            m_pCharacters.end(),
+            [](shared_ptr<CCharacter> chara) {
+//        return enemy->GetTeam() == "Enemy" && enemy->IsShow();}),
+        return !chara->IsShow();}),
+        m_pCharacters.end());
+
+
+
+
+
+
+    for (auto chara : m_pCharacters) {
         chara->Update();
     } // for
+
+
+    MOF_PRINTLOG("CharacterManager m_pCharacters size = %d \n", m_pCharacters.size());
 }
 
 void CCharacterManager::Render(CVector2 scroll) {
-    for (auto chara : m_pCharacter) {
+    for (auto chara : m_pCharacters) {
         chara->Render(scroll);
     } // for
 }
 
 void CCharacterManager::Release(void) {
-    for (auto chara : m_pCharacter) {
+    for (auto chara : m_pCharacters) {
         chara->Release();
         chara.reset();
     } // for
-    m_pCharacter.clear();
+    m_pCharacters.clear();
 }
 
 void CCharacterManager::AddCharacter(const std::shared_ptr<CCharacter>& ptr) {
-    m_pCharacter.push_back(ptr);
+    m_pCharacters.push_back(ptr);
 }

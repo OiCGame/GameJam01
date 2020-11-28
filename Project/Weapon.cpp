@@ -15,11 +15,7 @@ CWeapon::CWeapon() {
 /// </summary>
 CWeapon::~CWeapon() {
 }
-/*
-bool CWeapon::CanShot(void) const {
-    return m_ShotWait <= 0;
-}
-*/
+
 /// <summary>
 /// Bullet”­ŽË
 /// </summary>

@@ -89,4 +89,8 @@ public:
 	/// <param name="move">更新移動量</param>
 	/// <param name="type">所属チーム</param>
 	virtual void Fire(CVector2 position, CVector2 move, BulletTeamType type);
+	/// <summary>
+	/// 表示終了
+	/// </summary>
+	void Hide(void);
 };

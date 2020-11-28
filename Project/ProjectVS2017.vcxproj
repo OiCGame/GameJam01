@@ -108,6 +108,8 @@
     <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="HP.cpp" />
     <ClCompile Include="MachineGun.cpp" />
+    <ClCompile Include="PotFood.cpp" />
+    <ClCompile Include="PotGimmick.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="ThreeWayGun.cpp" />
     <ClCompile Include="UICanvas.cpp" />
@@ -149,6 +151,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="PotFood.h" />
+    <ClInclude Include="PotGimmick.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="ThreeWayGun.h" />
     <ClInclude Include="Stage1.h" />

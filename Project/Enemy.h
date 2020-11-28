@@ -38,7 +38,6 @@ private:
 	void InitMoveMotionWave(void);
 	void InitMoveMotionChase(void);
 	void InitMoveMotionCustom(void);
-
 public:
     /// <summary>
     /// コンストラクタ
@@ -73,4 +72,8 @@ public:
     /// </summary>
     /// <param name="scroll">スクロール値</param>
     virtual void Render(CVector2 scroll) override;
+
+
+    virtual void CollisionBullet(void) override;
+    virtual void CollisionEnemy(void) override;
 };

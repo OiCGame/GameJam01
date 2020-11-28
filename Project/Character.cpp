@@ -13,15 +13,21 @@ CCharacter::CCharacter() :
 //	m_pWeapon(std::make_unique<CThreeWayGun>()),
 	m_pWeapon(std::make_unique<CMachineGun>()),
 //	m_pWeapon(std::make_unique<CWeapon>()),
-	m_RenderRect(){
+	m_RenderRect(),
+	m_bShow(false){
 }
 
 CCharacter::~CCharacter()
 {
+	this->Release();
 }
 
 Mof::CVector2 CCharacter::GetPosition(void) const {
 	return this->m_Position;
+}
+
+bool CCharacter::IsShow(void) const {
+	return this->m_bShow;
 }
 
 void CCharacter::Initialize(const CharacterInitParam& param)
@@ -35,6 +41,7 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 			0.0f, 0.0f, 
 			r->GetWidth(), r->GetHeight());
 	} // if
+	m_bShow = true;
 }
 
 void CCharacter::Update(void)
@@ -54,6 +61,7 @@ void CCharacter::Render(CVector2 scroll)
 
 void CCharacter::Release(void)
 {
+	m_pWeapon.reset();
 	m_pTexture.reset();
 	m_pHP.reset();
 }
@@ -68,14 +76,21 @@ CRectangle CCharacter::GetRectangle(void) const
 
 void CCharacter::CollisionBullet(void)
 {
-	m_pHP->Damage(1);
-	CEffectManager::Singleton().Start(EffectType::Barrier,
-									  this->GetPosition());
+	m_pHP->Damage(10);
+	if (m_pHP->GetValue() <= 0) {
+		CEffectManager::Singleton().Start(EffectType::Barrier,
+										  this->GetPosition());
+		m_bShow = false;
+	} // if
 }
 
 void CCharacter::CollisionEnemy(void)
 {
-	m_pHP->Damage(1);
-	CEffectManager::Singleton().Start(EffectType::Barrier,
-									  this->GetPosition());
+	m_pHP->Damage(10);
+	
+	if (m_pHP->GetValue() <= 0) {
+		CEffectManager::Singleton().Start(EffectType::Barrier,
+										  this->GetPosition());
+		m_bShow = false;
+	} // if
 }

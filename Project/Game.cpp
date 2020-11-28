@@ -14,9 +14,6 @@
 #include "AudioManager.h"
 
 
-CStage g_Stage;
-
-
 bool CGame::LoadAsset(void) {
         //ステージテクスチャ読み込み
     if (!CTextureAsset::Load(TextureKey::Stage, "Stage1.png")) {
@@ -56,6 +53,18 @@ bool CGame::LoadAsset(void) {
         MOF_PRINTLOG("failed to load texture");
         return false;
     } // if
+    if (!CTextureAsset::Load(TextureKey::PotGimmick, "pot.png")) {
+        MOF_PRINTLOG("failed to load texture");
+        return false;
+    } // if
+    if (!CTextureAsset::Load(TextureKey::HP, "HP.png")) {
+        MOF_PRINTLOG("failed to load texture");
+        return false;
+    } // if
+    if (!CTextureAsset::Load(TextureKey::HPFrame, "HPFrame.png")) {
+        MOF_PRINTLOG("failed to load texture");
+        return false;
+    } // if
 
     return true;
 }
@@ -85,6 +94,7 @@ bool CGame::InitCharas(void) {
         int type = info[i]["type"].GetInt();
 
         auto enemy = std::make_shared<CEnemy>();
+        enemy->AddObserver(m_pPotGimmick);
         CIparm.position = Mof::CVector2(posX,
                                         -scroll);
         CIparm.texture = TextureAsset(TextureKey::Enemy01);
@@ -100,14 +110,15 @@ bool CGame::InitCharas(void) {
 }
 
 CGame::CGame(const CGame::InitData& data)
-    : super(data) {
+    : super(data),
+    m_Stage(),
+    m_pPotGimmick(std::make_shared<CPotGimmick>()) {
     bool loaded = this->LoadAsset();
     CAudioManager::Singleton().Load();
-
     this->InitCharas();
-
     // Stageの初期化
-    g_Stage.Initialize();
+    m_Stage.Initialize();
+    m_pPotGimmick->Initialize();
     // Bulletの初期化
     CBulletManager::Singleton().Initialize();
     // Effectの初期化
@@ -134,7 +145,8 @@ void CGame::Update(void) {
     } // if
 
     // Stageの更新
-    g_Stage.Update();
+    m_Stage.Update();
+    m_pPotGimmick->Update();
     // Characterの更新
     CCharacterManager::Singleton().Update();
     // Bulletの更新
@@ -148,7 +160,8 @@ void CGame::Update(void) {
 }
 
 void CGame::Render(void) {
-    g_Stage.Render();
+    m_Stage.Render();
+    m_pPotGimmick->Render();
     CBulletManager::Singleton().Render(Mof::CVector2());
     CCharacterManager::Singleton().Render(Mof::CVector2());
     CEffectManager::Singleton().Render();

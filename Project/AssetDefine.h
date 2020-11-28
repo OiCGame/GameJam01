@@ -16,6 +16,9 @@ enum class TextureKey
 	Bullet_03,
 	Effect_Barrier,
 	Stage,
+	PotGimmick,
+	HP,
+	HPFrame,
 };
 
 enum class AnimationKey 

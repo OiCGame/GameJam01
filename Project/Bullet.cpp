@@ -49,7 +49,7 @@ BulletTeamType CBullet::GetTeamType(void) const {
 /// <summary>
 /// ゲッター
 /// </summary>
-/// <returns>表示矩形（衝突矩形）</returns>
+/// <returns>衝突矩形</returns>
 CRectangle CBullet::GetRectangle(void) const {
     auto rect = CRectangle(
         m_Position.x, 
@@ -122,6 +122,7 @@ void CBullet::Render(CVector2 scroll) {
 /// <param name="type">所属チーム</param>
 void CBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) 
 {
+    /*
     if (type == BulletTeamType::Player) {
         CCollisionManager::Singleton().Register(
             shared_from_this(),
@@ -132,9 +133,15 @@ void CBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type)
             shared_from_this(),
             CollisionLayer::Enemy);
     } // else
+    
+    */
 
     this->m_Position = position;
     this->m_Move = move;
     this->m_bShow = true;
     this->m_TeamType = type;
+}
+
+void CBullet::Hide(void) {
+    this->m_bShow = false;
 }

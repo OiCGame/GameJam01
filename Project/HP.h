@@ -4,17 +4,17 @@
 #include <Mof.h>
 
 #include "UICanvas.h"
-
+#include "AssetDefine.h"
 
 /// <summary>
 /// HP
 /// </summary>
 class CHP : public std::enable_shared_from_this<CHP> {
 private:
-    //! HPの値
-    uint32_t m_Value;
     //! HPの最大値
-    uint32_t m_ValueMax;
+    const uint32_t m_ValueMax;
+    //! HPの値
+    int m_Value;
 public:
     /// <summary>
     /// コンストラクタ
@@ -35,7 +35,7 @@ public:
     /// </summary>
     /// <param name="">HPの最大値</param>
     /// <returns></returns>
-    uint32_t GetValueMax(void) const;
+//    uint32_t GetValueMax(void) const;
     /// <summary>
     /// レンダラーに登録
     /// </summary>
@@ -66,6 +66,18 @@ public:
     /// </summary>
     void Render(void) {
 
+        uint32_t value = m_pHP->GetValue();
+            if (auto tex = TextureAsset(TextureKey::HPFrame)) {
+                tex->Render(0.0f, -18.0f);
+        } // 
+        if (auto tex = TextureAsset(TextureKey::HP)) {
+            CRectangle rect(
+                0, 0, 532 * (value * 0.01f), 64);
+            tex->Render(248.0f, 0.0f, rect);
+        } // if
+
+
+        /*
         uint32_t length = 1.0f;
         {
             uint32_t value = m_pHP->GetValueMax();
@@ -77,7 +89,7 @@ public:
             auto rect = Mof::CRectangle(0.0f, 100.0f, value * length, 200.0f);
             ::CGraphicsUtilities::RenderFillRect(rect, MOF_COLOR_GREEN);
         }
-        
+        */
     }
 
 };
