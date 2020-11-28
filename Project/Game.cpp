@@ -14,7 +14,8 @@ CStage g_Stage;
 
 
 CGame::CGame(const CGame::InitData& data)
-    : super(data) {
+    : super(data) 
+{
     //ステージテクスチャ読み込み
     if (!CTextureAsset::Load(TextureKey::Stage, "Stage1.png")) {
         MOF_PRINTLOG("failed to load texture");
