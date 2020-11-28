@@ -19,8 +19,10 @@ private:
     //! 移動量
     CVector2 m_Move;
     
-
+    //! ベジエ曲線によるアニメーションの時間
     float _time = 0.0f;
+    //! 波々移動をするときの角度
+    float _wave_angle = 0.0f;
 
 
     /// <summary>
@@ -29,6 +31,11 @@ private:
     /// <returns>移動量</returns>
     CVector2 MoveChase(void);
 
+
+    /// <summary>
+    /// 波々移動
+    /// </summary>
+    void WaveMove(void);
 
 
     /// <summary>

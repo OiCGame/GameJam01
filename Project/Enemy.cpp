@@ -87,9 +87,9 @@ public:
         BezierCurve b;
         Mof::CVector2 ret;
         ret.x = b.InterpolationAnimData(time / _rate,
-                                               _anim_data_x);
+                                        _anim_data_x);
         ret.y = b.InterpolationAnimData(time / _rate,
-                                               _anim_data_y);
+                                        _anim_data_y);
         return ret;
     }
 };
@@ -106,6 +106,38 @@ CVector2 CEnemy::MoveChase(void) {
     } // if
     return CVector2();
 }
+void Rotate(float& pos_x, float& pos_y, const float radian,
+            const float center_x, const float center_y) {
+    float axis_x = pos_x - center_x;
+    float axis_y = pos_y - center_y;
+
+    float translate_x = (axis_x)*std::cosf(radian) - (axis_y)*std::sinf(radian);
+    float translate_y = (axis_x)*std::sinf(radian) + (axis_y)*std::cosf(radian);
+
+    pos_x = center_x + translate_x;
+    pos_y = center_y + translate_y; 
+};
+
+void Rotate(CVector2& pos, const float radian, const CVector2 center) {
+    Rotate(pos.x, pos.y,
+           radian,
+           center.x, center.y);
+};
+
+void CEnemy::WaveMove(void) {
+    _wave_angle++;
+    // é¸ä˙
+    float period = 0.05f;
+    // êUïù
+    float amplitude = 5.0f;
+
+    m_Move.x = std::cosf(_wave_angle * period) * amplitude;
+    m_Move.y = 2.0f;
+//    m_Move.y += std::sinf(_wave_angle);
+        Rotate(m_Move, 
+               MOF_ToRadian(0.0f),
+               Mof::CVector2());
+}
 
 /// <summary>
 /// 
@@ -117,7 +149,7 @@ void CEnemy::UpdateAttack(void) {
 /// à⁄ìÆçXêV
 /// </summary>
 void CEnemy::UpdateMove(void) {
-    m_Move = this->MoveChase();
+//    m_Move = this->MoveChase();
 }
 
 BezierCurveAnimation gAnime(5.0f);
@@ -148,10 +180,11 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
 void CEnemy::Update(void) {
     _time += ::CUtilities::GetFrameSecond();
 
-    this->UpdateMove();
+  //  this->UpdateMove();
 
-    this->UpdateAttack();
+  //  this->UpdateAttack();
 
+    WaveMove();
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
 }
