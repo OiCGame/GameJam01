@@ -51,8 +51,9 @@ CGame::CGame(const CGame::InitData& data)
 }
 
 CGame::~CGame(void) {
-    // Bulletの初期化
+    // 解放処理
     CBulletManager::Singleton().Release();
+    CUICanvas::Singleton().Release();
 }
 
 void CGame::Update(void) {

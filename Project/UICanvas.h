@@ -13,6 +13,7 @@ using namespace std;
 class CUICanvas {
 private:
 //    std::vector<class IHPRenderer> ;
+    //! •`‰æ‘ÎÛ
     std::shared_ptr<class CHPRenderer> m_pRenderer;
 
     /// <summary>
@@ -38,6 +39,9 @@ public:
     /// <summary>
     /// •`‰æ
     /// </summary>
-    /// <param name=""></param>
     void Render(void);
+    /// <summary>
+    /// ‰ğ•ú
+    /// </summary>
+    void Release(void);
 };

@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include <stdint.h>
-
 #include <Mof.h>
 
 #include "UICanvas.h"
@@ -51,10 +49,16 @@ private:
     //! 描画対象
     std::shared_ptr<CHP> m_pHP;
 public:
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="ptr">描画対象</param>
     CHPRenderer(std::shared_ptr<CHP> ptr) :
         m_pHP(ptr) {
     }
-
+    /// <summary>
+    /// 描画
+    /// </summary>
     void Render(void) {
         uint32_t value = m_pHP->GetValue();
         
