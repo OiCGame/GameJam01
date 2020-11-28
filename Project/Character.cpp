@@ -47,8 +47,10 @@ CRectangle CCharacter::GetRectangle(void) const
 
 void CCharacter::CollisionBullet(void)
 {
+	m_pHP->Damage(1);
 }
 
 void CCharacter::CollisionEnemy(void)
 {
+	m_pHP->Damage(1);
 }
