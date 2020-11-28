@@ -37,7 +37,8 @@ protected:
 //	CHP m_HP;
 	std::shared_ptr<CHP> m_pHP;
 	//! •Ší
-	CWeapon m_Weapon;
+//	CWeapon m_Weapon;
+	std::unique_ptr<CWeapon>m_pWeapon;
 	//! •\¦‹éŒ`
 	CRectangle m_RenderRect;
 public:

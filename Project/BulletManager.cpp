@@ -8,7 +8,7 @@
 /// </summary>
 CBulletManager::CBulletManager() :
 	m_Bullets(),
-	m_BulletSize(64)
+	m_BulletSize(256)
 {
 }
 

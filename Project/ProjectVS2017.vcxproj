@@ -106,6 +106,7 @@
     <ClCompile Include="GamePad.cpp" />
     <ClCompile Include="HP.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="ThreeWayGun.cpp" />
     <ClCompile Include="UICanvas.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Effect.cpp" />

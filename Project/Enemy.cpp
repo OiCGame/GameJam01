@@ -107,6 +107,7 @@ CVector2 CEnemy::MoveChase(void) {
     } // if
     return CVector2();
 }
+/*
 void Rotate(float& pos_x, float& pos_y, const float radian,
             const float center_x, const float center_y) {
     float axis_x = pos_x - center_x;
@@ -124,6 +125,7 @@ void Rotate(CVector2& pos, const float radian, const CVector2 center) {
            radian,
            center.x, center.y);
 };
+*/
 /// <summary>
 /// îgÅXà⁄ìÆ
 /// </summary>
@@ -139,9 +141,9 @@ CVector2 CEnemy::WaveMove(void) {
     ret.x = std::cosf(m_WaveAngle * period) * amplitude;
     ret.y = 2.0f;
 //    m_Move.y += std::sinf(_wave_angle);
-    Rotate(ret,
-           MOF_ToRadian(0.0f),
-           Mof::CVector2());
+//    Rotate(ret,
+  //         MOF_ToRadian(0.0f),
+    //       Mof::CVector2());
     return ret;
 }
 
@@ -149,7 +151,7 @@ CVector2 CEnemy::WaveMove(void) {
 /// 
 /// </summary>
 void CEnemy::UpdateAttack(void) {
-    super::m_Weapon.Shot(m_Position,
+    super::m_pWeapon->Shot(m_Position,
                          Mof::CVector2(0.0f, 2.0f),
                          BulletTeamType::Enemy);
 }

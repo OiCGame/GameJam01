@@ -70,7 +70,7 @@ void CPlayer::Update(void) {
     }
 
     if (g_pPad->IsKeyPush(XInputButton::XINPUT_A)) {
-        m_Weapon.Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
+        m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
     }
 }
 

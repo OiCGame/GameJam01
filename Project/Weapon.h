@@ -12,7 +12,7 @@
 /// </summary>
 class CWeapon
 {
-private:
+protected:
     //! 所有者
     class Character* m_pOwner;
 public:
@@ -28,12 +28,12 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~CWeapon();
+    virtual ~CWeapon();
     /// <summary>
     /// Bullet発射
     /// </summary>
     /// <param name="position">発射位置</param>
     /// <param name="move">更新移動量</param>
     /// <param name="type">所属チーム</param>
-    void Shot(CVector2 position, CVector2 move, BulletTeamType type);
+    virtual void Shot(CVector2 position, CVector2 move, BulletTeamType type);
 };

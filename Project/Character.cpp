@@ -2,12 +2,14 @@
 #include "GamePad.h"
 #include "BulletManager.h"
 #include "EffectManager.h"
+#include "ThreeWayGun.h"
 
 
 CCharacter::CCharacter() :
 	m_Position(),
 	m_pTexture(),
 	m_pHP(std::make_shared<CHP>()),
+	m_pWeapon(std::make_unique<CThreeWayGun>()),
 	m_RenderRect(){
 }
 
