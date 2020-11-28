@@ -9,6 +9,7 @@ enum class TextureKey
 	Character,
 	Bullet_01,
 	Effect_Barrier,
+	Stage,
 };
 
 enum class AnimationKey
