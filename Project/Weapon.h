@@ -4,6 +4,9 @@
 #include <Mof.h>
 
 
+#include "Bullet.h"
+
+
 /// <summary>
 /// 武器
 /// </summary>
@@ -29,6 +32,8 @@ public:
     /// <summary>
     /// Bullet発射
     /// </summary>
-    /// <param name="move">Bulletの位置の更新値</param>
-    void Shot(CVector2 move);
+    /// <param name="position">発射位置</param>
+    /// <param name="move">更新移動量</param>
+    /// <param name="type">所属チーム</param>
+    void Shot(CVector2 position, CVector2 move, BulletTeamType type);
 };

@@ -129,6 +129,6 @@ MofBool CGameApp::Release(void) {
 	CTextureAsset::Release();
 	CAnimationAsset::Release();
 
-	//g_EffectManager.Release();
+	g_EffectManager.Release();
 	return TRUE;
 }
