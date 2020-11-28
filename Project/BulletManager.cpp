@@ -3,22 +3,36 @@
 #include "AssetDefine.h"
 
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CBulletManager::CBulletManager() :
 	m_Bullets(),
 	m_BulletSize(64)
 {
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 CBulletManager::~CBulletManager()
 {
 }
 
+/// <summary>
+/// シングルトン
+/// </summary>
+/// <returns>インスタンス</returns>
 CBulletManager&CBulletManager::Singleton(void)
 {
 	static CBulletManager obj;
 	return obj;
 }
 
+/// <summary>
+/// 初期化
+/// </summary>
+/// <returns>成功したらtueを返す</returns>
 bool CBulletManager::Initialize(void)
 {
 	// Bulletのテクスチャを用意する
@@ -38,6 +52,9 @@ bool CBulletManager::Initialize(void)
 	return true;
 }
 
+/// <summary>
+/// 更新
+/// </summary>
 void CBulletManager::Update(void)
 {
 	// 非表示のBulletを非表示にする？
@@ -49,6 +66,10 @@ void CBulletManager::Update(void)
 	} // for
 }
 
+/// <summary>
+/// 描画
+/// </summary>
+/// <param name="scroll">スクロール値</param>
 void CBulletManager::Render(CVector2 scroll)
 {
 	// Bulletの描画
@@ -58,6 +79,9 @@ void CBulletManager::Render(CVector2 scroll)
 	} // for
 }
 
+/// <summary>
+/// 解放
+/// </summary>
 void CBulletManager::Release(void)
 {
 	// 解放
@@ -68,6 +92,12 @@ void CBulletManager::Release(void)
 	m_Bullets.clear();
 }
 
+/// <summary>
+/// 発射
+/// </summary>
+/// <param name="position">発射位置</param>
+/// <param name="move">移動量</param>
+/// <param name="type">Bulletの所属チーム</param>
 void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type)
 {
 	// 表示中でないなら撃てるものとする

@@ -48,9 +48,7 @@ public:
 	// ********************************************************************************
 	CBullet();
 	// ********************************************************************************
-    /// <summary>
     /// デストラクタ
-    /// </summary>
     /// <created>川村,2020/11/28</created>
     /// <changed>川村,2020/11/28</changed>
     // ********************************************************************************
@@ -69,13 +67,11 @@ public:
 	/// ゲッター
 	/// </summary>
 	/// <returns>表示矩形（衝突矩形）</returns>
-	CRectangle GetRectangle(void);
-	// ********************************************************************************
+	CRectangle GetRectangle(void) const;
 	/// <summary>
 	/// 表示フラグ取得
 	/// </summary>
-	/// <returns>表示中であればtrueを返す</returns>
-	// ********************************************************************************
+	/// <returns>表示していればtrueを返す</returns>
 	bool IsShow(void) const;
 	/// <summary>
 	/// 更新
@@ -89,7 +85,7 @@ public:
 	/// <summary>
 	/// 発射
 	/// </summary>
-	/// <param name="position">開始位置</param>
+	/// <param name="position">発射位置</param>
 	/// <param name="move">更新移動量</param>
 	/// <param name="type">所属チーム</param>
 	void Fire(CVector2 position, CVector2 move, BulletTeamType type);
