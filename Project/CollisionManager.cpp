@@ -15,12 +15,28 @@ void CCollisionManager::Update(void)
 {
 	for (auto& enemy : m_pEnemyArray)
 	{
-		//if(m_pPlayer->GetRect())
+		// “G‚ÆŽ©•ªŽ©g
+		if (m_pPlayer->GetRectangle().CollisionRect(enemy->GetRectangle()))
+		{
+			m_pPlayer->CollisionEnemy();
+		}
 
 		for (auto& playerBullet : m_pPlayerBulletArray)
 		{
-			//enemy->;
-			//playerBullet->;
+			// “G‚ÆƒvƒŒƒCƒ„[‚Ì’e
+			if (enemy->GetRectangle().CollisionRect(playerBullet->GetRectangle()))
+			{
+				enemy->CollisionBullet();
+			}
+		}
+	}
+
+	for (auto& enemyBullet : m_pEnemyBulletArray)
+	{
+		// Ž©•ª‚Æ“G‚Ì’e
+		if (m_pPlayer->GetRectangle().CollisionRect(enemyBullet->GetRectangle()))
+		{
+			m_pPlayer->CollisionBullet();
 		}
 	}
 }
@@ -56,4 +72,10 @@ void CCollisionManager::Release(void)
 	m_pEnemyArray.clear();
 	m_pPlayerBulletArray.clear();
 	m_pPlayerBulletArray.clear();
+}
+
+CCollisionManager & CCollisionManager::Singleton(void)
+{
+	static CCollisionManager singleton;
+	return singleton;
 }

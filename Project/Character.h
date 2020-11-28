@@ -42,4 +42,9 @@ public:
 	virtual void Update(void);
 	virtual void Render(CVector2 scroll);
 	virtual void Release(void);
+
+	virtual CRectangle GetRectangle(void) const;
+
+	virtual void CollisionBullet(void);
+	virtual void CollisionEnemy(void);
 };

@@ -40,3 +40,4 @@ public:
 	static CCollisionManager& Singleton(void);
 };
 
+#define g_CollisionManager CCollisionManager::Singleton()
