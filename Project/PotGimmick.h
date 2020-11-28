@@ -17,9 +17,7 @@ private:
     CVector2 m_Position;
     //! テクスチャ
     weak_ptr<CTexture> m_pTexture;
-    //! 倒した敵たちの表示位置
-//    std::vector<Mof::CVector2> m_FoodPositions;
-
+    //! 鍋の具
     std::vector<PotFood> m_Foods;
 public:
     /// <summary>
@@ -48,5 +46,4 @@ public:
     /// </summary>
     /// <param name=""></param>
     void Render(void);
-
 };

@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "BulletManager.h"
+#include "EffectManager.h"
 
 
 /// <summary>
@@ -106,11 +107,21 @@ void CEnemy::Render(CVector2 scroll) {
 }
 
 void CEnemy::CollisionBullet(void) {
-	super::CollisionBullet();
-	super::Notify(this, "EnemyDead");
+	m_pHP->Damage(40);
+	if (m_pHP->GetValue() <= 0) {
+		CEffectManager::Singleton().Start(EffectType::Barrier,
+										  this->GetPosition());
+		super::Notify(this, "EnemyDead");
+		m_bShow = false;
+	} // if
 }
 
 void CEnemy::CollisionEnemy(void) {
-	super::CollisionEnemy();
-	super::Notify(this, "EnemyDead");
+	m_pHP->Damage(100);
+	if (m_pHP->GetValue() <= 0) {
+		CEffectManager::Singleton().Start(EffectType::Barrier,
+										  this->GetPosition());
+		super::Notify(this, "EnemyDead");
+		m_bShow = false;
+	} // if
 }

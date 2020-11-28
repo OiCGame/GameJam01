@@ -85,8 +85,12 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>ソース\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="PotGimmick.cpp" />
-    <ClCompile Include="PotFood.cpp" />
+    <ClCompile Include="PotGimmick.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
+    <ClCompile Include="PotFood.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Effect.h">
@@ -191,8 +195,12 @@
     <ClInclude Include="AudioManager.h">
       <Filter>ヘッダー\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="PotGimmick.h" />
-    <ClInclude Include="PotFood.h" />
+    <ClInclude Include="PotFood.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="PotGimmick.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Version.rc" />
