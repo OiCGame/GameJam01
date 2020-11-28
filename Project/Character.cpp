@@ -1,6 +1,5 @@
 #include "Character.h"
 #include "GamePad.h"
-#include "BulletManager.h"
 
 CCharacter::CCharacter() :
 	m_Position(),
@@ -20,11 +19,10 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 
 void CCharacter::Update(void)
 {
-	float threshold = 0.35f;
-	bool StickTop = g_pPad->GetStickVertical() > threshold;
-	bool StickBottom = g_pPad->GetStickVertical() < -threshold;
-	bool StickRight = g_pPad->GetStickHorizontal() > threshold;
-	bool StickLeft = g_pPad->GetStickHorizontal() < -threshold;
+	bool StickTop = g_pPad->GetStickVertical() > 0.35f;
+	bool StickBottom = g_pPad->GetStickVertical() < -0.35f;
+	bool StickRight = g_pPad->GetStickHorizontal() > 0.35f;
+	bool StickLeft = g_pPad->GetStickHorizontal() < -0.35f;
 
 	float rate = 1.0f;
 	if (StickTop || StickBottom)
@@ -51,11 +49,6 @@ void CCharacter::Update(void)
 	else if (StickLeft)//¶
 	{
 		m_Position.x -= CHARACTER_SPEED * rate;
-	}
-
-	if (g_pPad->IsKeyPush(XInputButton::XINPUT_A))
-	{
-		CBulletManager::Singleton().Fire(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
 	}
 }
 
