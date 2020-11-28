@@ -70,32 +70,16 @@ void CPlayer::Update(void) {
 }
 
 void CPlayer::Render(CVector2 scroll) {
+    {
+        // 筋肉
+        auto tex = TextureAsset(TextureKey::Muscle);
+        auto pos = this->GetPosition() + scroll;
+        float y = 10.0f;
+        tex->Render(pos.x - tex->GetWidth() * 0.5f, pos.y + y);
+        auto rect = Mof::CRectangle(
+            tex->GetWidth(), 0.0f,
+            0.0f, tex->GetHeight());
+        tex->Render(pos.x + tex->GetWidth() * 0.5f, pos.y + y, rect);
+    }
     super::Render(scroll);
-    // 左右のオフセット
-    auto tex = TextureAsset(TextureKey::Muscle);
-    CVector2 size = Mof::CVector2(tex->GetWidth(), tex->GetHeight());
-
-    auto pos = this->GetPosition() + scroll;
-    Mof::Rectangle rect;
-    CVector2 offset;
-    // 描画
-
-
-    /*
-    // 左
-    rect = Mof::CRectangle(
-        0.0f, 0.0f,
-        tex->GetWidth(), tex->GetHeight());
-//    tex->Render(pos.x - size.x, pos.y, rect);
-    tex->Render(pos.x, pos.y, rect);
-    tex->Render(pos.x, pos.y, rect);
-    */
-    // 右
-    /*
-    offset = CVector2(20.0f, 5.0f);
-    rect = Mof::CRectangle(
-        tex->GetWidth(), 0.0,
-        0.0f, tex->GetHeight());
-    tex->Render(pos.x + offset.x, pos.y + offset.y, rect);
-    */
 }
