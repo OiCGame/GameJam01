@@ -97,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -124,6 +125,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
