@@ -33,8 +33,6 @@ MofBool CGameApp::Initialize(void) {
   
 	CUtilities::SetCurrentDirectory("Resource");
 
-	// �V�[���}�l�[�W���[�Ɋe�V�[���̓o�^
-	SetCurrentDirectory("Resource");
 	// シーンマネージャーに各シーンの登録
 	m_SceneManager
 		.Add<CTitle>(SceneName::Title)
@@ -48,7 +46,6 @@ MofBool CGameApp::Initialize(void) {
 	
 	g_EffectManager.Initialize();
 
-	// �^�C�g���V�[������J�n
 	// タイトルシーンから開始
 	//m_SceneManager.Initialize(SceneName::Title);
 	// デバッグ用、ゲームシーンから開始
@@ -111,7 +108,6 @@ MofBool CGameApp::Render(void) {
 
 	g_EffectManager.Render();
 
-	//�`��̏I��
 	//描画の終了
 	g_pGraphics->RenderEnd();
 	return TRUE;
