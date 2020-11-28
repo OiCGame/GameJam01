@@ -21,7 +21,15 @@ bool CGame::LoadAsset(void) {
 		"explosion.anim",
 	};
 
-	const char* texFileName[] = 
+	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
+	{
+		if (!CAnimationAsset::Load(static_cast<AnimationKey>(i), animFimeName[i]))
+		{
+			MOF_PRINTLOG("failed to load animation");
+		}
+	}
+
+	const std::string texFileName[] = 
 	{
 		"Rocket.png",
 		"spaceShips_001.png",
@@ -31,25 +39,17 @@ bool CGame::LoadAsset(void) {
 		"Tomato.png",
 		"Onion.png",
 		"Meet.png",
-		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName().c_str(),
-		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName().c_str(),
+		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName(),
+		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName(),
 		"Stage1.png",
-    "pot.png",
-    "HP.png",
-    "HPFrame.png",
+		"pot.png",
+		"HP.png",
+		"HPFrame.png",
 	};
-
-	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
-	{
-		if (!CAnimationAsset::Load(static_cast<AnimationKey>(i), animFimeName[i]))
-		{
-			MOF_PRINTLOG("failed to load animation");
-		}
-	}
 
 	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)
 	{
-		if (!CTextureAsset::Load(static_cast<TextureKey>(i), texFileName[i]))
+		if (!CTextureAsset::Load(static_cast<TextureKey>(i), texFileName[i].c_str()))
 		{
 			MOF_PRINTLOG("failed to load texture");
 		}
