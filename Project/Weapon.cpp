@@ -7,16 +7,7 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CWeapon::CWeapon() :
-    m_pOwner(nullptr){
-}
-
-/// <summary>
-/// コンストラクタ
-/// </summary>
-/// <param name="ptr">所有者</param>
-CWeapon::CWeapon(Character* ptr) :
-    m_pOwner(ptr){
+CWeapon::CWeapon() {
 }
 
 /// <summary>

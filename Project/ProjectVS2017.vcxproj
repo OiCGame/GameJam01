@@ -105,6 +105,7 @@
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="GamePad.cpp" />
     <ClCompile Include="HP.cpp" />
+    <ClCompile Include="MachineGun.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="ThreeWayGun.cpp" />
     <ClCompile Include="UICanvas.cpp" />

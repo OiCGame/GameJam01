@@ -10,19 +10,10 @@ CThreeWayGun::CThreeWayGun() {
 }
 
 /// <summary>
-/// コンストラクタ
-/// </summary>
-/// <param name="ptr">所有者</param>
-CThreeWayGun::CThreeWayGun(Character* ptr) :
-super(ptr){
-}
-
-/// <summary>
 /// デストラク
 /// </summary>
 CThreeWayGun::~CThreeWayGun() {
 }
-
 
 void Rotate(float& pos_x, float& pos_y, const float radian,
             const float center_x, const float center_y) {

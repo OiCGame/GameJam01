@@ -26,6 +26,7 @@
     <ClCompile Include="StopWatch.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="ThreeWayGun.cpp" />
+    <ClCompile Include="MachineGun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />

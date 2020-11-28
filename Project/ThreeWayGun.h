@@ -17,11 +17,6 @@ public:
     /// </summary>
     CThreeWayGun();
     /// <summary>
-    /// コンストラクタ
-    /// </summary>
-    /// <param name="ptr">所有者</param>
-    CThreeWayGun(class Character* ptr);
-    /// <summary>
     /// デストラクタ
     /// </summary>
     ~CThreeWayGun();

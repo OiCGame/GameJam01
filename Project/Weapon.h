@@ -14,7 +14,7 @@ class CWeapon
 {
 protected:
     //! 所有者
-    class Character* m_pOwner;
+//    class CCharacter* m_pOwner;
     //! インターバル
     float m_ShotWait;
 public:
@@ -26,7 +26,7 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="ptr">所有者</param>
-    CWeapon(class Character* ptr);
+//    CWeapon(class CCharacter* ptr);
     /// <summary>
     /// デストラクタ
     /// </summary>
