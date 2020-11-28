@@ -27,5 +27,9 @@ void CAudioManager::Play(SoundStreamBufferKey key) {
 }
 
 void CAudioManager::Update(void) {
+  
+    if (m_pBgm) {
+
     m_pBgm->Update();
+    }
 }
