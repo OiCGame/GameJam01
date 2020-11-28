@@ -6,6 +6,7 @@ CStage::CStage()
 
 CStage::~CStage()
 {
+	m_pTexture.reset();
 }
 
 void CStage::Initialize(void)
