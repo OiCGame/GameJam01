@@ -2,15 +2,26 @@
 #include "Mof.h"
 
 class CCharacter;
+class CPlayer;
 class CBullet;
+
+using namespace std;
+
+enum class CollisionLayer
+{
+	Player,
+	Enemy,
+};
 
 class CCollisionManager
 {
 private:
 
-	std::vector<std::shared_ptr<CCharacter>> m_pCharaArray;
+	shared_ptr<CPlayer>            m_pPlayer;
+	vector<shared_ptr<CCharacter>> m_pEnemyArray;
 
-	std::vector<std::shared_ptr<CBullet>> m_pBulletArray;
+	vector<shared_ptr<CBullet>>    m_pPlayerBulletArray;
+	vector<shared_ptr<CBullet>>    m_pEnemyBulletArray;
 
 	CCollisionManager(void);
 
@@ -20,10 +31,12 @@ public:
 
 	void Update(void);
 
-	void Register(std::shared_ptr<CBullet> pBullet);
+	void Register(const shared_ptr<CBullet>& pBullet, const CollisionLayer& layer);
 
-	void Register(std::shared_ptr<CCharacter> pCharacter);
+	void Register(const shared_ptr<CCharacter>& pCharacter, const CollisionLayer& layer);
 
 	void Release(void);
+
+	static CCollisionManager& Singleton(void);
 };
 
