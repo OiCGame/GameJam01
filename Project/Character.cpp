@@ -4,8 +4,8 @@
 
 CCharacter::CCharacter() :
 	m_Position(),
-	m_pTexture()
-{
+	m_pTexture(),
+	m_pHP(std::make_shared<CHP>()){
 }
 
 CCharacter::~CCharacter()
@@ -37,4 +37,5 @@ void CCharacter::Render(CVector2 scroll)
 void CCharacter::Release(void)
 {
 	m_pTexture.reset();
+	m_pHP.reset();
 }

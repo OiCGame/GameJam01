@@ -100,7 +100,9 @@
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="GamePad.cpp" />
+    <ClCompile Include="HP.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="UICanvas.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -125,6 +127,7 @@
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GamePad.h" />
+    <ClInclude Include="HP.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameClear.h" />
@@ -135,6 +138,7 @@
     <ClInclude Include="SceneDefine.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="StopWatch.h" />
+    <ClInclude Include="UICanvas.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>

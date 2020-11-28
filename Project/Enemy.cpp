@@ -149,9 +149,9 @@ CVector2 CEnemy::WaveMove(void) {
 /// 
 /// </summary>
 void CEnemy::UpdateAttack(void) {
-    CBulletManager::Singleton().Fire(m_Position,
-                                     Mof::CVector2(0.0f, 2.0f),
-                                     BulletTeamType::Enemy);
+    super::m_Weapon.Shot(m_Position,
+                         Mof::CVector2(0.0f, 2.0f),
+                         BulletTeamType::Enemy);
 }
 
 /// <summary>
@@ -187,6 +187,11 @@ void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
     this->m_pTarget = ptr;
 }
 
+void CEnemy::Initialize(const CharacterInitParam& param) {
+    super::Initialize(param);
+    super::m_pHP->RegisterToRenderer();
+}
+
 /// <summary>
 /// çXêV
 /// </summary>
@@ -196,13 +201,20 @@ void CEnemy::Update(void) {
     this->UpdateMove();
 
 
+
     float delta = ::CUtilities::GetFrameSecond();
     m_AttackTime += delta;
     if (m_AttackTimeMax < m_AttackTime) {
         m_AttackTime = 0;
         this->UpdateAttack();
-    } // if
 
+        m_pHP->Damage(1);
+    } // if
+    
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
+}
+
+void CEnemy::Render(CVector2 scroll) {
+    super::Render(scroll);
 }

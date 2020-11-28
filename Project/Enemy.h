@@ -62,8 +62,19 @@ public:
     /// <param name="ptr">ポインタ</param>
     void SetTarget(std::shared_ptr<class CPlayer> ptr);
 
+
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    /// <param name="param">初期化値</param>
+    virtual void Initialize(const CharacterInitParam& param) override;
     /// <summary>
     /// 更新
     /// </summary>
     virtual void Update(void) override;
+    /// <summary>
+    /// 描画
+    /// </summary>
+    /// <param name="scroll">スクロール値</param>
+    virtual void Render(CVector2 scroll) override;
 };

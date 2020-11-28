@@ -6,6 +6,8 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Stage.h"
+#include "UICanvas.h"
+
 
 CStage g_Stage;
 
@@ -78,4 +80,6 @@ void CGame::Render(void) {
         chara->Render(CVector2(0, 0));
     } // for
 
+
+    CUICanvas::Singleton().Render();
 }

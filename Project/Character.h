@@ -6,6 +6,10 @@
 #include <Mof.h>
 
 #include "AssetDefine.h"
+#include "HP.h"
+#include "Weapon.h"
+
+
 
 #define			CHARACTER_SPEED			5
 
@@ -25,8 +29,15 @@ struct CharacterInitParam
 class CCharacter
 {
 protected:
+	//! à íu
 	CVector2 m_Position;
+	//! ï\é¶âÊëú
 	weak_ptr<CTexture> m_pTexture;
+	//! HP
+//	CHP m_HP;
+	std::shared_ptr<CHP> m_pHP;
+	//! ïêäÌ
+	CWeapon m_Weapon;
 public:
 	// ********************************************************************************
 	/// <summary>
