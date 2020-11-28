@@ -39,3 +39,16 @@ void CCharacter::Release(void)
 	m_pTexture.reset();
 	m_pHP.reset();
 }
+
+CRectangle CCharacter::GetRectangle(void) const
+{
+	return CRectangle(m_Position, m_Position + Vector2(m_pTexture.lock()->GetWidth(), m_pTexture.lock()->GetHeight()));
+}
+
+void CCharacter::CollisionBullet(void)
+{
+}
+
+void CCharacter::CollisionEnemy(void)
+{
+}
