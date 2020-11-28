@@ -13,6 +13,9 @@ private:
 public:
     CPlayer();
     ~CPlayer();
+
+    virtual CRectangle GetRectangle(void) const override;
+
     virtual void Update(void) override;
     virtual void Render(CVector2 scroll) override;
 };

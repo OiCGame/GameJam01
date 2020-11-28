@@ -7,6 +7,14 @@ CPlayer::CPlayer() {
 CPlayer::~CPlayer() {
 }
 
+CRectangle CPlayer::GetRectangle(void) const {
+    auto rect = 
+        CRectangle(m_Position, m_Position + Vector2(m_pTexture.lock()->GetWidth(), m_pTexture.lock()->GetHeight()));
+
+    rect.Expansion(-16.0f);
+    return rect;
+}
+
 void CPlayer::Update(void) {
 
     float threshold = 0.35f;
@@ -67,19 +75,20 @@ void CPlayer::Render(CVector2 scroll) {
     auto tex = TextureAsset(TextureKey::Muscle);
     CVector2 size = Mof::CVector2(tex->GetWidth(), tex->GetHeight());
 
-    auto pos = this->GetPosition() + scroll ;
+    auto pos = this->GetPosition() + scroll;
     Mof::Rectangle rect;
     CVector2 offset;
     // •`‰æ
 
-
+    /*
     // ¶
     rect = Mof::CRectangle(
         0.0f, 0.0f,
         tex->GetWidth(), tex->GetHeight());
 //    tex->Render(pos.x - size.x, pos.y, rect);
-    tex->Render(pos.x , pos.y, rect);
-    tex->Render(pos.x , pos.y, rect);
+    tex->Render(pos.x, pos.y, rect);
+    tex->Render(pos.x, pos.y, rect);
+    */
     // ‰E
     /*
     offset = CVector2(20.0f, 5.0f);

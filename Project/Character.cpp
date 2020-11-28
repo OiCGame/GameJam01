@@ -28,6 +28,8 @@ void CCharacter::Update(void)
 
 void CCharacter::Render(CVector2 scroll)
 {
+	::CGraphicsUtilities::RenderFillRect(this->GetRectangle(),
+										 MOF_COLOR_GREEN);
 	if (auto r = m_pTexture.lock())
 	{
 		r->Render(m_Position.x + scroll.x, m_Position.y + scroll.y);
