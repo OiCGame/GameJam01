@@ -10,6 +10,12 @@ using namespace std;
 
 #define		SCROLL_SPEED		1
 
+struct ENEMYSTART {
+	int		Count;
+	float*	PosX;
+	float*	Scroll;
+};
+
 class CStage
 {
 private:

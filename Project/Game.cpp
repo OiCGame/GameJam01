@@ -10,6 +10,7 @@
 #include "EffectManager.h"
 #include "BulletManager.h"
 #include "CharacterManager.h"
+#include "Stage1.h"
 
 CStage g_Stage;
 
@@ -38,12 +39,14 @@ CGame::CGame(const CGame::InitData& data)
     player->Initialize(CIparm);
     CCollisionManager::Singleton().Register(player,CollisionLayer::Player);
 
-    constexpr uint32_t enemy_count = 1;
+    constexpr uint32_t enemy_count = 10;
     //g_pCharacters.reserve(enemy_count);
     for (int i = 0; i < enemy_count; i++) {
         auto enemy = std::make_shared<CEnemy>();
-        CIparm.position = Mof::CVector2(::CUtilities::Random(200, 700),
-                                        ::CUtilities::Random(200, 700));
+        /*CIparm.position = Mof::CVector2(::CUtilities::Random(200, 700),
+                                        ::CUtilities::Random(200, 700));*/
+		CIparm.position = Mof::CVector2(g_Stg1EnemyStart.PosX[i],
+										-g_Stg1EnemyStart.Scroll[i]);
         CIparm.texture = TextureAsset(TextureKey::Enemy01);
         enemy->Initialize(CIparm);
         enemy->SetTarget(player);

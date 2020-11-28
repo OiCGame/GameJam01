@@ -137,6 +137,7 @@
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="Stage1.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="SceneDefine.h" />
