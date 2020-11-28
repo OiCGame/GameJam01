@@ -7,7 +7,7 @@
 
 
 /// <summary>
-/// •Ší
+/// ‚RWay•Ší
 /// </summary>
 class CThreeWayGun : public CWeapon {
     using super = CWeapon;

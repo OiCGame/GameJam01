@@ -96,11 +96,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationData.cpp" />
+    <ClCompile Include="BoomerangBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
-    <ClCompile Include="CMachineGun.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="CThreeWayGun.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="GamePad.cpp" />
@@ -126,6 +125,7 @@
     <ClInclude Include="AnimationData.h" />
     <ClInclude Include="AssetBase.h" />
     <ClInclude Include="AssetDefine.h" />
+    <ClInclude Include="BoomerangBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Character.h" />

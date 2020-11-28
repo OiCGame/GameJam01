@@ -7,7 +7,7 @@
 
 
 /// <summary>
-/// •Ší
+/// ˜AË•Ší
 /// </summary>
 class CMachineGun : public CWeapon {
     using super = CWeapon;

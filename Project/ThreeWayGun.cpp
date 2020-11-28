@@ -10,7 +10,7 @@ CThreeWayGun::CThreeWayGun() {
 }
 
 /// <summary>
-/// デストラク
+/// デストラクタ
 /// </summary>
 CThreeWayGun::~CThreeWayGun() {
 }
@@ -26,6 +26,12 @@ void Rotate(float& pos_x, float& pos_y, const float radian,
     pos_x = center_x + translate_x;
     pos_y = center_y + translate_y;
 };
+/// <summary>
+/// Bullet発射
+/// </summary>
+/// <param name="position">発射位置</param>
+/// <param name="move">更新移動量</param>
+/// <param name="type">所属チーム</param>
 void CThreeWayGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
 //    super::AddWait(shot_interval_max_);
     if (0 < super::m_ShotWait) {

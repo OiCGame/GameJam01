@@ -1,0 +1,40 @@
+#include "BoomerangBullet.h"
+
+BoomerangBullet::BoomerangBullet() :
+    m_MovedDistance(0.0f),
+    m_ReturnLength(20.0f), 
+    m_bReturn(false)
+{
+}
+
+BoomerangBullet::~BoomerangBullet() {
+}
+
+void BoomerangBullet::Update(void) {
+    super::Update();
+
+    // í èÌà⁄ìÆ
+    if (!m_bReturn) {
+        m_MovedDistance += m_Move.Length();
+        if (m_ReturnLength < m_MovedDistance) {
+            m_bReturn = true;
+        } // if
+    } // if
+    else {
+    // m_bReturn = true Ç≈ åÇÇ¡ÇΩêlÇ…å¸Ç©Ç¡ÇƒÇ¢Ç≠
+
+    } // else
+
+
+    // åÇÇ¡ÇΩêlÇ…ìñÇΩÇ¡ÇΩÇÁshowÇfalseÇ…Ç∑ÇÈ
+    if (0) 
+    {
+        super::m_bShow = false;
+    } // if
+}
+
+void BoomerangBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) {
+    super::Fire(position, move, type);
+    m_MovedDistance = 0.0f;
+    m_bReturn = false;
+}

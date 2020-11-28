@@ -34,7 +34,7 @@ CBullet::~CBullet() {
 /// セッター
 /// </summary>
 /// <param name="tex">ポインタ</param>
-void CBullet::SetTexture(shared_ptr<CTexture> tex) {
+void CBullet::SetTexture(const shared_ptr<CTexture>& tex) {
     this->m_pTexture = tex;
 }
 
@@ -92,8 +92,6 @@ void CBullet::Update(void) {
     else if (m_Position.y < 0.0f - this->GetRectangle().GetHeight()) {
         this->m_bShow = false;
     } // else if
-
-
 }
 
 /// <summary>
