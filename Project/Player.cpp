@@ -16,12 +16,17 @@ CRectangle CPlayer::GetRectangle(void) const {
     return rect;
 }
 
+const char* CPlayer::GetTeam(void) const {
+    return "Player";
+}
+
 void CPlayer::Initialize(const CharacterInitParam& param) {
     super::Initialize(param);
     super::m_pHP->RegisterToRenderer();
 }
 
 void CPlayer::Update(void) {
+    super::Update();
     float threshold = 0.35f;
     bool StickTop = g_pPad->GetStickVertical() > threshold;
     bool StickBottom = g_pPad->GetStickVertical() < -threshold;
@@ -69,8 +74,8 @@ void CPlayer::Update(void) {
         }
     }
 
-    if (g_pPad->IsKeyPush(XInputButton::XINPUT_A)) {
-        m_Weapon.Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_A)) {
+        m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
     }
 }
 
@@ -90,10 +95,9 @@ void CPlayer::Render(CVector2 scroll) {
 }
 
 void CPlayer::CollisionBullet(void) {
-
-    m_pHP->Damage(1);
-
+    super::CollisionBullet();
 }
 
 void CPlayer::CollisionEnemy(void) {
+    super::CollisionEnemy();
 }

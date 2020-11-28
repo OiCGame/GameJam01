@@ -92,6 +92,7 @@ void CGame::Render(void) {
     CBulletManager::Singleton().Render(Mof::CVector2());
     CCharacterManager::Singleton().Render(Mof::CVector2());
     CEffectManager::Singleton().Render();
-
     CUICanvas::Singleton().Render();
+
+    ::CGraphicsUtilities::RenderString(20, 20,"FPS = %d", ::CUtilities::GetFPS());
 }

@@ -2,12 +2,17 @@
 #include "GamePad.h"
 #include "BulletManager.h"
 #include "EffectManager.h"
+#include "ThreeWayGun.h"
+#include "MachineGun.h"
 
 
 CCharacter::CCharacter() :
 	m_Position(),
 	m_pTexture(),
 	m_pHP(std::make_shared<CHP>()),
+//	m_pWeapon(std::make_unique<CThreeWayGun>()),
+	m_pWeapon(std::make_unique<CMachineGun>()),
+//	m_pWeapon(std::make_unique<CWeapon>()),
 	m_RenderRect(){
 }
 
@@ -34,6 +39,7 @@ void CCharacter::Initialize(const CharacterInitParam& param)
 
 void CCharacter::Update(void)
 {
+	m_pWeapon->Update();
 }
 
 void CCharacter::Render(CVector2 scroll)

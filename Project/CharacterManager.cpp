@@ -14,6 +14,36 @@ CCharacterManager& CCharacterManager::Singleton(void) {
     return obj;
 }
 
+std::shared_ptr<CCharacter> CCharacterManager::GetPlayer(void) const {
+    auto it = std::find_if(m_pCharacter.begin(), m_pCharacter.end(),
+                           [](std::shared_ptr<CCharacter> chara) {
+        return (chara)->GetTeam() == "Player";
+    });
+    if(it == m_pCharacter.end()){
+        return nullptr;
+    } // if
+    return *it;
+}
+
+std::shared_ptr<CCharacter> CCharacterManager::GetNearestEnemy(CVector2 position) const {
+        auto it = std::min_element(m_pCharacter.begin(), m_pCharacter.end(), [&](
+        std::shared_ptr<CCharacter> a,
+        std::shared_ptr<CCharacter> b) {
+            if (a->GetTeam() == "Player") {
+                return false;
+            } // if
+        return 
+            Mof::CVector2Utilities::Distance(a->GetPosition(), position) <
+            Mof::CVector2Utilities::Distance(b->GetPosition(), position);
+    });
+    if (it == m_pCharacter.end()) {
+        return nullptr;
+    } // if
+    return *it;
+
+    return std::shared_ptr<CCharacter>();
+}
+
 /*
 bool CCharacterManager::Initialize(void) {
     return true;

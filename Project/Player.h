@@ -15,7 +15,16 @@ public:
     CPlayer();
     ~CPlayer();
 
+    /// <summary>
+    /// ゲッター
+    /// </summary>
+    /// <returns>CollisionRect</returns>
     virtual CRectangle GetRectangle(void) const override;
+    /// <summary>
+    /// チーム取得
+    /// </summary>
+    /// <returns>チーム</returns>
+    virtual const char* GetTeam(void) const override;
 
     virtual void Initialize(const CharacterInitParam& param) override;
     virtual void Update(void) override;

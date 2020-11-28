@@ -37,7 +37,8 @@ protected:
 //	CHP m_HP;
 	std::shared_ptr<CHP> m_pHP;
 	//! ïêäÌ
-	CWeapon m_Weapon;
+//	CWeapon m_Weapon;
+	std::unique_ptr<CWeapon>m_pWeapon;
 	//! ï\é¶ãÈå`
 	CRectangle m_RenderRect;
 public:
@@ -52,6 +53,7 @@ public:
 	virtual ~CCharacter();
 	
 	virtual Mof::CVector2 GetPosition(void) const;
+	virtual const char* GetTeam(void) const = 0;
 
 	virtual void Initialize(const CharacterInitParam& param);
 	virtual void Update(void);

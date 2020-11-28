@@ -12,9 +12,11 @@
 /// </summary>
 class CWeapon
 {
-private:
+protected:
     //! 所有者
-    class Character* m_pOwner;
+//    class CCharacter* m_pOwner;
+    //! インターバル
+    float m_ShotWait;
 public:
     /// <summary>
     /// コンストラクタ
@@ -24,16 +26,25 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="ptr">所有者</param>
-    CWeapon(class Character* ptr);
+//    CWeapon(class CCharacter* ptr);
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~CWeapon();
+    virtual ~CWeapon();
+    /// <summary>
+    /// 撃つことができるか
+    /// </summary>
+    /// <returns>できるならばtrueを返す</returns>
+//    virtual bool CanShot(void) const;
     /// <summary>
     /// Bullet発射
     /// </summary>
     /// <param name="position">発射位置</param>
     /// <param name="move">更新移動量</param>
     /// <param name="type">所属チーム</param>
-    void Shot(CVector2 position, CVector2 move, BulletTeamType type);
+    virtual void Shot(CVector2 position, CVector2 move, BulletTeamType type);
+    /// <summary>
+    /// m_ShotWaitの更新
+    /// </summary>
+    virtual void Update(void);
 };

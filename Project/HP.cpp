@@ -44,7 +44,7 @@ void CHP::RegisterToRenderer(void) {
 /// <param name="value">ダメージ値</param>
 void CHP::Damage(uint32_t value) {
     m_Value -= value;
-    if (m_Value < 0) {
+    if (m_Value <= 0) {
         m_Value = 0;
     } // if
 }

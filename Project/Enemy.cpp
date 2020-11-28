@@ -3,17 +3,18 @@
 #include "Player.h"
 #include "BulletManager.h"
 
+
 /// <summary>
 /// 
 /// </summary>
 void CEnemy::UpdateAttack(void) {
-    super::m_Weapon.Shot(m_Position,
+    super::m_pWeapon->Shot(m_Position,
                          Mof::CVector2(0.0f, 2.0f),
                          BulletTeamType::Enemy);
 }
 
 /// <summary>
-/// 移動更新
+/// 遘ｻ蜍墓峩譁ｰ
 /// </summary>
 void CEnemy::UpdateMove(void) {
 
@@ -40,7 +41,7 @@ void CEnemy::InitMoveMotionCustom(void)
 }
 
 /// <summary>
-/// コンストラクタ
+/// 繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ
 /// </summary>
 CEnemy::CEnemy() :
     super() {
@@ -48,17 +49,21 @@ CEnemy::CEnemy() :
 }
 
 /// <summary>
-/// デストラクタ
+/// 繝�繧ｹ繝医Λ繧ｯ繧ｿ
 /// </summary>
 CEnemy::~CEnemy() {
 	m_MoveMotion.Clear();
 }
 /// <summary>
-/// セッター
+/// 繧ｻ繝�繧ｿ繝ｼ
 /// </summary>
-/// <param name="ptr">ポインタ</param>
+/// <param name="ptr">繝昴う繝ｳ繧ｿ</param>
 void CEnemy::SetTarget(std::shared_ptr<CPlayer> ptr) {
     this->m_pTarget = ptr;
+}
+
+const char* CEnemy::GetTeam(void) const {
+    return "Enemy";
 }
 
 void CEnemy::Initialize(const CharacterInitParam& param) {
@@ -69,9 +74,10 @@ void CEnemy::Initialize(const CharacterInitParam& param) {
 }
 
 /// <summary>
-/// 更新
+/// 譖ｴ譁ｰ
 /// </summary>
 void CEnemy::Update(void) {
+    super::Update();
 
     this->UpdateMove();
 

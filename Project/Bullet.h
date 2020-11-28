@@ -57,7 +57,7 @@ public:
 	/// セッター
 	/// </summary>
 	/// <param name="tex">ポインタ</param>
-	void SetTexture(shared_ptr<CTexture> tex);
+	void SetTexture(const shared_ptr<CTexture>& tex);
 	/// <summary>
 	/// ゲッター	
 	/// </summary>
@@ -67,7 +67,7 @@ public:
 	/// ゲッター
 	/// </summary>
 	/// <returns>衝突矩形</returns>
-	CRectangle GetRectangle(void) const;
+	virtual CRectangle GetRectangle(void) const;
 	/// <summary>
 	/// 表示フラグ取得
 	/// </summary>
@@ -76,7 +76,7 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update(void);
+	virtual void Update(void);
 	/// <summary>
 	/// 描画
 	/// </summary>
@@ -88,5 +88,5 @@ public:
 	/// <param name="position">発射位置</param>
 	/// <param name="move">更新移動量</param>
 	/// <param name="type">所属チーム</param>
-	void Fire(CVector2 position, CVector2 move, BulletTeamType type);
+	virtual void Fire(CVector2 position, CVector2 move, BulletTeamType type);
 };

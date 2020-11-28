@@ -7,16 +7,7 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CWeapon::CWeapon() :
-    m_pOwner(nullptr){
-}
-
-/// <summary>
-/// コンストラクタ
-/// </summary>
-/// <param name="ptr">所有者</param>
-CWeapon::CWeapon(Character* ptr) :
-    m_pOwner(ptr){
+CWeapon::CWeapon() {
 }
 
 /// <summary>
@@ -24,7 +15,11 @@ CWeapon::CWeapon(Character* ptr) :
 /// </summary>
 CWeapon::~CWeapon() {
 }
-
+/*
+bool CWeapon::CanShot(void) const {
+    return m_ShotWait <= 0;
+}
+*/
 /// <summary>
 /// Bullet発射
 /// </summary>
@@ -32,8 +27,23 @@ CWeapon::~CWeapon() {
 /// <param name="move">更新移動量</param>
 /// <param name="type">所属チーム</param>
 void CWeapon::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
+    if ( 0 < m_ShotWait )
+    {
+        return;
+    } // if
+    m_ShotWait = CUtilities::GetFrameSecond() * 20;
+
     CBulletManager::Singleton().Fire(
         position,
         move,
         type);
+}
+
+void CWeapon::Update(void) {
+    m_ShotWait -= CUtilities::GetFrameSecond();
+    /*
+    if (m_ShotWait <= 0) {
+        m_ShotWait = 0;
+    } // if
+    */
 }

@@ -23,6 +23,16 @@ public:
 	/// <returns>インスタンス</returns>
 	static CCharacterManager& Singleton(void);
 	/// <summary>
+	/// プレイヤー取得
+	/// </summary>
+	/// <returns>ポインタ</returns>
+	std::shared_ptr<CCharacter>GetPlayer(void) const;
+	/// <summary>
+	/// 最寄りのエネミー取得
+	/// </summary>
+	/// <returns>ポインタ</returns>
+	std::shared_ptr<CCharacter>GetNearestEnemy(CVector2 position) const;
+	/// <summary>
 	/// 初期化
 	/// </summary>
 	/// <returns>成功したらtueを返す</returns>

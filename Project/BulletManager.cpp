@@ -1,14 +1,15 @@
 #include "BulletManager.h"
 
 #include "AssetDefine.h"
-
+#include "HomingBullet.h"
+#include "BoomerangBullet.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 CBulletManager::CBulletManager() :
 	m_Bullets(),
-	m_BulletSize(64)
+	m_BulletSize(256)
 {
 }
 
@@ -45,7 +46,9 @@ bool CBulletManager::Initialize(void)
 	// 固定量だけBulletを用意する
 	m_Bullets.reserve(m_BulletSize);
 	for (int i = 0; i < m_BulletSize; i++) {
-		auto temp = std::make_shared<CBullet>();
+		//auto temp = std::make_shared<CBullet>();
+//		auto temp = std::make_shared<CHomingBullet>();
+		auto temp = std::make_shared<CBoomerangBullet>();
 		temp->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
 		m_Bullets.push_back(temp);
 	} // for
