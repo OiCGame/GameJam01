@@ -90,10 +90,9 @@ void CPlayer::Render(CVector2 scroll) {
 }
 
 void CPlayer::CollisionBullet(void) {
-
-    m_pHP->Damage(1);
-
+    super::CollisionBullet();
 }
 
 void CPlayer::CollisionEnemy(void) {
+    super::CollisionEnemy();
 }

@@ -123,6 +123,7 @@ void CBullet::Render(CVector2 scroll) {
 /// <param name="move">更新移動量</param>
 /// <param name="type">所属チーム</param>
 void CBullet::Fire(CVector2 position, CVector2 move, BulletTeamType type) {
+    
     if (type == BulletTeamType::Player) {
         CCollisionManager::Singleton().Register(
             shared_from_this(),

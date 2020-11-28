@@ -98,7 +98,9 @@
     <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
+    <ClCompile Include="CMachineGun.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="CThreeWayGun.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="GamePad.cpp" />
@@ -132,11 +134,13 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GamePad.h" />
     <ClInclude Include="HP.h" />
+    <ClInclude Include="MachineGun.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="ThreeWayGun.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="SceneDefine.h" />
