@@ -12,6 +12,10 @@ CCharacter::~CCharacter()
 {
 }
 
+Mof::CVector2 CCharacter::GetPosition(void) const {
+	return this->m_Position;
+}
+
 void CCharacter::Initialize(const CharacterInitParam& param)
 {
 	m_Position = param.position;
