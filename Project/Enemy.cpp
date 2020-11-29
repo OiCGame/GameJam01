@@ -127,6 +127,7 @@ void CEnemy::Update(void) {
     m_AttackTime += delta;
     if (m_AttackTimeMax < m_AttackTime) {
         m_AttackTime = 0;
+		
         this->UpdateAttack();
     } // if
     
