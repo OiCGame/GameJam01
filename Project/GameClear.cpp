@@ -16,6 +16,7 @@ CGameClear::CGameClear(const CGameClear::InitData & data)
 	}
 	m_pTexture = TextureAsset(TextureKey::ClearBack);
 	m_pNameTexture = TextureAsset(TextureKey::ClearName);
+	CAudioManager::Singleton().Play(SoundStreamBufferKey::gameclear);
 }
 
 CGameClear::~CGameClear(void)
