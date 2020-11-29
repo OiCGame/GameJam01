@@ -2,6 +2,7 @@
 #include "AudioManager.h"
 #include "BulletManager.h"
 #include "CharacterManager.h"
+#include "EffectManager.h"
 
 CPlayer::CPlayer():
     super()
@@ -113,9 +114,11 @@ void CPlayer::Render(CVector2 scroll) {
 void CPlayer::CollisionBullet(void) {
     super::CollisionBullet();
 	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
+	CEffectManager::Singleton().Start(EffectType::Explosion, this->GetPosition());
 }
 
 void CPlayer::CollisionEnemy(void) {
     super::CollisionEnemy();
 	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
+	CEffectManager::Singleton().Start(EffectType::Explosion, this->GetPosition());
 }

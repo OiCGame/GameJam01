@@ -89,8 +89,8 @@ void CCharacter::CollisionBullet(void)
 {
 	m_pHP->Damage(10);
 	if (m_pHP->GetValue() <= 0) {
-		CEffectManager::Singleton().Start(EffectType::Barrier,
-										  this->GetPosition());
+		CEffectManager::Singleton().Start(EffectType::Explosion2,
+			this->GetPosition());
 		m_bShow = false;
 	} // if
 	m_DamageWait = 60;
@@ -101,8 +101,8 @@ void CCharacter::CollisionEnemy(void)
 	m_pHP->Damage(10);
 	
 	if (m_pHP->GetValue() <= 0) {
-		CEffectManager::Singleton().Start(EffectType::Barrier,
-										  this->GetPosition());
+		CEffectManager::Singleton().Start(EffectType::Explosion2,
+			this->GetPosition());
 		m_bShow = false;
 	} // if
 	m_DamageWait = 60;

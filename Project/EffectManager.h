@@ -12,6 +12,7 @@ enum class EffectType
 {
 	Barrier,
 	Explosion,
+	Explosion2,
 	Count,
 };
 

@@ -61,9 +61,9 @@ void CPotGimmick::Update(void) {
         food.Update();
         if (zone.CollisionPoint( food.GetPosition())) {
             food.Stop();
-			m_FoodCount = MOF_MIN(++m_FoodCount, FoodCountMax);
         } // if
     } // for
+	m_FoodCount = MOF_MIN(m_Foods.size(), FoodCountMax);
 }
 /// <summary>
 /// •`‰æ

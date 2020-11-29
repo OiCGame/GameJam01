@@ -19,6 +19,7 @@ bool CGame::LoadAsset(void) {
 	{
 		"Effect/barrier.anim",
 		"explosion.anim",
+		"explosion2.anim",
 	};
 
 	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
@@ -41,6 +42,7 @@ bool CGame::LoadAsset(void) {
 		"Meet.png",
 		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName(),
 		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName(),
+		 AnimationAsset(AnimationKey::Effect_Explosion2)->GetTextureFileName(),
 		"Space_BG_01.png",
 		"pot.png",
 		"HP_Bar.png",
