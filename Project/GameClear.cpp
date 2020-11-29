@@ -42,8 +42,7 @@ void CGameClear::Render(void)
 	}
 	if (auto r = m_pNameTexture.lock())
 	{
-		r->Render(460, 200);
+		r->Render(290, 200);
 	}
 
-	::CGraphicsUtilities::RenderString( 550.0f,500.0 ,"GameOver");
 }
