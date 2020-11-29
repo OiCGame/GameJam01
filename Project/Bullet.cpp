@@ -104,8 +104,8 @@ void CBullet::Render(CVector2 scroll) {
         return;
     } // if
     // ‹éŒ`•`‰æ
-    ::CGraphicsUtilities::RenderFillRect(this->GetRectangle(),
-                                         MOF_COLOR_GREEN);
+    //::CGraphicsUtilities::RenderFillRect(this->GetRectangle(),
+    //                                     MOF_COLOR_GREEN);
     // •`‰æ
     if (auto r = m_pTexture.lock()) {
         auto pos = m_Position + scroll;
