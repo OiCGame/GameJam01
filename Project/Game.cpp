@@ -170,6 +170,14 @@ CGame::~CGame(void) {
     CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
+	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)
+	{
+		CTextureAsset::Erase(static_cast<TextureKey>(i));
+	}
+	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
+	{
+		CAnimationAsset::Erase(static_cast<AnimationKey>(i));
+	}
 }
 
 void CGame::Update(void) {
