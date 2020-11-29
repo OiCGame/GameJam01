@@ -78,6 +78,7 @@ bool CGame::InitCharas(void) {
             !info[i].HasMember("type") || !info[i]["type"].IsInt()) {
             break;
         } // if
+
         // 値の設定
         float posX = info[i]["posX"].GetFloat();
         float scroll = info[i]["scroll"].GetFloat();
