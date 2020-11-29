@@ -91,6 +91,7 @@ void CWeaponItem::Render(void) {
         auto pos = m_Position;
         tex->Render(pos.x, pos.y);
 
+
         auto h = g_pFramework->GetWindow()->GetHeight();
         // ‰æ–ÊŠO‚©‚Ç‚¤‚©”»’è‚·‚é
         if (g_pFramework->GetWindow()->GetHeight() < pos.y) {
