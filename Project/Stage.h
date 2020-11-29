@@ -12,8 +12,14 @@ using namespace std;
 
 struct ENEMYSTART {
 	int		Count;
-	float*	PosX;
-	float*	Scroll;
+	float* PosX;
+	float* Scroll;
+};
+
+struct EnemyInitParam{
+	float x;
+	float scroll;
+	int type;
 };
 
 class CStage

@@ -85,6 +85,12 @@ bool CGame::InitCharas(void) {
         float scroll = info[i]["scroll"].GetFloat();
         int type = info[i]["type"].GetInt();
 
+        EnemyInitParam start;
+        start.x= posX;
+        start.scroll= scroll;
+        start.type= type;
+        m_EnemyStart.push_back(start);
+
         auto enemy = std::make_shared<CEnemy>();
         enemy->AddObserver(m_pPotGimmick);
         CIparm.position = Mof::CVector2(posX,
@@ -100,6 +106,54 @@ bool CGame::InitCharas(void) {
 
     CCharacterManager::Singleton().AddCharacter(player);
     return true;
+}
+
+void CGame::CreateEnemy(void) {
+
+    /*
+    CharacterInitParam CIparm;
+    CIparm.texture = TextureAsset(TextureKey::Character);
+    auto player = std::dynamic_pointer_cast<CPlayer>(CCharacterManager::Singleton().GetPlayer());
+    for (auto& data : m_EnemyStart) {
+        if (data.scroll < m_Stage.GetScroll() ) {
+            auto enemy = std::make_shared<CEnemy>();
+            enemy->AddObserver(m_pPotGimmick);
+            CIparm.position = Mof::CVector2(data.x,
+                                            -data.scroll);
+            CIparm.texture = TextureAsset(TextureKey::Enemy01);
+            CIparm.type = data.type;
+            enemy->Initialize(CIparm);
+            enemy->SetTarget(player);
+            CCharacterManager::Singleton().AddCharacter(enemy);
+            CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+        } // if
+    } // for
+    */
+    /*
+    auto it = std::find_if(m_EnemyStart.begin(), m_EnemyStart.end(),
+                           [&](const EnemyInitParam& param) {
+        return param.scroll < m_Stage.GetScroll();
+    });
+    if (it != m_EnemyStart.end()) {
+        auto enemy = std::make_shared<CEnemy>();
+        enemy->AddObserver(m_pPotGimmick);
+        CIparm.position = Mof::CVector2(it->x,
+                                        -it->scroll);
+        CIparm.texture = TextureAsset(TextureKey::Enemy01);
+        CIparm.type = it->type;
+        enemy->Initialize(CIparm);
+        enemy->SetTarget(player);
+        CCharacterManager::Singleton().AddCharacter(enemy);
+        CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+
+        m_EnemyStart.erase(std::remove_if(
+            m_EnemyStart.begin(),
+            m_EnemyStart.end(),
+            [&](EnemyInitParam& param) {
+            return param.scroll < m_Stage.GetScroll();
+        }), m_EnemyStart.end());
+    } // if
+    */
 }
 
 CGame::CGame(const CGame::InitData& data)
@@ -133,6 +187,7 @@ void CGame::Update(void) {
     if (g_pInput->IsKeyPush(MOFKEY_1)) {
         ChangeScene(SceneName::Title);
     }
+    this->CreateEnemy();
 
     if (g_pInput->IsKeyPush(MOFKEY_SPACE)) {
         CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
