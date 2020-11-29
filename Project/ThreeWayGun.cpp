@@ -29,7 +29,8 @@ void CThreeWayGun::Shot(CVector2 position, BulletTeamType type, BulletType bt, T
     if (0 < super::m_ShotWait) {
         return;
     } // if
-    super::m_ShotWait = CUtilities::GetFrameSecond() * 60.0f;
+    //super::m_ShotWait = CUtilities::GetFrameSecond() * 60.0f;
+    m_ShotWait = 0.0167f * 60.0f;
 
 	if (type == BulletTeamType::Player)
 	{

@@ -41,4 +41,6 @@ void CGameClear::Render(void)
 	{
 		r->Render(460, 200);
 	}
+
+	::CGraphicsUtilities::RenderString( 550.0f,500.0 ,"GameOver");
 }

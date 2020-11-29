@@ -123,13 +123,7 @@ void CEnemy::Update(void) {
 
     this->UpdateMove();
 	
-    float delta = ::CUtilities::GetFrameSecond();
-    m_AttackTime += delta;
-    if (m_AttackTimeMax < m_AttackTime) {
-        m_AttackTime = 0;
-		
-        this->UpdateAttack();
-    } // if
+	this->UpdateAttack();
     
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);

@@ -32,7 +32,8 @@ void CMachineGun::Shot(CVector2 position, BulletTeamType type, BulletType bt, Te
     if (0 < super::m_ShotWait) {
         return;
     } // if
-    super::m_ShotWait = CUtilities::GetFrameSecond() * 10.0f;
+    m_ShotWait = 0.0167f * 10.0f;
+    //super::m_ShotWait = CUtilities::GetFrameSecond() * 10.0f;
     auto speed = this->GetShowPower();
 	if (type == BulletTeamType::Player)
 	{

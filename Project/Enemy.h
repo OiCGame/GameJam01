@@ -20,10 +20,6 @@ private:
     weak_ptr<class CPlayer> m_pTarget;
     //! ˆÚ“®—Ê
     CVector2 m_Move;
-    //! UŒ‚“ü—Í•p“x
-    float m_AttackTime = 0.0f;
-    const float m_AttackTimeMax = 0.4f;
-
 	CEaseMotionController<Vector2> m_MoveMotion;
 	bool                           m_bTargetMove;
 

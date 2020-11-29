@@ -37,7 +37,8 @@ void CWeapon::Shot(CVector2 position, BulletTeamType type, BulletType bt, Textur
     {
         return;
     } // if
-    m_ShotWait = CUtilities::GetFrameSecond() * 20;
+//    m_ShotWait = CUtilities::GetFrameSecond() * 20;
+    m_ShotWait = 0.0167f * 20;
     auto speed = this->GetShowPower();
 	if (type == BulletTeamType::Player)
 	{
@@ -53,9 +54,7 @@ void CWeapon::Shot(CVector2 position, BulletTeamType type, BulletType bt, Textur
 
 void CWeapon::Update(void) {
     m_ShotWait -= CUtilities::GetFrameSecond();
-    /*
     if (m_ShotWait <= 0) {
         m_ShotWait = 0;
     } // if
-    */
 }
