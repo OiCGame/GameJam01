@@ -180,6 +180,7 @@ CGame::CGame(const CGame::InitData& data)
     CEffectManager::Singleton().Initialize();
 
 	CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
+	CUICanvas::Singleton().GetFont().SetSize(20);
 }
 
 CGame::~CGame(void) {

@@ -1,7 +1,8 @@
-#include "Title.h"
+Ôªø#include "Title.h"
 #include "GamePad.h"
 #include "AssetDefine.h"
 #include "AudioManager.h"
+#include "UICanvas.h"
 
 CTitle::CTitle(const CTitle::InitData & data)
 	: super(data)
@@ -19,6 +20,8 @@ CTitle::CTitle(const CTitle::InitData & data)
 	m_Scroll = 0;
 
 	CAudioManager::Singleton().Play(SoundStreamBufferKey::title);
+
+	CUICanvas::Singleton().GetFont().SetSize(50);
 }
 
 CTitle::~CTitle(void)
@@ -52,6 +55,38 @@ void CTitle::Render(void)
 	{
 		r->Render(460, 200);
 	}
-	CGraphicsUtilities::RenderString(700, 700, "AÉ{É^ÉìÇ≈ÉXÉ^Å[Ég");
-	CGraphicsUtilities::RenderString(700, 750, "ÅubackÅvÉLÅ[Ç≈èIóπ");
+
+	CFont& font = CUICanvas::Singleton().GetFont();
+
+	CRectangle fontRect;
+	font.CalculateStringRect(0, 0, "„Éú„Çø„É≥„Åß„Çπ„Çø„Éº„ÉàÔºÅ", fontRect);
+
+	CCircle buttonCircle(0, 0, 32);
+
+	float rw = (buttonCircle.r + fontRect.GetWidth());
+
+	buttonCircle.Position = Vector2((g_pGraphics->GetTargetWidth() - rw) * 0.5f, g_pGraphics->GetTargetHeight() * 0.6f);
+	Vector2 renderPos(buttonCircle.x, buttonCircle.y);
+	renderPos.x += buttonCircle.r;
+	renderPos.y -= buttonCircle.r * 0.6f;
+	CGraphicsUtilities::RenderFillCircle(buttonCircle, MOF_COLOR_BLACK);
+	buttonCircle.r -= 3;
+	CGraphicsUtilities::RenderFillCircle(buttonCircle, MOF_COLOR_GREEN);
+	font.CalculateStringRect(0, 0, "A", fontRect);
+    font.RenderString(buttonCircle.x - fontRect.GetWidth() * 0.5f, renderPos.y, MOF_COLOR_BLACK, "A");
+    font.RenderString(renderPos.x, renderPos.y, MOF_COLOR_WHITE, "„Éú„Çø„É≥„Åß„Çπ„Çø„Éº„ÉàÔºÅ");
+
+	buttonCircle.y += fontRect.GetHeight() + 30;
+	renderPos = Vector2(buttonCircle.x, buttonCircle.y);
+	renderPos.x += buttonCircle.r;
+	renderPos.y -= buttonCircle.r * 0.6f;
+	CGraphicsUtilities::RenderFillCircle(buttonCircle, MOF_COLOR_BLACK);
+	buttonCircle.r -= 3;
+	CGraphicsUtilities::RenderFillCircle(buttonCircle, MOF_COLOR_CWHITE);
+	CGraphicsUtilities::RenderFillTriangle(
+		Vector2(buttonCircle.x + 10, buttonCircle.y - 10),
+		Vector2(buttonCircle.x + 10, buttonCircle.y + 10),
+		Vector2(buttonCircle.x - 10, buttonCircle.y     ), MOF_COLOR_BLACK, MOF_COLOR_BLACK, MOF_COLOR_BLACK
+	);
+	font.RenderString(renderPos.x, renderPos.y, MOF_COLOR_WHITE, "„Éú„Çø„É≥„ÅßÁµÇ‰∫ÜÔºÅ");
 }

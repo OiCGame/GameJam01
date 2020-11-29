@@ -47,4 +47,6 @@ public:
     /// ‰ð•ú
     /// </summary>
     void Release(void);
+
+	CFont& GetFont(void);
 };
