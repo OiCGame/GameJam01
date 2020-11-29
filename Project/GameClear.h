@@ -7,6 +7,8 @@ private:
 
 	using super = MyApp::CScene;
 
+	std::weak_ptr<CTexture> m_pTexture;
+	std::weak_ptr<CTexture> m_pNameTexture;
 public:
 
 	explicit CGameClear(const CGameClear::InitData& data);

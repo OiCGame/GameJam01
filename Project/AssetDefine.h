@@ -24,6 +24,11 @@ enum class TextureKey
 	PotFrame,
   
 	Count,
+
+	TitleBack,
+	TitleName,
+	ClearBack,
+	ClearName,
 };
 
 enum class AnimationKey 
@@ -40,6 +45,7 @@ enum class SoundBufferKey {
 	shot_struck,
 	enemy_explosion,
 	player_explosion,
+	ok_se,
 };
 enum class SoundStreamBufferKey {
 	Bgm0,
