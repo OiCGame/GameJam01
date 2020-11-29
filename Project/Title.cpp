@@ -52,4 +52,6 @@ void CTitle::Render(void)
 	{
 		r->Render(460, 200);
 	}
+	CGraphicsUtilities::RenderString(700, 700, "Aボタンでスタート");
+	CGraphicsUtilities::RenderString(700, 750, "「back」キーで終了");
 }
