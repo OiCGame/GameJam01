@@ -64,7 +64,7 @@ MofBool CGameApp::Update(void) {
 	// エスケープで終了（デバッグ用）
 	if (g_pInput->IsKeyPush(MOFKEY_ESCAPE) || g_pPad->IsKeyPush(XInputButton::XINPUT_BACK))
 	{
-		std::exit(0);
+		PostQuitMessage(0);
 	} // if
 	g_EffectManager.Update();
 
