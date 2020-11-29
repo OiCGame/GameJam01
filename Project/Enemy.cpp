@@ -12,7 +12,6 @@
 /// </summary>
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
-                         Mof::CVector2(0.0f, 5.0f),
                          BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_02);
 }
 

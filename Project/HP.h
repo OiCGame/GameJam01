@@ -6,6 +6,21 @@
 #include "UICanvas.h"
 #include "AssetDefine.h"
 
+
+
+static void Rotate(float& pos_x, float& pos_y, const float radian,
+            const float center_x, const float center_y) {
+    float axis_x = pos_x - center_x;
+    float axis_y = pos_y - center_y;
+
+    float translate_x = (axis_x)*std::cosf(radian) - (axis_y)*std::sinf(radian);
+    float translate_y = (axis_x)*std::sinf(radian) + (axis_y)*std::cosf(radian);
+
+    pos_x = center_x + translate_x;
+    pos_y = center_y + translate_y;
+};
+
+
 /// <summary>
 /// HP
 /// </summary>
