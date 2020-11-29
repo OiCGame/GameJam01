@@ -99,7 +99,7 @@ void CPlayer::Update(void) {
     } // if
 
     if (g_pPad->IsKeyHold(XInputButton::XINPUT_A)) {
-        m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player, BulletType::Default, TextureKey::Bullet_01);
+        m_pWeapon->Shot(m_Position, BulletTeamType::Player, BulletType::Default, TextureKey::Bullet_01);
     }
 
 	if (g_pPad->IsKeyPush(XInputButton::XINPUT_L_BTN)) {
