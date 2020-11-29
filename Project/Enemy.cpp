@@ -63,9 +63,8 @@ void CEnemy::InitMoveMotionChase(void)
 
 void CEnemy::InitMoveMotionCustom(void)
 {
-	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 0.0f,  2), Vector2( 0.0f,  3), Ease::Out, EaseType::Back, 0.5f);
-	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 0.0f,  1), Vector2( 5.0f,  1), Ease::InOut, EaseType::Back, 1.0f);
-	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 5.0f, -1), Vector2( 0.0f, -1), Ease::InOut, EaseType::Back, 1.0f);
+	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 0.0f,  4), Vector2( 0.0f,  4), Ease::Out  , EaseType::Back, 2.0f);
+	m_MoveMotion << CEaseMotion<Vector2>(Vector2( 0.0f, -3), Vector2( 0.0f, -3), Ease::InOut, EaseType::Back, 5.0f);
 }
 
 /// <summary>

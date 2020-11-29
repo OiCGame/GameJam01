@@ -81,7 +81,7 @@ void CPlayer::Update(void) {
         m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player, BulletType::Default, TextureKey::Bullet_01);
     }
 
-	if (g_pPad->IsKeyHold(XInputButton::XINPUT_L_BTN)) {
+	if (g_pPad->IsKeyPush(XInputButton::XINPUT_L_BTN)) {
 
 		Vector2 normal{0, 1};
 		auto& r = CCharacterManager::Singleton().GetNearestEnemy(m_Position);
