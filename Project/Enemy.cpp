@@ -168,5 +168,11 @@ void CEnemy::CollisionEnemy(void) {
 										  this->GetPosition());
 		CAudioManager::Singleton().Play(SoundBufferKey::enemy_explosion);
 		m_bShow = false;
+
+		// 出現するかも
+		float random = ::CUtilities::RandomFloat();
+		if (random < 0.5f) {
+			CWeaponItemManager::Singleton().Register(std::make_shared<CWeaponItem>(m_Position));
+		} // if
 	} // if
 }
