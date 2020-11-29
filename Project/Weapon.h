@@ -20,6 +20,13 @@ protected:
 //    class CCharacter* m_pOwner;
     //! インターバル
     float m_ShotWait;
+
+    /// <summary>
+    /// Bulletを射出する力
+    /// </summary>
+    /// <param name=""></param>
+    /// <returns></returns>
+    virtual CVector2 GetShowPower(void);
 public:
     /// <summary>
     /// コンストラクタ
@@ -45,7 +52,7 @@ public:
     /// <param name="position">発射位置</param>
     /// <param name="move">更新移動量</param>
     /// <param name="type">所属チーム</param>
-    virtual void Shot(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key);
+    virtual void Shot(CVector2 position, BulletTeamType type, BulletType bt, TextureKey key);
     /// <summary>
     /// m_ShotWaitの更新
     /// </summary>

@@ -131,8 +131,11 @@ void CAudioManager::Update(void) {
 
 void CAudioManager::Release(void) {
     for (auto sound : m_pSounds) {
+		if (sound) {
+
         sound->Release();
         sound.reset();
-    } // for
+		} // if
+	} // for
     m_pSounds.clear();
 }

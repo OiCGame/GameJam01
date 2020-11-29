@@ -12,7 +12,6 @@
 /// </summary>
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
-                         Mof::CVector2(0.0f, 5.0f),
                          BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_02);
 }
 
@@ -124,13 +123,7 @@ void CEnemy::Update(void) {
 
     this->UpdateMove();
 	
-    float delta = ::CUtilities::GetFrameSecond();
-    m_AttackTime += delta;
-    if (m_AttackTimeMax < m_AttackTime) {
-        m_AttackTime = 0;
-		
-        this->UpdateAttack();
-    } // if
+	this->UpdateAttack();
     
     m_Position += m_Move;
 //    m_Position = gAnime.CalculatePointPosition(_time);
