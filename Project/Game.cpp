@@ -191,9 +191,6 @@ CGame::~CGame(void) {
 
 void CGame::Update(void) {
     // シーンの遷移
-    if (g_pInput->IsKeyPush(MOFKEY_1)) {
-        ChangeScene(SceneName::Title);
-    } // if
     if (11700 < m_Stage.GetScroll()) {
         ChangeScene(SceneName::GameClear);
     } // if
