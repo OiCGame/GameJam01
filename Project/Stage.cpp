@@ -38,5 +38,5 @@ void CStage::Render(void)
 	}
 
 
-	::CGraphicsUtilities::RenderString(20, 80, "Scroll = %f", m_Scroll);
+	::CGraphicsUtilities::RenderString(20, 180, "Scroll = %f", m_Scroll);
 }

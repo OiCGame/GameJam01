@@ -33,7 +33,6 @@ bool CGame::LoadAsset(void) {
 	}
 
 
-
 	const std::string texFileName[] = 
 	{
 		"Rocket.png",
@@ -93,12 +92,13 @@ bool CGame::InitCharas(void) {
         float scroll = info[i]["scroll"].GetFloat();
         int type = info[i]["type"].GetInt();
 
-        auto start = std::make_unique< EnemyInitParam >();
+        auto start = std::make_shared< EnemyInitParam >();
         start->x= posX;
         start->scroll= scroll;
         start->type= type;
         m_EnemyStart.push_back(std::move( start ));
 
+        /*
         auto enemy = std::make_shared<CEnemy>();
         enemy->AddObserver(m_pPotGimmick);
         CIparm.position = Mof::CVector2(posX,
@@ -109,6 +109,7 @@ bool CGame::InitCharas(void) {
         enemy->SetTarget(player);
         CCharacterManager::Singleton().AddCharacter(enemy);
         CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+        */
     } // if
 
 
@@ -120,13 +121,13 @@ void CGame::CreateEnemy(void) {
     CharacterInitParam CIparm;
     CIparm.texture = TextureAsset(TextureKey::Character);
     auto player = std::dynamic_pointer_cast<CPlayer>(CCharacterManager::Singleton().GetPlayer());
-    /*
     for (auto& data : m_EnemyStart) {
         if (data->scroll < m_Stage.GetScroll()) {
+            data->used = true;
             auto enemy = std::make_shared<CEnemy>();
             enemy->AddObserver(m_pPotGimmick);
             CIparm.position = Mof::CVector2(data->x,
-                                            -data->scroll);
+                                            0.0f - 100.0f);
             CIparm.texture = TextureAsset(TextureKey::Enemy01);
             CIparm.type = data->type;
             enemy->Initialize(CIparm);
@@ -136,32 +137,14 @@ void CGame::CreateEnemy(void) {
             break;
         } // if
     } // for
-    */
-    /*
-    auto it = std::find_if(m_EnemyStart.begin(), m_EnemyStart.end(),
-                           [&](const EnemyInitParam& param) {
-        return param.scroll < m_Stage.GetScroll();
-    });
-    if (it != m_EnemyStart.end()) {
-        auto enemy = std::make_shared<CEnemy>();
-        enemy->AddObserver(m_pPotGimmick);
-        CIparm.position = Mof::CVector2(it->,
-                                        -it->scroll);
-        CIparm.texture = TextureAsset(TextureKey::Enemy01);
-        CIparm.type = it->type;
-        enemy->Initialize(CIparm);
-        enemy->SetTarget(player);
-        CCharacterManager::Singleton().AddCharacter(enemy);
-        CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
 
-        m_EnemyStart.erase(std::remove_if(
+    m_EnemyStart.erase(
+        std::remove_if(
             m_EnemyStart.begin(),
             m_EnemyStart.end(),
-            [&](EnemyInitParam& param) {
-            return param.scroll < m_Stage.GetScroll();
-        }), m_EnemyStart.end());
-    } // if
-    */
+            [](shared_ptr<EnemyInitParam>&param) {
+        return param->used; }),
+        m_EnemyStart.end());
 }
 
 CGame::CGame(const CGame::InitData& data)

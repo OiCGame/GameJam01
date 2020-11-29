@@ -12,7 +12,7 @@ private:
 	//! ギミック
 	std::shared_ptr<CPotGimmick> m_pPotGimmick;
 	//! エネミー初期情報
-	std::vector < std::unique_ptr< EnemyInitParam >> m_EnemyStart;
+	std::vector < std::shared_ptr< EnemyInitParam >> m_EnemyStart;
 
 	using super = MyApp::CScene;
 

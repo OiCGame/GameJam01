@@ -20,6 +20,7 @@ struct EnemyInitParam{
 	float x;
 	float scroll;
 	int type;
+	bool used = false;
 };
 
 class CStage
