@@ -72,24 +72,28 @@ bool CAudioManager::Load(void) {
         return false;
     } // if
     auto bgm0 = SoundStreamBufferAsset(SoundStreamBufferKey::Bgm0);
+	bgm0->SetLoop(true);
     m_pSounds.push_back(bgm0);
 	if (!CSoundStreamBufferAsset::Load(SoundStreamBufferKey::title, "title_bgm.mp3")) {
 		MOF_PRINTLOG("failed to load sound");
 		return false;
 	} // if
 	bgm0 = SoundStreamBufferAsset(SoundStreamBufferKey::title);
+	bgm0->SetLoop(true);
 	m_pSounds.push_back(bgm0);
 	if (!CSoundStreamBufferAsset::Load(SoundStreamBufferKey::gameclear, "gameclear_bgm.mp3")) {
 		MOF_PRINTLOG("failed to load sound");
 		return false;
 	} // if
 	bgm0 = SoundStreamBufferAsset(SoundStreamBufferKey::gameclear);
+	bgm0->SetLoop(true);
 	m_pSounds.push_back(bgm0);
 	if (!CSoundStreamBufferAsset::Load(SoundStreamBufferKey::gameover, "gameover_bgm.mp3")) {
 		MOF_PRINTLOG("failed to load sound");
 		return false;
 	} // if
 	bgm0 = SoundStreamBufferAsset(SoundStreamBufferKey::gameover);
+	bgm0->SetLoop(true);
 	m_pSounds.push_back(bgm0);
     return true;
 }
