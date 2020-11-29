@@ -176,9 +176,21 @@ void CCollisionManager::Register(const shared_ptr<CCharacter>& pCharacter, const
 // ********************************************************************************
 void CCollisionManager::Release(void)
 {
+	// enemy
+	for (auto chara : m_pEnemyArray) {
+		chara.reset();
+	} // for
 	m_pEnemyArray.clear();
+	// enemy bullet
+	for (auto bullet : m_pPlayerBulletArray) {
+		bullet.reset();
+	} // for
 	m_pPlayerBulletArray.clear();
-	m_pPlayerBulletArray.clear();
+	// player bullet
+	for (auto bullet: m_pEnemyBulletArray) {
+		bullet.reset();
+	} // for
+	m_pEnemyBulletArray.clear();
 }
 
 // ********************************************************************************

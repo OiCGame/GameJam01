@@ -107,11 +107,24 @@ void CPlayer::Update(void) {
 		Vector2 normal{0, 1};
 		auto& r = CCharacterManager::Singleton().GetNearestEnemy(m_Position);
 		Vector2 enePos = r->GetPosition();
+
+        if (r->GetTeam() == "Player") {
+            puts("");
+        } // if
+        if (r->GetTeam() == "Enemy") {
+            puts("");
+        } // if
+
+        //auto target = CCharacterManager::Singleton().GetNearestEnemy(m_Position);
+        // ターゲットの方向へ向かっていく
+        //auto dir = target->GetPosition() - m_Position;
+        //Mof::CVector2Utilities::Normal(dir, dir);
+        //auto speed = dir * 6.0f;
 		if (enePos != m_Position)
 		{
 			CVector2Utilities::Normal(m_Position - enePos, normal);
 		}
-		CBulletManager::Singleton().Fire(m_Position, normal * -6.0f, BulletTeamType::Player, BulletType::Boomerang, TextureKey::Muscle);
+        CBulletManager::Singleton().Fire(m_Position, normal * -6.0f, BulletTeamType::Player, BulletType::Boomerang, TextureKey::Muscle);
 	}
 }
 

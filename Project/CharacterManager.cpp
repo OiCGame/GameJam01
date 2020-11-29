@@ -32,7 +32,9 @@ std::shared_ptr<CCharacter> CCharacterManager::GetNearestEnemy(CVector2 position
         std::shared_ptr<CCharacter> a,
         std::shared_ptr<CCharacter> b) {
         if (a->GetTeam() == "Player") {
-            return false;
+            if (1) {
+                puts("");
+            } // if
         } // if
         return
             Mof::CVector2Utilities::Distance(a->GetPosition(), position) <
@@ -53,7 +55,7 @@ void CCharacterManager::Update(void) {
             m_pCharacters.begin(),
             m_pCharacters.end(),
             [](shared_ptr<CCharacter> chara) {
-        return !chara->IsShow();}),
+        return !chara->IsShow(); }),
         m_pCharacters.end());
 
     // XV

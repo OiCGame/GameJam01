@@ -167,6 +167,7 @@ CGame::CGame(const CGame::InitData& data)
 
 CGame::~CGame(void) {
     // 解放処理
+    CCollisionManager::Singleton().Release();
     CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
