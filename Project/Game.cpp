@@ -89,7 +89,6 @@ bool CGame::InitCharas(void) {
         start.type= type;
         m_EnemyStart.push_back(start);
 
-        /*
         auto enemy = std::make_shared<CEnemy>();
         enemy->AddObserver(m_pPotGimmick);
         CIparm.position = Mof::CVector2(posX,
@@ -100,7 +99,6 @@ bool CGame::InitCharas(void) {
         enemy->SetTarget(player);
         CCharacterManager::Singleton().AddCharacter(enemy);
         CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
-        */
     } // if
 
 
@@ -109,6 +107,7 @@ bool CGame::InitCharas(void) {
 }
 
 void CGame::CreateEnemy(void) {
+    /*
     CharacterInitParam CIparm;
     CIparm.texture = TextureAsset(TextureKey::Character);
     auto player = std::dynamic_pointer_cast<CPlayer>(CCharacterManager::Singleton().GetPlayer());
@@ -126,7 +125,8 @@ void CGame::CreateEnemy(void) {
             CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
         } // if
     } // for
-
+    */
+    /*
     auto it = std::find_if(m_EnemyStart.begin(), m_EnemyStart.end(),
                            [&](const EnemyInitParam& param) {
         return param.scroll < m_Stage.GetScroll();
@@ -150,7 +150,7 @@ void CGame::CreateEnemy(void) {
             return param.scroll < m_Stage.GetScroll();
         }), m_EnemyStart.end());
     } // if
-
+    */
 }
 
 CGame::CGame(const CGame::InitData& data)
