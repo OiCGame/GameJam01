@@ -83,11 +83,11 @@ bool CGame::InitCharas(void) {
         float scroll = info[i]["scroll"].GetFloat();
         int type = info[i]["type"].GetInt();
 
-        EnemyInitParam start;
-        start.x= posX;
-        start.scroll= scroll;
-        start.type= type;
-        m_EnemyStart.push_back(start);
+        auto start = std::make_unique< EnemyInitParam >();
+        start->x= posX;
+        start->scroll= scroll;
+        start->type= type;
+        m_EnemyStart.push_back(std::move( start ));
 
         auto enemy = std::make_shared<CEnemy>();
         enemy->AddObserver(m_pPotGimmick);
@@ -107,23 +107,23 @@ bool CGame::InitCharas(void) {
 }
 
 void CGame::CreateEnemy(void) {
-
-    /*
     CharacterInitParam CIparm;
     CIparm.texture = TextureAsset(TextureKey::Character);
     auto player = std::dynamic_pointer_cast<CPlayer>(CCharacterManager::Singleton().GetPlayer());
+    /*
     for (auto& data : m_EnemyStart) {
-        if (data.scroll < m_Stage.GetScroll() ) {
+        if (data->scroll < m_Stage.GetScroll()) {
             auto enemy = std::make_shared<CEnemy>();
             enemy->AddObserver(m_pPotGimmick);
-            CIparm.position = Mof::CVector2(data.x,
-                                            -data.scroll);
+            CIparm.position = Mof::CVector2(data->x,
+                                            -data->scroll);
             CIparm.texture = TextureAsset(TextureKey::Enemy01);
-            CIparm.type = data.type;
+            CIparm.type = data->type;
             enemy->Initialize(CIparm);
             enemy->SetTarget(player);
             CCharacterManager::Singleton().AddCharacter(enemy);
             CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+            break;
         } // if
     } // for
     */
@@ -135,7 +135,7 @@ void CGame::CreateEnemy(void) {
     if (it != m_EnemyStart.end()) {
         auto enemy = std::make_shared<CEnemy>();
         enemy->AddObserver(m_pPotGimmick);
-        CIparm.position = Mof::CVector2(it->x,
+        CIparm.position = Mof::CVector2(it->,
                                         -it->scroll);
         CIparm.texture = TextureAsset(TextureKey::Enemy01);
         CIparm.type = it->type;
