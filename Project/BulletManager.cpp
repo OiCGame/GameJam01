@@ -97,10 +97,22 @@ void CBulletManager::Release(void)
 /// <param name="position">”­ËˆÊ’u</param>
 /// <param name="move">ˆÚ“®—Ê</param>
 /// <param name="type">Bullet‚ÌŠ‘®ƒ`[ƒ€</param>
-void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type)
+void CBulletManager::Fire(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key)
 {
-	auto bullet= std::make_shared<CBullet>();
-	bullet->SetTexture(CTextureAsset::GetAsset(TextureKey::Bullet_01));
+	std::shared_ptr<CBullet> bullet;
+	switch(bt)
+	{
+	case BulletType::Boomerang:
+		bullet = std::make_shared<CBoomerangBullet>();
+		break;
+	case BulletType::Default:
+		bullet = std::make_shared<CBullet>();
+		break;
+	case BulletType::Homing:
+		bullet = std::make_shared<CHomingBullet>();
+		break;
+	}
+	bullet->SetTexture(CTextureAsset::GetAsset(key));
 	m_Bullets.push_back(bullet);
 
 	bullet->Fire(position, move, type);

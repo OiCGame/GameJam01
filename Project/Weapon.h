@@ -7,6 +7,9 @@
 #include "Bullet.h"
 
 
+enum class TextureKey;
+enum class BulletType;
+
 /// <summary>
 /// 武器
 /// </summary>
@@ -42,7 +45,7 @@ public:
     /// <param name="position">発射位置</param>
     /// <param name="move">更新移動量</param>
     /// <param name="type">所属チーム</param>
-    virtual void Shot(CVector2 position, CVector2 move, BulletTeamType type);
+    virtual void Shot(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key);
     /// <summary>
     /// m_ShotWaitの更新
     /// </summary>

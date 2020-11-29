@@ -1,4 +1,4 @@
-#include "Enemy.h"
+﻿#include "Enemy.h"
 
 #include "Player.h"
 #include "BulletManager.h"
@@ -11,7 +11,7 @@
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
                          Mof::CVector2(0.0f, 5.0f),
-                         BulletTeamType::Enemy);
+                         BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_01);
 }
 
 /// <summary>
