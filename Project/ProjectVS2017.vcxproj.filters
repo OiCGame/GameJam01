@@ -94,7 +94,9 @@
     <ClCompile Include="WeaponItem.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
-    <ClCompile Include="WeaponItemManager.cpp" />
+    <ClCompile Include="WeaponItemManager.cpp">
+      <Filter>ソース\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Effect.h">
@@ -208,7 +210,9 @@
     <ClInclude Include="WeaponItem.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
-    <ClInclude Include="WeaponItemManager.h" />
+    <ClInclude Include="WeaponItemManager.h">
+      <Filter>ヘッダー\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Version.rc" />
