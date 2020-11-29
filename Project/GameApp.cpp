@@ -72,6 +72,7 @@ MofBool CGameApp::Update(void) {
 	{
 		return FALSE;
 	}
+	CAudioManager::Singleton().Update();
 
 	return TRUE;
 }
