@@ -2,6 +2,7 @@
 
 
 #include <memory>
+#include <unordered_map>
 
 #include <Mof.h>
 
@@ -92,7 +93,9 @@ protected:
     std::shared_ptr<CHP> m_pHP;
     //! 武器
 //	CWeapon m_Weapon;
-    std::unique_ptr<CWeapon>m_pWeapon;
+    std::shared_ptr<CWeapon>m_pWeapon;
+    std::unordered_map<const char*, std::shared_ptr<CWeapon>>m_pWeapons;
+
     //! 表示矩形
     CRectangle m_RenderRect;
     //! 表示フラグ
@@ -115,6 +118,7 @@ public:
     bool IsShow(void) const;
 	bool IsDamage(void) const;
 
+    void ChangeWeapon(const char* name);
 
     virtual void Initialize(const CharacterInitParam& param);
     virtual void Update(void);

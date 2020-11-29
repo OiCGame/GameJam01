@@ -10,9 +10,14 @@ CCharacter::CCharacter() :
 	m_Position(),
 	m_pTexture(),
 	m_pHP(std::make_shared<CHP>()),
-	m_pWeapon(std::make_unique<CMachineGun>()),
+	m_pWeapon(),
+	m_pWeapons(),
 	m_RenderRect(),
 	m_bShow(false){
+	m_pWeapons.emplace("Weapon", std::make_shared<CWeapon>());
+	m_pWeapons.emplace("ThreeWayGun", std::make_shared<CThreeWayGun>());
+	m_pWeapons.emplace("MachineGun", std::make_shared<CMachineGun>());
+	this->ChangeWeapon("Weapon");
 }
 
 CCharacter::~CCharacter()
@@ -33,6 +38,12 @@ bool CCharacter::IsDamage(void) const
 	return m_DamageWait > 0;
 }
 
+void CCharacter::ChangeWeapon(const char* name) {
+	auto it = m_pWeapons.find(name);
+	if (it != m_pWeapons.end()) {
+		m_pWeapon = it->second;
+	} // if
+}
 void CCharacter::Initialize(const CharacterInitParam& param)
 {
 	m_Position = param.position;

@@ -4,6 +4,7 @@
 class CCharacter;
 class CPlayer;
 class CBullet;
+class CWeapomItem;
 
 using namespace std;
 
@@ -32,6 +33,7 @@ private:
 	vector<shared_ptr<CBullet>>    m_pPlayerBulletArray;  //! プレイヤー弾の配列
 	vector<shared_ptr<CBullet>>    m_pEnemyBulletArray;   //! 敵弾の配列
 
+//	vector<shared_ptr<CWeaponItem>>  m_pWeaponItemArray;   //! 主人公の武器を変更するアイテムの配列
 	// ********************************************************************************
 	/// <summary>
 	/// コンストラクタ
@@ -40,7 +42,6 @@ private:
 	/// <changed>いのうえ,2020/11/28</changed>
 	// ********************************************************************************
 	CCollisionManager(void);
-
 public:
 
 	// ********************************************************************************
@@ -82,12 +83,6 @@ public:
 	/// <changed>いのうえ,2020/11/28</changed>
 	// ********************************************************************************
 	void Register(const shared_ptr<CCharacter>& pCharacter, const CollisionLayer& layer);
-	/// <summary>
-	/// エネミーの削除
-	/// </summary>
-	/// <param name="pCharacter"></param>
-
-
 	// ********************************************************************************
 	/// <summary>
 	/// 解放

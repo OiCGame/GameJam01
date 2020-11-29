@@ -4,6 +4,7 @@
 #include "BulletManager.h"
 #include "EffectManager.h"
 #include "AudioManager.h"
+#include "WeaponItemManager.h"
 
 
 /// <summary>
@@ -150,6 +151,13 @@ void CEnemy::CollisionBullet(void) {
 										  this->GetPosition());
 		super::Notify(this, "EnemyDead");
 		m_bShow = false;
+
+
+		// 出現するかも
+		float random = ::CUtilities::RandomFloat();
+		if (random < 0.5f) {
+			CWeaponItemManager::Singleton().Register(std::make_shared<CWeaponItem>(m_Position));
+		} // if
 	} // if
 }
 

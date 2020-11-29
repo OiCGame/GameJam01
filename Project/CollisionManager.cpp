@@ -1,7 +1,9 @@
 #include "CollisionManager.h"
 #include "Character.h"
 #include "Player.h"
+#include "WeaponItem.h"
 #include "BulletManager.h"
+#include "WeaponItemManager.h"
 
 
 // ********************************************************************************
@@ -99,6 +101,15 @@ void CCollisionManager::Update(void)
 			}
 		}
 	}
+
+	// ƒAƒCƒeƒ€‚Æ‚ÌÕ“Ë”»’è
+	for (auto item : CWeaponItemManager::Singleton().GetArray()) {
+		auto rect = item->GetRectangle();
+		if (m_pPlayer->GetRectangle().CollisionRect(rect)) {
+			m_pPlayer->ChangeWeapon(item->GetWeaponType());
+			item->Use();
+		} // if
+	} // for
 }
 
 // ********************************************************************************

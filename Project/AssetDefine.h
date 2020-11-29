@@ -23,7 +23,10 @@ enum class TextureKey
 	HPFrame,
 	PotBar,
 	PotFrame,
-  
+	WeaponItem01,
+	WeaponItem02,
+	WeaponItem03,
+
 	Count,
 };
 

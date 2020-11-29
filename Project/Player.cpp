@@ -79,6 +79,16 @@ void CPlayer::Update(void) {
         }
     }
 
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_Y)) {
+        super::ChangeWeapon("ThreeWayGun");
+    } // if
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_B)) {
+        super::ChangeWeapon("MachineGun");
+    } // if
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_X)) {
+        super::ChangeWeapon("Weapon");
+    } // if
+
     if (g_pPad->IsKeyHold(XInputButton::XINPUT_A)) {
         m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player, BulletType::Default, TextureKey::Bullet_01);
     }

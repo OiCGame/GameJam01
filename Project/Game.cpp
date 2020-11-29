@@ -12,6 +12,7 @@
 #include "CharacterManager.h"
 #include "Stage1.h"
 #include "AudioManager.h"
+#include "WeaponItemManager.h"
 
 
 bool CGame::LoadAsset(void) {
@@ -29,6 +30,8 @@ bool CGame::LoadAsset(void) {
 			MOF_PRINTLOG("failed to load animation");
 		}
 	}
+
+
 
 	const std::string texFileName[] = 
 	{
@@ -49,6 +52,9 @@ bool CGame::LoadAsset(void) {
 		"HP_Frame.png",
 		"Pot_Bar.png",
 		"Pot_Frame.png",
+        "item1.png",
+        "item2.png",
+        "item3.png",
 	};
 
 	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)
@@ -190,11 +196,6 @@ void CGame::Update(void) {
     }
     this->CreateEnemy();
 
-    if (g_pInput->IsKeyPush(MOFKEY_SPACE)) {
-        CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
-//        CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
-    } // if
-
     // Stageの更新
     m_Stage.Update();
     m_pPotGimmick->Update();
@@ -213,6 +214,8 @@ void CGame::Update(void) {
 void CGame::Render(void) {
     m_Stage.Render();
     m_pPotGimmick->Render();
+    
+    CWeaponItemManager::Singleton().Render();
     CBulletManager::Singleton().Render(Mof::CVector2());
     CCharacterManager::Singleton().Render(Mof::CVector2());
     CEffectManager::Singleton().Render();
