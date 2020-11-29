@@ -136,10 +136,6 @@ void CEnemy::Update(void) {
 }
 
 void CEnemy::Render(CVector2 scroll) {
-	if (!m_bShow)
-	{
-		return;
-	}
     super::Render(scroll);
 }
 
