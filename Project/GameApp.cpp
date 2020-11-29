@@ -12,6 +12,7 @@
 #include    "AssetDefine.h"
 
 #include    "GamePad.h"
+#include	"AudioManager.h"
 
 //SCENE
 #include    "Game.h"
@@ -40,6 +41,7 @@ MofBool CGameApp::Initialize(void) {
 		.Add<CGameOver>(SceneName::GameOver)
 		.SetFadeColor(MOF_COLOR_WHITE);
 
+	CAudioManager::Singleton().Load();
 	// タイトルシーンから開始
 	m_SceneManager.Initialize(SceneName::Title);
 	// デバッグ用、ゲームシーンから開始
@@ -109,6 +111,9 @@ MofBool CGameApp::Release(void) {
 	// テクスチャの解放
 	CTextureAsset::Release();
 	CAnimationAsset::Release();
+	CSoundBufferAsset::Release();
+	CSoundStreamBufferAsset::Release();
+    CAudioManager::Singleton().Release();
 
 	return TRUE;
 }

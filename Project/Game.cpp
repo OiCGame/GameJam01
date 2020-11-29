@@ -169,7 +169,6 @@ CGame::CGame(const CGame::InitData& data)
     m_Stage(),
     m_pPotGimmick(std::make_shared<CPotGimmick>()) {
     bool loaded = this->LoadAsset();
-    CAudioManager::Singleton().Load();
     this->InitCharas();
     // Stageの初期化
     m_Stage.Initialize();
@@ -184,7 +183,6 @@ CGame::CGame(const CGame::InitData& data)
 
 CGame::~CGame(void) {
     // 解放処理
-    CAudioManager::Singleton().Release();
     CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
@@ -226,8 +224,6 @@ void CGame::Update(void) {
 
     // 衝突判定
     CCollisionManager::Singleton().Update();
-    // ストリーム更新
-    CAudioManager::Singleton().Update();
 }
 
 void CGame::Render(void) {
