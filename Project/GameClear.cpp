@@ -1,5 +1,7 @@
 #include "GameClear.h"
+#include "GamePad.h"
 #include "AssetDefine.h"
+#include "AudioManager.h"
 
 CGameClear::CGameClear(const CGameClear::InitData & data)
 	: super(data)
@@ -22,6 +24,11 @@ CGameClear::~CGameClear(void)
 
 void CGameClear::Update(void)
 {
+	if (g_pPad->IsKeyPush(XInputButton::XINPUT_A))
+	{
+		CAudioManager::Singleton().Play(SoundBufferKey::ok_se);
+		ChangeScene(SceneName::Title);
+	}
 }
 
 void CGameClear::Render(void)
