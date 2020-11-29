@@ -2,6 +2,7 @@
 
 #include "AssetDefine.h"
 #include "Enemy.h"
+#include "AudioManager.h"
 
 
 /// <summary>
@@ -10,7 +11,8 @@
 CPotGimmick::CPotGimmick() : 
     m_Position(CVector2(0.0f, ::g_pFramework->GetWindow()->GetHeight())),
     m_pTexture(),
-	m_FoodCount(0) {
+    m_FoodCount(0),
+    m_bCharge(false) {
 }
 /// <summary>
 /// デストラクタ
@@ -64,6 +66,11 @@ void CPotGimmick::Update(void) {
         } // if
     } // for
 	m_FoodCount = MOF_MIN(m_Foods.size(), FoodCountMax);
+	if (IsAllrady() && !m_bCharge)
+	{
+		m_bCharge = true;
+		CAudioManager::Singleton().Play(SoundBufferKey::flash_01);
+	}
 }
 /// <summary>
 /// 描画
@@ -92,4 +99,15 @@ void CPotGimmick::Render(void) {
             food.Render();
         } // for
     } // if
+}
+
+bool CPotGimmick::IsAllrady(void) const
+{
+	return m_FoodCount == FoodCountMax;
+}
+
+void CPotGimmick::ResetPotFoods(void)
+{
+	m_Foods.clear();
+	m_bCharge = false;
 }

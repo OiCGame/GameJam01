@@ -4,6 +4,7 @@
 #include "GamePad.h"
 #include "Weapon.h"
 #include "HP.h"
+#include "StopWatch.h"
 
 
 class CPlayer : public CCharacter 
@@ -11,6 +12,8 @@ class CPlayer : public CCharacter
     using super = CCharacter;
 private:
 //    int m_Invincible;
+	bool m_bGimmick;
+	CStopWatch m_FlashTime;
 public:
     CPlayer();
     ~CPlayer();
@@ -39,4 +42,7 @@ public:
 
     virtual void CollisionBullet(void) override;
     virtual void CollisionEnemy(void) override;
+
+	bool IsGimmick(void) const;
+	void GimmickFlash(void);
 };

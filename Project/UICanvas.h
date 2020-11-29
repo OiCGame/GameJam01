@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include <Mof.h>
 
 using namespace std;
 
@@ -15,6 +16,8 @@ private:
 //    std::vector<class IHPRenderer> ;
     //! 描画対象
     std::shared_ptr<class CHPRenderer> m_pRenderer;
+
+	CFont                              m_Font;
 
     /// <summary>
     /// コンストラクタ

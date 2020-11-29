@@ -6,7 +6,7 @@
 CPotFood::CPotFood(CVector2 pos, CVector2 move) {
 	m_Position = pos;
 	m_Move = move;
-	m_pTexture = TextureAsset(TextureKey::Enemy01);
+	m_pTexture = TextureAsset(TextureKey::Bullet_03);
 	// ï\é¶ãÈå`ê›íË
 	if (auto r = m_pTexture.lock()) {
 		m_RenderRect = CRectangle(

@@ -22,6 +22,8 @@ private:
     std::vector<CPotFood> m_Foods;
 	//! フードの数
 	int m_FoodCount;
+	//! たまった音用フラグ
+	bool m_bCharge;
 public:
     /// <summary>
     /// コンストラクタ
@@ -53,4 +55,8 @@ public:
     /// </summary>
     /// <param name=""></param>
     void Render(void);
+
+	bool IsAllrady(void) const;
+
+	void ResetPotFoods(void);
 };

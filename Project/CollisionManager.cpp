@@ -67,7 +67,11 @@ void CCollisionManager::Update(void)
 		// “G‚ÆŽ©•ªŽ©g
 		if (m_pPlayer && m_pPlayer->GetRectangle().CollisionRect(enemy->GetRectangle()))
 		{
-			if (!m_pPlayer->IsDamage())
+			if (m_pPlayer->IsGimmick())
+			{
+				enemy->CollisionEnemy();
+			}
+			else if (!m_pPlayer->IsDamage())
 			{
 				m_pPlayer->CollisionEnemy();
 			}
