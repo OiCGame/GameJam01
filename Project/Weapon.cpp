@@ -7,7 +7,8 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CWeapon::CWeapon() {
+CWeapon::CWeapon() :
+    m_ShotWait(0.0f){
 }
 
 /// <summary>

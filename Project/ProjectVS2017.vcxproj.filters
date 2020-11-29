@@ -91,6 +91,10 @@
     <ClCompile Include="PotFood.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="WeaponItem.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponItemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Effect.h">
@@ -201,6 +205,10 @@
     <ClInclude Include="PotGimmick.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
+    <ClInclude Include="WeaponItem.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponItemManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Version.rc" />

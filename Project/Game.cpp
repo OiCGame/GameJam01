@@ -12,6 +12,8 @@
 #include "CharacterManager.h"
 #include "Stage1.h"
 #include "AudioManager.h"
+#include "WeaponItemManager.h"
+#include "GamePad.h"
 
 
 bool CGame::LoadAsset(void) {
@@ -19,6 +21,7 @@ bool CGame::LoadAsset(void) {
 	{
 		"Effect/barrier.anim",
 		"explosion.anim",
+		"explosion2.anim",
 	};
 
 	for (int i = 0; i < static_cast<int>(AnimationKey::Count); i++)
@@ -28,6 +31,8 @@ bool CGame::LoadAsset(void) {
 			MOF_PRINTLOG("failed to load animation");
 		}
 	}
+
+
 
 	const std::string texFileName[] = 
 	{
@@ -41,12 +46,16 @@ bool CGame::LoadAsset(void) {
 		"Meet.png",
 		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName(),
 		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName(),
+		 AnimationAsset(AnimationKey::Effect_Explosion2)->GetTextureFileName(),
 		"Space_BG_01.png",
 		"pot.png",
 		"HP_Bar.png",
 		"HP_Frame.png",
 		"Pot_Bar.png",
 		"Pot_Frame.png",
+        "item1.png",
+        "item2.png",
+        "item3.png",
 	};
 
 	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)
@@ -78,10 +87,17 @@ bool CGame::InitCharas(void) {
             !info[i].HasMember("type") || !info[i]["type"].IsInt()) {
             break;
         } // if
+
         // 値の設定
         float posX = info[i]["posX"].GetFloat();
         float scroll = info[i]["scroll"].GetFloat();
         int type = info[i]["type"].GetInt();
+
+        auto start = std::make_unique< EnemyInitParam >();
+        start->x= posX;
+        start->scroll= scroll;
+        start->type= type;
+        m_EnemyStart.push_back(std::move( start ));
 
         auto enemy = std::make_shared<CEnemy>();
         enemy->AddObserver(m_pPotGimmick);
@@ -98,6 +114,54 @@ bool CGame::InitCharas(void) {
 
     CCharacterManager::Singleton().AddCharacter(player);
     return true;
+}
+
+void CGame::CreateEnemy(void) {
+    CharacterInitParam CIparm;
+    CIparm.texture = TextureAsset(TextureKey::Character);
+    auto player = std::dynamic_pointer_cast<CPlayer>(CCharacterManager::Singleton().GetPlayer());
+    /*
+    for (auto& data : m_EnemyStart) {
+        if (data->scroll < m_Stage.GetScroll()) {
+            auto enemy = std::make_shared<CEnemy>();
+            enemy->AddObserver(m_pPotGimmick);
+            CIparm.position = Mof::CVector2(data->x,
+                                            -data->scroll);
+            CIparm.texture = TextureAsset(TextureKey::Enemy01);
+            CIparm.type = data->type;
+            enemy->Initialize(CIparm);
+            enemy->SetTarget(player);
+            CCharacterManager::Singleton().AddCharacter(enemy);
+            CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+            break;
+        } // if
+    } // for
+    */
+    /*
+    auto it = std::find_if(m_EnemyStart.begin(), m_EnemyStart.end(),
+                           [&](const EnemyInitParam& param) {
+        return param.scroll < m_Stage.GetScroll();
+    });
+    if (it != m_EnemyStart.end()) {
+        auto enemy = std::make_shared<CEnemy>();
+        enemy->AddObserver(m_pPotGimmick);
+        CIparm.position = Mof::CVector2(it->,
+                                        -it->scroll);
+        CIparm.texture = TextureAsset(TextureKey::Enemy01);
+        CIparm.type = it->type;
+        enemy->Initialize(CIparm);
+        enemy->SetTarget(player);
+        CCharacterManager::Singleton().AddCharacter(enemy);
+        CCollisionManager::Singleton().Register(enemy, CollisionLayer::Enemy);
+
+        m_EnemyStart.erase(std::remove_if(
+            m_EnemyStart.begin(),
+            m_EnemyStart.end(),
+            [&](EnemyInitParam& param) {
+            return param.scroll < m_Stage.GetScroll();
+        }), m_EnemyStart.end());
+    } // if
+    */
 }
 
 CGame::CGame(const CGame::InitData& data)
@@ -131,11 +195,7 @@ void CGame::Update(void) {
     if (g_pInput->IsKeyPush(MOFKEY_1)) {
         ChangeScene(SceneName::Title);
     }
-
-    if (g_pInput->IsKeyPush(MOFKEY_SPACE)) {
-        CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
-//        CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
-    } // if
+    this->CreateEnemy();
 
     // Stageの更新
     m_Stage.Update();
@@ -146,6 +206,17 @@ void CGame::Update(void) {
     CBulletManager::Singleton().Update();
     // Effectの更新
     CEffectManager::Singleton().Update();
+
+	if (g_pPad->IsKeyPush(XINPUT_B) && m_pPotGimmick->IsAllrady())
+	{
+		CAudioManager::Singleton().Play(SoundBufferKey::flash_02);
+		m_pPotGimmick->ResetPotFoods();
+		if (auto& p = CCharacterManager::Singleton().GetPlayer())
+		{
+			dynamic_pointer_cast<CPlayer>(p)->GimmickFlash();
+		}
+	}
+
     // 衝突判定
     CCollisionManager::Singleton().Update();
     // ストリーム更新
@@ -155,6 +226,8 @@ void CGame::Update(void) {
 void CGame::Render(void) {
     m_Stage.Render();
     m_pPotGimmick->Render();
+    
+    CWeaponItemManager::Singleton().Render();
     CBulletManager::Singleton().Render(Mof::CVector2());
     CCharacterManager::Singleton().Render(Mof::CVector2());
     CEffectManager::Singleton().Render();

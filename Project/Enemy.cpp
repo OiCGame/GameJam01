@@ -4,6 +4,7 @@
 #include "BulletManager.h"
 #include "EffectManager.h"
 #include "AudioManager.h"
+#include "WeaponItemManager.h"
 
 
 /// <summary>
@@ -12,7 +13,7 @@
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
                          Mof::CVector2(0.0f, 5.0f),
-                         BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_01);
+                         BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_02);
 }
 
 /// <summary>
@@ -49,7 +50,7 @@ void CEnemy::InitMoveMotionDefault(void)
 
 void CEnemy::InitMoveMotionWave(void)
 {
-	float waveWidth = 10;
+	float waveWidth = CUtilities::Random(10, 16);
 	float moveY = 2;
 	m_MoveMotion << CEaseMotion<Vector2>(Vector2(0, moveY), Vector2( waveWidth * 0.5f, moveY), Ease::Out, EaseType::Sine, 0.25f);
 	m_MoveMotion << CEaseMotion<Vector2>(Vector2( waveWidth * 0.5f, moveY), Vector2(0, moveY), Ease::In , EaseType::Sine, 0.25f);
@@ -127,6 +128,7 @@ void CEnemy::Update(void) {
     m_AttackTime += delta;
     if (m_AttackTimeMax < m_AttackTime) {
         m_AttackTime = 0;
+		
         this->UpdateAttack();
     } // if
     
@@ -141,22 +143,36 @@ void CEnemy::Render(CVector2 scroll) {
 
 void CEnemy::CollisionBullet(void) {
 	CAudioManager::Singleton().Play(SoundBufferKey::shot_struck);
+	CEffectManager::Singleton().Start(EffectType::Explosion, this->GetPosition());
 	m_pHP->Damage(40);
 	if (m_pHP->GetValue() <= 0) {
 		CAudioManager::Singleton().Play(SoundBufferKey::enemy_explosion);
-		CEffectManager::Singleton().Start(EffectType::Explosion,
+		CEffectManager::Singleton().Start(EffectType::Explosion2,
 										  this->GetPosition());
 		super::Notify(this, "EnemyDead");
 		m_bShow = false;
+
+
+		// 出現するかも
+		float random = ::CUtilities::RandomFloat();
+		if (random < 0.5f) {
+			CWeaponItemManager::Singleton().Register(std::make_shared<CWeaponItem>(m_Position));
+		} // if
 	} // if
 }
 
 void CEnemy::CollisionEnemy(void) {
-	m_pHP->Damage(100);
+	m_pHP->Damage(1000);
 	if (m_pHP->GetValue() <= 0) {
 		CEffectManager::Singleton().Start(EffectType::Barrier,
 										  this->GetPosition());
-		super::Notify(this, "EnemyDead");
+		CAudioManager::Singleton().Play(SoundBufferKey::enemy_explosion);
 		m_bShow = false;
+
+		// 出現するかも
+		float random = ::CUtilities::RandomFloat();
+		if (random < 0.5f) {
+			CWeaponItemManager::Singleton().Register(std::make_shared<CWeaponItem>(m_Position));
+		} // if
 	} // if
 }

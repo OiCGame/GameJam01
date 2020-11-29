@@ -1,10 +1,12 @@
-#include "Player.h"
+﻿#include "Player.h"
 #include "AudioManager.h"
 #include "BulletManager.h"
 #include "CharacterManager.h"
+#include "EffectManager.h"
 
 CPlayer::CPlayer():
-    super()
+    super(),
+	m_bGimmick(false)
 //    m_Invincible(0)
 {
 }
@@ -13,6 +15,7 @@ CPlayer::~CPlayer() {
 }
 
 CRectangle CPlayer::GetRectangle(void) const {
+	if (m_bGimmick) return CRectangle(0, 0, 100000, 1000000);
     auto rect = 
         CRectangle(m_Position, m_Position + Vector2(m_pTexture.lock()->GetWidth(), m_pTexture.lock()->GetHeight()));
 
@@ -30,7 +33,14 @@ void CPlayer::Initialize(const CharacterInitParam& param) {
 }
 
 void CPlayer::Update(void) {
+	m_FlashTime.Update();
+	if (m_FlashTime.GetTime() > 1)
+	{
+		m_FlashTime.Stop();
+		m_FlashTime.Reset();
+	}
     super::Update();
+	if (m_bGimmick) { m_bGimmick = false; }
     float threshold = 0.35f;
     bool StickTop = g_pPad->GetStickVertical() > threshold;
     bool StickBottom = g_pPad->GetStickVertical() < -threshold;
@@ -78,6 +88,16 @@ void CPlayer::Update(void) {
         }
     }
 
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_Y)) {
+        super::ChangeWeapon("ThreeWayGun");
+    } // if
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_B)) {
+        super::ChangeWeapon("MachineGun");
+    } // if
+    if (g_pPad->IsKeyHold(XInputButton::XINPUT_X)) {
+        super::ChangeWeapon("Weapon");
+    } // if
+
     if (g_pPad->IsKeyHold(XInputButton::XINPUT_A)) {
         m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player, BulletType::Default, TextureKey::Bullet_01);
     }
@@ -96,6 +116,15 @@ void CPlayer::Update(void) {
 }
 
 void CPlayer::Render(CVector2 scroll) {
+	if (m_FlashTime.IsStart())
+	{
+		int alpha = 255 * (1 - m_FlashTime.GetTime());
+		CGraphicsUtilities::RenderFillRect(GetRectangle(), MOF_ALPHA_WHITE(alpha));
+	}
+	if (m_DamageWait % 4 >= 2)
+	{
+		return;
+	}
     {
         // 筋肉
         auto tex = TextureAsset(TextureKey::Muscle);
@@ -113,9 +142,22 @@ void CPlayer::Render(CVector2 scroll) {
 void CPlayer::CollisionBullet(void) {
     super::CollisionBullet();
 	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
+	CEffectManager::Singleton().Start(EffectType::Explosion, this->GetPosition());
 }
 
 void CPlayer::CollisionEnemy(void) {
     super::CollisionEnemy();
 	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
+	CEffectManager::Singleton().Start(EffectType::Explosion, this->GetPosition());
+}
+
+bool CPlayer::IsGimmick(void) const
+{
+	return m_bGimmick;
+}
+
+void CPlayer::GimmickFlash(void)
+{
+	m_bGimmick = true;
+	m_FlashTime.Start();
 }

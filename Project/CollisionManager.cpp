@@ -1,7 +1,9 @@
 #include "CollisionManager.h"
 #include "Character.h"
 #include "Player.h"
+#include "WeaponItem.h"
 #include "BulletManager.h"
+#include "WeaponItemManager.h"
 
 
 // ********************************************************************************
@@ -67,7 +69,14 @@ void CCollisionManager::Update(void)
 		// “G‚ÆŽ©•ªŽ©g
 		if (m_pPlayer && m_pPlayer->GetRectangle().CollisionRect(enemy->GetRectangle()))
 		{
-			m_pPlayer->CollisionEnemy();
+			if (m_pPlayer->IsGimmick())
+			{
+				enemy->CollisionEnemy();
+			}
+			else if (!m_pPlayer->IsDamage())
+			{
+				m_pPlayer->CollisionEnemy();
+			}
 		}
 
 		for (auto& playerBullet : m_pPlayerBulletArray)
@@ -84,7 +93,7 @@ void CCollisionManager::Update(void)
 	for (auto& enemyBullet : m_pEnemyBulletArray)
 	{
 		if (!m_pPlayer) {
-			continue;
+			break;
 		} // if
 		// Ž©•ª‚Æ“G‚Ì’e
 		if (m_pPlayer->GetRectangle().CollisionRect(enemyBullet->GetRectangle()))
@@ -96,6 +105,18 @@ void CCollisionManager::Update(void)
 			}
 		}
 	}
+
+	// ƒAƒCƒeƒ€‚Æ‚ÌÕ“Ë”»’è
+	for (auto item : CWeaponItemManager::Singleton().GetArray()) {
+		if (m_pPlayer->IsGimmick()) {
+			break;
+		} // if
+		auto rect = item->GetRectangle();
+		if (m_pPlayer->GetRectangle().CollisionRect(rect)) {
+			m_pPlayer->ChangeWeapon(item->GetWeaponType());
+			item->Use();
+		} // if
+	} // for
 }
 
 // ********************************************************************************

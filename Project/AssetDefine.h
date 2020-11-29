@@ -16,13 +16,17 @@ enum class TextureKey
 	Bullet_03,
 	Effect_Barrier,
 	Effect_Explosion,
+	Effect_Explosion2,
 	Stage,
 	PotGimmick,
 	HP,
 	HPFrame,
 	PotBar,
 	PotFrame,
-  
+	WeaponItem01,
+	WeaponItem02,
+	WeaponItem03,
+
 	Count,
 
 	TitleBack,
@@ -35,6 +39,7 @@ enum class AnimationKey
 {
 	Effect_Barrier,
 	Effect_Explosion,
+	Effect_Explosion2,
 
 	Count,
 };
@@ -46,6 +51,8 @@ enum class SoundBufferKey {
 	enemy_explosion,
 	player_explosion,
 	ok_se,
+    flash_01,
+    flash_02,
 };
 enum class SoundStreamBufferKey {
 	Bgm0,
