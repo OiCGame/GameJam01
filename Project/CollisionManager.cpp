@@ -108,6 +108,9 @@ void CCollisionManager::Update(void)
 
 	// ƒAƒCƒeƒ€‚Æ‚ÌÕ“Ë”»’è
 	for (auto item : CWeaponItemManager::Singleton().GetArray()) {
+		if (m_pPlayer->IsGimmick()) {
+			break;
+		} // if
 		auto rect = item->GetRectangle();
 		if (m_pPlayer->GetRectangle().CollisionRect(rect)) {
 			m_pPlayer->ChangeWeapon(item->GetWeaponType());
