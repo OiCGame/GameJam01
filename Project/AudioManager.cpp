@@ -65,6 +65,11 @@ bool CAudioManager::Load(void) {
 	} // if
 	sound = SoundBufferAsset(SoundBufferKey::player_explosion);
 	m_pSounds.push_back(sound);
+	if (!CSoundBufferAsset::Load(SoundBufferKey::ok_se, "ok_se.mp3")) {
+		MOF_PRINTLOG("failed to load sound");
+		return false;
+	} // if
+	sound = SoundBufferAsset(SoundBufferKey::ok_se);
 	if (!CSoundBufferAsset::Load(SoundBufferKey::flash_01, "shakin1.mp3")) {
 		MOF_PRINTLOG("failed to load sound");
 		return false;

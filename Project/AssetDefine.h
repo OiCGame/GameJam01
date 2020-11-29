@@ -28,6 +28,11 @@ enum class TextureKey
 	WeaponItem03,
 
 	Count,
+
+	TitleBack,
+	TitleName,
+	ClearBack,
+	ClearName,
 };
 
 enum class AnimationKey 
@@ -45,6 +50,7 @@ enum class SoundBufferKey {
 	shot_struck,
 	enemy_explosion,
 	player_explosion,
+	ok_se,
     flash_01,
     flash_02,
 };
