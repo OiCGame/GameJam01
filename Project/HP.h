@@ -7,7 +7,6 @@
 #include "AssetDefine.h"
 
 
-
 static void Rotate(float& pos_x, float& pos_y, const float radian,
             const float center_x, const float center_y) {
     float axis_x = pos_x - center_x;
