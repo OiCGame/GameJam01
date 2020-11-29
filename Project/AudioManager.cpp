@@ -77,7 +77,13 @@ bool CAudioManager::Load(void) {
 	} // if
 	sound = SoundBufferAsset(SoundBufferKey::flash_02);
 	m_pSounds.push_back(sound);
-
+	if (!CSoundBufferAsset::Load(SoundBufferKey::item_get, "itemGet.mp3")) {
+		MOF_PRINTLOG("failed to load sound");
+		return false;
+	} // if
+	sound = SoundBufferAsset(SoundBufferKey::item_get);
+	m_pSounds.push_back(sound);
+	
 
     if (!CSoundStreamBufferAsset::Load(SoundStreamBufferKey::Bgm0, "game_bgm.mp3")) {
         MOF_PRINTLOG("failed to load sound");

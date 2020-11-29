@@ -47,6 +47,7 @@ enum class SoundBufferKey {
 	player_explosion,
     flash_01,
     flash_02,
+    item_get,
 };
 enum class SoundStreamBufferKey {
 	Bgm0,

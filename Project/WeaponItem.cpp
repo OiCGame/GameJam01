@@ -101,6 +101,6 @@ void CWeaponItem::Render(void) {
 }
 
 void CWeaponItem::Use(void) {
-    CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
+    CAudioManager::Singleton().Play(SoundBufferKey::item_get);
     this->m_bShow = false;
 }
