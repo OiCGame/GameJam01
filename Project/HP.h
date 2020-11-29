@@ -65,15 +65,14 @@ public:
     /// •`‰æ
     /// </summary>
     void Render(void) {
-
         uint32_t value = m_pHP->GetValue();
             if (auto tex = TextureAsset(TextureKey::HPFrame)) {
-                tex->Render(0.0f, -18.0f);
+                tex->Render(10.0f, 10.0f);
         } // 
         if (auto tex = TextureAsset(TextureKey::HP)) {
             CRectangle rect(
-                0, 0, 532 * (value * 0.01f), 64);
-            tex->Render(248.0f, 0.0f, rect);
+                0, 0, tex->GetWidth() * (value * 0.01f), tex->GetHeight());
+            tex->Render(10.0f + 150.0f, 10.0f + 64.0f, rect);
         } // if
 
 
