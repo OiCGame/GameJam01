@@ -36,7 +36,9 @@ void CGameClear::Render(void)
 {
 	if (auto r = m_pTexture.lock())
 	{
-		r->Render(0, 0);
+		float ratio = g_pGraphics->GetTargetWidth() / (float)r->GetWidth();
+		float w = (g_pGraphics->GetTargetWidth() - r->GetWidth() * ratio) * 0.5f;
+		r->RenderScale(w, 0, ratio, 1.0f);
 	}
 	if (auto r = m_pNameTexture.lock())
 	{

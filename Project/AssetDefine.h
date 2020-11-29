@@ -33,6 +33,8 @@ enum class TextureKey
 	TitleName,
 	ClearBack,
 	ClearName,
+	OverBack,
+	OverName,
 };
 
 enum class AnimationKey 
