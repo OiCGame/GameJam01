@@ -20,6 +20,8 @@ enum class TextureKey
 	PotGimmick,
 	HP,
 	HPFrame,
+	PotBar,
+	PotFrame,
   
 	Count,
 };

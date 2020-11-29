@@ -9,7 +9,8 @@
 /// </summary>
 CPotGimmick::CPotGimmick() : 
     m_Position(CVector2(0.0f, ::g_pFramework->GetWindow()->GetHeight())),
-    m_pTexture() {
+    m_pTexture(),
+	m_FoodCount(0) {
 }
 /// <summary>
 /// デストラクタ
@@ -60,6 +61,7 @@ void CPotGimmick::Update(void) {
         food.Update();
         if (zone.CollisionPoint( food.GetPosition())) {
             food.Stop();
+			m_FoodCount = MOF_MIN(++m_FoodCount, FoodCountMax);
         } // if
     } // for
 }
@@ -71,9 +73,20 @@ void CPotGimmick::Render(void) {
     if (auto tex = m_pTexture.lock()) {
         auto center_x = g_pFramework->GetWindow()->GetWidth() * 0.5f;
 
-        float y = 50.0f;
-        tex->Render(-(tex->GetWidth() * 0.5f),
+        float y = 70.0f;
+        tex->Render(-(tex->GetWidth() * 0.4f),
                     g_pFramework->GetWindow()->GetHeight() - tex->GetHeight() + y);
+
+		// べた書き失礼します。
+		auto frame = TextureAsset(TextureKey::PotFrame);
+		Vector2 framePos(tex->GetWidth() * 0.6f, g_pGraphics->GetTargetHeight() - frame->GetHeight() - 10);
+		frame->Render(framePos.x, framePos.y);
+		auto bar = TextureAsset(TextureKey::PotBar);
+		int margin = 2;
+		int barHeight = 16;
+		CRectangle barRect(0, (barHeight + margin) * (FoodCountMax - m_FoodCount) - margin * m_FoodCount, bar->GetWidth(), bar->GetHeight());
+		bar->Render(framePos.x + 4, framePos.y + 4 + (barHeight + margin) * (FoodCountMax - m_FoodCount), barRect, m_FoodCount == FoodCountMax ? MOF_COLOR_GREEN : MOF_COLOR_WHITE);
+
         // 描画
         for (auto& food : m_Foods) {
             food.Render();

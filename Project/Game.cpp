@@ -41,10 +41,12 @@ bool CGame::LoadAsset(void) {
 		"Meet.png",
 		 AnimationAsset(AnimationKey::Effect_Barrier)->GetTextureFileName(),
 		 AnimationAsset(AnimationKey::Effect_Explosion)->GetTextureFileName(),
-		"Stage1.png",
+		"Space_BG_01.png",
 		"pot.png",
-		"HP.png",
-		"HPFrame.png",
+		"HP_Bar.png",
+		"HP_Frame.png",
+		"Pot_Bar.png",
+		"Pot_Frame.png",
 	};
 
 	for (int i = 0; i < static_cast<int>(TextureKey::Count); i++)

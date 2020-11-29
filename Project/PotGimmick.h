@@ -7,6 +7,7 @@
 
 #include "PotFood.h"
 
+constexpr int FoodCountMax = 9;
 
 /// <summary>
 /// 鍋のギミック
@@ -19,6 +20,8 @@ private:
     weak_ptr<CTexture> m_pTexture;
     //! 鍋の具
     std::vector<CPotFood> m_Foods;
+	//! フードの数
+	int m_FoodCount;
 public:
     /// <summary>
     /// コンストラクタ
