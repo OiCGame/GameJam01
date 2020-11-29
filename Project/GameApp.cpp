@@ -11,7 +11,7 @@
 #include	"GameApp.h"
 #include    "AssetDefine.h"
 
-#include    "EffectManager.h"
+#include    "GamePad.h"
 
 //SCENE
 #include    "Game.h"
@@ -19,7 +19,6 @@
 #include    "GameClear.h"
 #include    "GameOver.h"
 
-#include    "GamePad.h"
 
 
 /*************************************************************************//*!
@@ -42,11 +41,10 @@ MofBool CGameApp::Initialize(void) {
 		.SetFadeColor(MOF_COLOR_WHITE);
 
 	// タイトルシーンから開始
-	//m_SceneManager.Initialize(SceneName::Title);
+	m_SceneManager.Initialize(SceneName::Title);
 	// デバッグ用、ゲームシーンから開始
-	m_SceneManager.Initialize(SceneName::Game);
+	//m_SceneManager.Initialize(SceneName::Game);
 
-	g_EffectManager.Initialize();
 	return TRUE;
 }
 /*************************************************************************//*!
@@ -66,7 +64,6 @@ MofBool CGameApp::Update(void) {
 	{
 		PostQuitMessage(0);
 	} // if
-	g_EffectManager.Update();
 
 	// アクティブのシーン更新
 	if (!m_SceneManager.Update())
@@ -95,7 +92,6 @@ MofBool CGameApp::Render(void) {
 		return FALSE;
 	}
 
-	g_EffectManager.Render();
 
 	//描画の終了
 	g_pGraphics->RenderEnd();
@@ -114,6 +110,5 @@ MofBool CGameApp::Release(void) {
 	CTextureAsset::Release();
 	CAnimationAsset::Release();
 
-	g_EffectManager.Release();
 	return TRUE;
 }
