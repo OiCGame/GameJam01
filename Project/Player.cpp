@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "AudioManager.h"
 #include "BulletManager.h"
 #include "CharacterManager.h"
 
@@ -43,25 +44,25 @@ void CPlayer::Update(void) {
         }
     }
 
-    if (StickTop)//è„
+    if (StickTop)//‰∏ä
     {
         m_Position.y -= CHARACTER_SPEED * rate;
     }
-    else if (StickBottom)//â∫
+    else if (StickBottom)//‰∏ã
     {
         m_Position.y += CHARACTER_SPEED * rate;
     }
 
-    if (StickRight)//âE
+    if (StickRight)//Âè≥
     {
         m_Position.x += CHARACTER_SPEED * rate;
     }
-    else if (StickLeft)//ç∂
+    else if (StickLeft)//Â∑¶
     {
         m_Position.x -= CHARACTER_SPEED * rate;
     }
 
-    //âÊñ Ç©ÇÁèoÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈèàóù
+    //ÁîªÈù¢„Åã„ÇâÂá∫„Å™„ÅÑ„Çà„ÅÜ„Å´„Åô„ÇãÂá¶ÁêÜ
     if (m_Position.x < 0) {
         m_Position.x = 0;
     }
@@ -96,7 +97,7 @@ void CPlayer::Update(void) {
 
 void CPlayer::Render(CVector2 scroll) {
     {
-        // ãÿì˜
+        // Á≠ãËÇâ
         auto tex = TextureAsset(TextureKey::Muscle);
         auto pos = this->GetPosition() + scroll;
         float y = 10.0f;
@@ -111,8 +112,10 @@ void CPlayer::Render(CVector2 scroll) {
 
 void CPlayer::CollisionBullet(void) {
     super::CollisionBullet();
+	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
 }
 
 void CPlayer::CollisionEnemy(void) {
     super::CollisionEnemy();
+	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
 }

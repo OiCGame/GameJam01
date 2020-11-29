@@ -2,7 +2,7 @@
 
 #include "BulletManager.h"
 #include "Character.h"
-
+#include "AudioManager.h"
 
 /// <summary>
 /// コンストラクタ
@@ -28,6 +28,10 @@ void CWeapon::Shot(CVector2 position, CVector2 move, BulletTeamType type, Bullet
         return;
     } // if
     m_ShotWait = CUtilities::GetFrameSecond() * 20;
+	if (type == BulletTeamType::Player)
+	{
+		CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
+	}
 
     CBulletManager::Singleton().Fire(
         position,

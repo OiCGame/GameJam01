@@ -114,6 +114,8 @@ CGame::CGame(const CGame::InitData& data)
     CBulletManager::Singleton().Initialize();
     // Effectの初期化
     CEffectManager::Singleton().Initialize();
+
+	CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
 }
 
 CGame::~CGame(void) {
