@@ -1,6 +1,7 @@
 #include "MachineGun.h"
 
 #include "BulletManager.h"
+#include "AudioManager.h"
 
 
 /// <summary>
@@ -27,6 +28,10 @@ void CMachineGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
         return;
     } // if
     super::m_ShotWait = CUtilities::GetFrameSecond() * 10.0f;
+	if (type == BulletTeamType::Player)
+	{
+		CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
+	}
 
     CBulletManager::Singleton().Fire(
         position,

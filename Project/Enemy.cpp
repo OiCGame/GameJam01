@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "BulletManager.h"
 #include "EffectManager.h"
+#include "AudioManager.h"
 
 
 /// <summary>
@@ -140,8 +141,10 @@ void CEnemy::Render(CVector2 scroll) {
 }
 
 void CEnemy::CollisionBullet(void) {
+	CAudioManager::Singleton().Play(SoundBufferKey::shot_struck);
 	m_pHP->Damage(40);
 	if (m_pHP->GetValue() <= 0) {
+		CAudioManager::Singleton().Play(SoundBufferKey::enemy_explosion);
 		CEffectManager::Singleton().Start(EffectType::Explosion,
 										  this->GetPosition());
 		super::Notify(this, "EnemyDead");

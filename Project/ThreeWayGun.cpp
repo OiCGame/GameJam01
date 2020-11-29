@@ -1,6 +1,7 @@
 #include "ThreeWayGun.h"
 
 #include "BulletManager.h"
+#include "AudioManager.h"
 
 
 /// <summary>
@@ -40,6 +41,10 @@ void CThreeWayGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
     super::m_ShotWait = CUtilities::GetFrameSecond() * 60.0f;
 
 
+	if (type == BulletTeamType::Player)
+	{
+		CAudioManager::Singleton().Play(SoundBufferKey::Sound0);
+	}
 
     int shot_count = 3;
 

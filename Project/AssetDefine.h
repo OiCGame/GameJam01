@@ -34,9 +34,16 @@ enum class AnimationKey
 
 enum class SoundBufferKey {
 	Sound0,
+	boomerang,
+	shot_struck,
+	enemy_explosion,
+	player_explosion,
 };
 enum class SoundStreamBufferKey {
 	Bgm0,
+	title,
+	gameclear,
+	gameover,
 };
 
 using CTextureAsset   = CAssetBase<TextureKey  , CTexture      >;

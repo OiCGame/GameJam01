@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "AudioManager.h"
 
 CPlayer::CPlayer():
     super()
@@ -97,8 +98,10 @@ void CPlayer::Render(CVector2 scroll) {
 
 void CPlayer::CollisionBullet(void) {
     super::CollisionBullet();
+	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
 }
 
 void CPlayer::CollisionEnemy(void) {
     super::CollisionEnemy();
+	CAudioManager::Singleton().Play(SoundBufferKey::player_explosion);
 }
