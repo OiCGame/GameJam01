@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "BulletManager.h"
+#include "CharacterManager.h"
 
 CPlayer::CPlayer():
     super()
@@ -76,8 +78,20 @@ void CPlayer::Update(void) {
     }
 
     if (g_pPad->IsKeyHold(XInputButton::XINPUT_A)) {
-        m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player);
+        m_pWeapon->Shot(m_Position, CVector2(0, -2.0f), BulletTeamType::Player, BulletType::Default, TextureKey::Bullet_01);
     }
+
+	if (g_pPad->IsKeyHold(XInputButton::XINPUT_L_BTN)) {
+
+		Vector2 normal{0, 1};
+		auto& r = CCharacterManager::Singleton().GetNearestEnemy(m_Position);
+		Vector2 enePos = r->GetPosition();
+		if (enePos != m_Position)
+		{
+			CVector2Utilities::Normal(m_Position - enePos, normal);
+		}
+		CBulletManager::Singleton().Fire(m_Position, normal * -6.0f, BulletTeamType::Player, BulletType::Boomerang, TextureKey::Muscle);
+	}
 }
 
 void CPlayer::Render(CVector2 scroll) {

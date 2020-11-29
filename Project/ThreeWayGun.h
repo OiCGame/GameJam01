@@ -5,7 +5,6 @@
 
 #include <Mof.h>
 
-
 /// <summary>
 /// ３Way武器
 /// </summary>
@@ -26,5 +25,5 @@ public:
     /// <param name="position">発射位置</param>
     /// <param name="move">更新移動量</param>
     /// <param name="type">所属チーム</param>
-    void Shot(CVector2 position, CVector2 move, BulletTeamType type) override;
+    void Shot(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key) override;
 };

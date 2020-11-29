@@ -22,7 +22,7 @@ CMachineGun::~CMachineGun() {
 /// <param name="position">発射位置</param>
 /// <param name="move">更新移動量</param>
 /// <param name="type">所属チーム</param>
-void CMachineGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
+void CMachineGun::Shot(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key) {
     if (0 < super::m_ShotWait) {
         return;
     } // if
@@ -31,5 +31,5 @@ void CMachineGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
     CBulletManager::Singleton().Fire(
         position,
         move,
-        type);
+        type, bt, key);
 }
