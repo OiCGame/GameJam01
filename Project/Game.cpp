@@ -107,6 +107,7 @@ bool CGame::InitCharas(void) {
 }
 
 void CGame::CreateEnemy(void) {
+
     /*
     CharacterInitParam CIparm;
     CIparm.texture = TextureAsset(TextureKey::Character);
