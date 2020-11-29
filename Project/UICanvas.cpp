@@ -81,3 +81,8 @@ void CUICanvas::Render(void) {
 void CUICanvas::Release(void) {
     m_pRenderer.reset();
 }
+
+CFont & CUICanvas::GetFont(void)
+{
+	return m_Font;
+}
