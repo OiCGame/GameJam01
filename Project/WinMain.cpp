@@ -6,6 +6,8 @@ int WINAPI _tWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 
 	Mof::LPFramework pFrame = new Mof::CDX11GameFramework(); 
 	Mof::WINDOWSGAMEFRAMEWORKINITIALIZEINFO Info;
+	Info.WindowCreateInfo.Width  = 720;
+	Info.WindowCreateInfo.Height = 960;
 	Info.pApplication = new CGameApp();
 	if ( pFrame->Initialize(&Info) )
 	{
