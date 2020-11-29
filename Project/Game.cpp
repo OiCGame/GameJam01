@@ -13,6 +13,7 @@
 #include "Stage1.h"
 #include "AudioManager.h"
 #include "WeaponItemManager.h"
+#include "GamePad.h"
 
 
 bool CGame::LoadAsset(void) {
@@ -205,6 +206,17 @@ void CGame::Update(void) {
     CBulletManager::Singleton().Update();
     // Effectの更新
     CEffectManager::Singleton().Update();
+
+	if (g_pPad->IsKeyPush(XINPUT_B) && m_pPotGimmick->IsAllrady())
+	{
+		CAudioManager::Singleton().Play(SoundBufferKey::flash_02);
+		m_pPotGimmick->ResetPotFoods();
+		if (auto& p = CCharacterManager::Singleton().GetPlayer())
+		{
+			dynamic_pointer_cast<CPlayer>(p)->GimmickFlash();
+		}
+	}
+
     // 衝突判定
     CCollisionManager::Singleton().Update();
     // ストリーム更新

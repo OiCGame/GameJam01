@@ -13,7 +13,7 @@
 void CEnemy::UpdateAttack(void) {
     super::m_pWeapon->Shot(m_Position,
                          Mof::CVector2(0.0f, 5.0f),
-                         BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_01);
+                         BulletTeamType::Enemy, BulletType::Default, TextureKey::Bullet_02);
 }
 
 /// <summary>
@@ -50,7 +50,7 @@ void CEnemy::InitMoveMotionDefault(void)
 
 void CEnemy::InitMoveMotionWave(void)
 {
-	float waveWidth = 10;
+	float waveWidth = CUtilities::Random(10, 16);
 	float moveY = 2;
 	m_MoveMotion << CEaseMotion<Vector2>(Vector2(0, moveY), Vector2( waveWidth * 0.5f, moveY), Ease::Out, EaseType::Sine, 0.25f);
 	m_MoveMotion << CEaseMotion<Vector2>(Vector2( waveWidth * 0.5f, moveY), Vector2(0, moveY), Ease::In , EaseType::Sine, 0.25f);
@@ -162,11 +162,11 @@ void CEnemy::CollisionBullet(void) {
 }
 
 void CEnemy::CollisionEnemy(void) {
-	m_pHP->Damage(100);
+	m_pHP->Damage(1000);
 	if (m_pHP->GetValue() <= 0) {
 		CEffectManager::Singleton().Start(EffectType::Barrier,
 										  this->GetPosition());
-		super::Notify(this, "EnemyDead");
+		CAudioManager::Singleton().Play(SoundBufferKey::enemy_explosion);
 		m_bShow = false;
 	} // if
 }
