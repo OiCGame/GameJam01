@@ -95,8 +95,12 @@ void CCollisionManager::Update(void)
 		if (!m_pPlayer) {
 			break;
 		} // if
+		if (m_pPlayer->IsGimmick())
+		{
+			enemyBullet->Hide();
+		}
 		// Ž©•ª‚Æ“G‚Ì’e
-		if (m_pPlayer->GetRectangle().CollisionRect(enemyBullet->GetRectangle()))
+		else if (m_pPlayer->GetRectangle().CollisionRect(enemyBullet->GetRectangle()))
 		{
 			if (!m_pPlayer->IsDamage())
 			{

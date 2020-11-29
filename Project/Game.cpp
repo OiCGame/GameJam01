@@ -152,7 +152,6 @@ CGame::CGame(const CGame::InitData& data)
     m_Stage(),
     m_pPotGimmick(std::make_shared<CPotGimmick>()) {
     bool loaded = this->LoadAsset();
-    CAudioManager::Singleton().Load();
     this->InitCharas();
     // Stageの初期化
     m_Stage.Initialize();
@@ -163,11 +162,11 @@ CGame::CGame(const CGame::InitData& data)
     CEffectManager::Singleton().Initialize();
 
 	CAudioManager::Singleton().Play(SoundStreamBufferKey::Bgm0);
+	CUICanvas::Singleton().GetFont().SetSize(20);
 }
 
 CGame::~CGame(void) {
     // 解放処理
-    CAudioManager::Singleton().Release();
     CCharacterManager::Singleton().Release();
     CBulletManager::Singleton().Release();
     CUICanvas::Singleton().Release();
@@ -175,9 +174,6 @@ CGame::~CGame(void) {
 
 void CGame::Update(void) {
     // シーンの遷移
-    if (g_pInput->IsKeyPush(MOFKEY_1)) {
-        ChangeScene(SceneName::Title);
-    } // if
     if (11700 < m_Stage.GetScroll()) {
         ChangeScene(SceneName::GameClear);
     } // if
@@ -209,8 +205,6 @@ void CGame::Update(void) {
 
     // 衝突判定
     CCollisionManager::Singleton().Update();
-    // ストリーム更新
-    CAudioManager::Singleton().Update();
 }
 
 void CGame::Render(void) {
@@ -222,6 +216,4 @@ void CGame::Render(void) {
     CCharacterManager::Singleton().Render(Mof::CVector2());
     CEffectManager::Singleton().Render();
     CUICanvas::Singleton().Render();
-
-    ::CGraphicsUtilities::RenderString(20, 20, "FPS = %d", ::CUtilities::GetFPS());
 }

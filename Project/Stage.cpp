@@ -36,7 +36,4 @@ void CStage::Render(void)
 			r->RenderScale(w, y, ratio, 1.0f);
 		}
 	}
-
-
-	::CGraphicsUtilities::RenderString(20, 180, "Scroll = %f", m_Scroll);
 }
