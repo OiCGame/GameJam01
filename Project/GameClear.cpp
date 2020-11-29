@@ -6,7 +6,7 @@
 CGameClear::CGameClear(const CGameClear::InitData & data)
 	: super(data)
 {
-	if (!CTextureAsset::Load(TextureKey::ClearBack, "ClearBack.png"))
+	if (!CTextureAsset::Load(TextureKey::ClearBack, "Space_BG_02.png"))
 	{
 		MOF_PRINTLOG("failed to load texture");
 	}
@@ -16,6 +16,7 @@ CGameClear::CGameClear(const CGameClear::InitData & data)
 	}
 	m_pTexture = TextureAsset(TextureKey::ClearBack);
 	m_pNameTexture = TextureAsset(TextureKey::ClearName);
+	CAudioManager::Singleton().Play(SoundStreamBufferKey::gameclear);
 }
 
 CGameClear::~CGameClear(void)
