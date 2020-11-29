@@ -105,4 +105,5 @@ void CCharacter::CollisionEnemy(void)
 										  this->GetPosition());
 		m_bShow = false;
 	} // if
+	m_DamageWait = 60;
 }
