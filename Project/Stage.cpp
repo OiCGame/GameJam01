@@ -9,6 +9,10 @@ CStage::~CStage()
 	m_pTexture.reset();
 }
 
+float CStage::GetScroll(void) const {
+	return this->m_Scroll;
+}
+
 void CStage::Initialize(void)
 {
 	m_Scroll = 0;
@@ -30,4 +34,7 @@ void CStage::Render(void)
 			r->Render(0.0f, y);
 		}
 	}
+
+
+	::CGraphicsUtilities::RenderString(20, 80, "Scroll = %f", m_Scroll);
 }

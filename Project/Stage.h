@@ -24,6 +24,9 @@ private:
 public:
 	CStage();
 	~CStage();
+
+	float GetScroll(void) const;
+
 	void Initialize(void);
 	void Update(void);
 	void Render(void);

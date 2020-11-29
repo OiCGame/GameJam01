@@ -33,7 +33,7 @@ void Rotate(float& pos_x, float& pos_y, const float radian,
 /// <param name="position">発射位置</param>
 /// <param name="move">更新移動量</param>
 /// <param name="type">所属チーム</param>
-void CThreeWayGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
+void CThreeWayGun::Shot(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key) {
 //    super::AddWait(shot_interval_max_);
     if (0 < super::m_ShotWait) {
         return;
@@ -56,7 +56,7 @@ void CThreeWayGun::Shot(CVector2 position, CVector2 move, BulletTeamType type) {
         CBulletManager::Singleton().Fire(
             position,
             speed,
-            type);
+            type, bt, key);
         ad += MOF_ToRadian(15.0f);
     } // for
 

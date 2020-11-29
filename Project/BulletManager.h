@@ -6,6 +6,15 @@
 
 #include "Bullet.h"
 
+enum class TextureKey;
+
+enum class BulletType
+{
+	Boomerang,
+	Default,
+	Homing,
+};
+
 
 class CBulletManager
 {
@@ -52,7 +61,7 @@ public:
 	/// <param name="position">発射位置</param>
 	/// <param name="move">移動量</param>
 	/// <param name="type">Bulletの所属チーム</param>
-	void Fire(CVector2 position, CVector2 move, BulletTeamType type);
+	void Fire(CVector2 position, CVector2 move, BulletTeamType type, BulletType bt, TextureKey key);
 
 	/// <summary>
 	/// Bulletの追加　Weaponから呼ばれることを想定
