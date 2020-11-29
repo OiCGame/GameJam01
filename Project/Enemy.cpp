@@ -142,10 +142,11 @@ void CEnemy::Render(CVector2 scroll) {
 
 void CEnemy::CollisionBullet(void) {
 	CAudioManager::Singleton().Play(SoundBufferKey::shot_struck);
+	CEffectManager::Singleton().Start(EffectType::Explosion, this->GetPosition());
 	m_pHP->Damage(40);
 	if (m_pHP->GetValue() <= 0) {
 		CAudioManager::Singleton().Play(SoundBufferKey::enemy_explosion);
-		CEffectManager::Singleton().Start(EffectType::Explosion,
+		CEffectManager::Singleton().Start(EffectType::Explosion2,
 										  this->GetPosition());
 		super::Notify(this, "EnemyDead");
 		m_bShow = false;

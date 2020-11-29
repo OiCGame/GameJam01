@@ -16,6 +16,7 @@ enum class TextureKey
 	Bullet_03,
 	Effect_Barrier,
 	Effect_Explosion,
+	Effect_Explosion2,
 	Stage,
 	PotGimmick,
 	HP,
@@ -30,6 +31,7 @@ enum class AnimationKey
 {
 	Effect_Barrier,
 	Effect_Explosion,
+	Effect_Explosion2,
 
 	Count,
 };
